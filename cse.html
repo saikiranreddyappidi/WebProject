@@ -1,1 +1,53 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #b3b3b3;
+}
+</style>
+</head>
+<body>
+
+<h2>Following links are available for your branch</h2>
+
+<table border="1">
+<tr>
+    <td>Sl.No</td>
+    <td>Faculty Name</td>
+    <td>Faculty Recognition</td>
+    <td>File Type</td>
+    <td>File Name</td>
+</tr>
+{% for x in mymembers %}
+<tr>
+    <td>{{ x.id }}</td>
+    <td>{{ x.facultyname }}</td>
+    <td>Professor</td>
+    <td>{{x.file_type}}</td>
+    <td><a href={{ x.link }} title="Open File">{{x.filename}}</a></td>
+</tr>
+{% endfor %}
+</table>
+
+
+<a href="admin/">Admin</a>
+<a href="/Django.pdf">pdf</a>
+
+</body>
+</html>
