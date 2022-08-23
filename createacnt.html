@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title> Login Page </title>
 <style>
@@ -45,8 +48,8 @@ button {
 </style>
 </head>
 <body>
-    <center> <h1> Create account </h1> </center>
-    <form action="creating/" method="get">
+    <h1> Create account </h1>
+    <form action="creating/" method="post">
         {% csrf_token %}
         <div class="container">
         <label>Name : </label>
@@ -58,6 +61,8 @@ button {
             <p style="color:red;">password is case sensitive</p>
 		<label>E-mail : </label>
             <input type="text" placeholder="Enter your email" name="mail" required>
+        <label>Profile Link : </label>
+            <input type="url" placeholder="Paste your link (Optional)" name="link">
             <button type="submit">Sign Up</button>
            <p>Already have an account? Login <a href="../">here</a></p>
             <input type="checkbox" checked="checked"> Remember me
