@@ -1,38 +1,41 @@
-
 <!DOCTYPE html>
+{% include 'set.html' %}
 <html lang="en">
 <head>
-    <title></title>
+    <link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
+<title>CSE</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 table {
   border-collapse: collapse;
   border-spacing: 0;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 1px #041549;
 }
 
 th, td {
   text-align: left;
   padding: 16px;
+  color: white;
 }
 
 tr:nth-child(even) {
-  background-color: #b3b3b3;
+  background-color: #00000f;
 }
 </style>
 </head>
-<body>
-
-<h2>Following links are available for your branch</h2>
+<body style="background-color: #00000f">
 
 <table border="1">
+    <h2 style="text-align: center;color:blue">Following links are available for your branch</h2>
 <tr>
-    <td>Sl.No</td>
-    <td>Faculty Name</td>
-    <td>Faculty Recognition</td>
-    <td>File Type</td>
-    <td>File Name</td>
+    <td><h3 style="color: #0000cc">Sl.No</h3></td>
+    <td><h3 style="color: #0000cc">Faculty Name</h3></td>
+    <td><h3 style="color: #0000cc">Faculty Recognition</h3></td>
+    <td><h3 style="color: #0000cc">File Type</h3></td>
+    <td><h3 style="color: #0000cc">File Name</h3></td>
 </tr>
 {% for x in mymembers %}
 <tr>
@@ -46,8 +49,6 @@ tr:nth-child(even) {
 </table>
 
 
-<a href="admin/">Admin</a>
-<a href="/Django.pdf">pdf</a>
-
+<a href="../../creator/">Admin</a>
 </body>
 </html>
