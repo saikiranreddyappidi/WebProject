@@ -636,7 +636,7 @@ def sendingotp(mail, name, psawd):
     smtp = smtplib.SMTP('smtp.gmail.com', 587)
     smtp.ehlo()
     smtp.starttls()
-    smtp.login('yourmail@gmail.com', 'andfkasndlkfjalks')
+    smtp.login('yourmail@gmail.com', 'app_password')
     msg = MIMEMultipart()
     subject = "Reset Password Verification code"
     msg['Subject'] = subject
@@ -654,7 +654,7 @@ def sendingotp(mail, name, psawd):
     text = text1 + text2 + text3
     msg.attach(MIMEText(text))
     to = [str(mail)]
-    smtp.sendmail(from_addr="developingproject7@gmail.com", to_addrs=to, msg=msg.as_string())
+    smtp.sendmail(from_addr="yourmail@gmail.com", to_addrs=to, msg=msg.as_string())
     smtp.quit()
     print("Mail sent")
     return hotp
