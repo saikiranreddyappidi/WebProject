@@ -29,16 +29,16 @@ print("Hello !, admin")
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="database_password",
-    database="database_name"
+    password="password",
+    database="secondary"
 )
 
 
 mydb1 = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="database_password",
-    database="database_name"
+    password="password",
+    database="primary"
 )
 
 
@@ -187,7 +187,30 @@ def cse(request):
         mymembers['link'] = i[3]
         mymembers['file_type'] = i[5]
         list_members.append(mymembers)
-    context = {'mymembers': list_members}
+
+    mycursor = mydb.cursor()
+    sql = "select subject from branch_subject where branch='cse'"
+    mycursor.execute(sql)
+    myresult_of_b_s = mycursor.fetchall()
+    subjects_list = []
+    k = 0
+    for data in myresult_of_b_s:
+        mycursor_lib = mydb1.cursor()
+        sql = "select * from apporved_files where subject=%s"
+        value = (data[0],)
+        mycursor_lib.execute(sql, value)
+        myresult = mycursor_lib.fetchall()
+        for i in myresult:
+            # print(i,type(i))
+            k = k + 1
+            mymembers = {}
+            mymembers['id'] = k
+            mymembers['reg'] = i[1]
+            mymembers['filename'] = i[2]
+            mymembers['file_type'] = i[3]
+            mymembers['link'] = i[4]
+            subjects_list.append(mymembers)
+    context = {'mymembers': list_members,'students_files':subjects_list}
     check = check_status(request)
     if check == 2:
         return HttpResponse(template.render(context, request))
@@ -231,7 +254,7 @@ def userprofile(request):
                 mymembers['reg_no'] = i[1]
                 mymembers['name'] = i[2]
                 mymembers['mail'] = i[4]
-                mymembers['link'] = i[8]
+                mymembers['link'] = i[5]
                 list_members.append(mymembers)
             context = {'mymembers': list_members}
             return HttpResponse(template.render(context, request))
@@ -249,21 +272,30 @@ def userinp(request):
 def userfileinp(request):
     file_name=filter_data(request,request.POST['filename'])
     subject = request.POST['sub']
+    file_type = request.POST['file_type']
     link=request.POST['link']
+    comment = filter_data(request,request.POST['comment'])
+    if comment == "Explain something about the file._optional_":
+        comment = None
     t=check_status(request)
     if t==2:
         regis = return_reg(request)
         if regis !='0':
+            mycursor = mydb1.cursor()
+            sql = "select sec from student_info where reg_no=%s"
+            value = (regis,)
+            mycursor.execute(sql, value)
+            myresult = mycursor.fetchall()
+            sec = myresult[0][0]
             date=datetime.datetime.now()
-            sec=18
-            cursor = mydb1.cursor()
-            sql = "insert into userlinks(reg, sec, filename, link, datetime,subject) values(%s,%s,%s,%s,%s,%s)"
-            values = (regis, sec, file_name, link, date,subject)
-            cursor.execute(sql, values)
+            cursor1 = mydb1.cursor()
+            sql = "insert into userlinks(reg, sec, filename, file_type, link, datetime,subject,comment) values(%s,%s,%s,%s,%s,%s,%s,%s)"
+            values = (regis, sec, file_name, file_type, link, date, subject, comment)
+            cursor1.execute(sql, values)
             mydb1.commit()
             return HttpResponseRedirect(reverse('course'))
         else:
-            return HttpResponse('Something went wrong when writng to database')    
+            return HttpResponse('Something went wrong when writing to database')
  
 
 def return_reg(request):
@@ -360,7 +392,8 @@ def facultyaccess(request):
                             print("f-a-c ok,login success")
                             return cookie
                         else:
-                            return HttpResponse('Already one active user with this id on ip'+str(t))
+                            return HttpResponseRedirect("pdf_links")
+                            #return HttpResponse('Already one active user with this id on ip'+str(t))
                     else:
                         return HttpResponse("Wrong password !!!")
                 elif k == len(myresult):
@@ -515,6 +548,88 @@ def dup_fac(request,fac_id):
         return 0
 
 
+def requestings(request):
+    try:
+        print('requestings')
+        t=faculty_auth(request,1)
+        if t!=0:
+            mycursor = mydb1.cursor()
+            sql = "select sec,subject from assigned_sections where fac_id=%s"
+            val=(t,)
+            mycursor.execute(sql,val)
+            myresult_of_a_s = mycursor.fetchall()
+            template = loader.get_template('requestings.html')
+            mycursor = mydb1.cursor()
+            list_members = []
+            k = 0
+            for faculty_data in myresult_of_a_s:
+                sql = "select * from userlinks where sec=%s and subject=%s"
+                value = (faculty_data[0],faculty_data[1])
+                mycursor.execute(sql, value)
+                myresult = mycursor.fetchall()
+                for i in myresult:
+                    # print(i,type(i))
+                    k = k + 1
+                    mymembers = {}
+                    mymembers['id'] = k
+                    mymembers['reg'] = i[1]
+                    mymembers['filename'] = i[3]
+                    mymembers['file_type'] = i[4]
+                    mymembers['link'] = i[5]
+                    mymembers['subject'] = i[7]
+                    mymembers['comment'] = i[8]
+                    list_members.append(mymembers)
+            # print("list :" ,list_members,type(list_members))
+            context = {'mymembers': list_members}
+            # print("context:",context,type(context))
+            return HttpResponse(template.render(context, request))
+        else:
+            return HttpResponseRedirect(reverse('faculty'))
+    except:
+        return HttpResponseRedirect(reverse("faculty"))
+
+
+def apporve(request, filename):
+    t = faculty_auth(request,1)
+    mycursor = mydb1.cursor()
+    sql = "select * from userlinks where filename=%s"
+    value = (filename,)
+    mycursor.execute(sql, value)
+    myresult = mycursor.fetchall()
+    i=myresult[0]
+    n=None
+    statement="insert into apporved_files(regno,file_name,file_type,file_link,subject,stu_comment,apporved_by,fac_comment,datetime) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    values=(i[1],filename,i[4],i[5],i[7],i[8],t,n,datetime.datetime.now())
+    mycursor.execute(statement,values)
+    mydb1.commit()
+    sql = "delete from userlinks where filename=%s"
+    value = (filename,)
+    mycursor.execute(sql, value)
+    mydb1.commit()
+    print(type(i[1]),type(filename),type(i[5]),type(t),type(t))
+    approvingmail(i[1],filename,i[5],n,t)
+    return HttpResponseRedirect(reverse('requestings'))
+
+
+def decline(request, filename):
+    t = faculty_auth(request,1)
+    mycursor = mydb1.cursor()
+    sql = "select * from userlinks where filename=%s"
+    value = (filename,)
+    mycursor.execute(sql, value)
+    myresult = mycursor.fetchall()
+    i=myresult[0]
+    statement="insert into declined_files(regno,file_name,file_type,file_link,subject,stu_comment,declined_by,fac_comment,datetime) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+    values=(i[1],filename,i[4],i[5],i[7],i[8],t,None,datetime.datetime.now())
+    mycursor.execute(statement,values)
+    mydb1.commit()
+    sql = "delete from userlinks where filename=%s"
+    value = (filename,)
+    mycursor.execute(sql, value)
+    mydb1.commit()
+    return HttpResponseRedirect(reverse('requestings'))
+
+
 def mail_checking(request):
     template = loader.get_template('mail_checking.html')
     return HttpResponse(template.render({}, request))
@@ -636,7 +751,7 @@ def sendingotp(mail, name, psawd):
     smtp = smtplib.SMTP('smtp.gmail.com', 587)
     smtp.ehlo()
     smtp.starttls()
-    smtp.login('yourmail@gmail.com', 'app_password')
+    smtp.login('yourmail@gmail.com', 'apppassword')
     msg = MIMEMultipart()
     subject = "Reset Password Verification code"
     msg['Subject'] = subject
@@ -654,10 +769,42 @@ def sendingotp(mail, name, psawd):
     text = text1 + text2 + text3
     msg.attach(MIMEText(text))
     to = [str(mail)]
-    smtp.sendmail(from_addr="yourmail@gmail.com", to_addrs=to, msg=msg.as_string())
+    smtp.sendmail(from_addr="pdfs team", to_addrs=to, msg=msg.as_string())
     smtp.quit()
     print("Mail sent")
     return hotp
+
+
+def approvingmail(reg,filename,link,comments,fac_id):
+    mycursor = mydb1.cursor()
+    sql = "select name,email from student_info where reg_no=%s"
+    value = (reg,)
+    mycursor.execute(sql, value)
+    myresult = mycursor.fetchall()
+    mycursor = mydb1.cursor()
+    name = myresult[0][0]
+    mail = myresult[0][1]
+    sql = "select name from faculty where faculty_id=%s"
+    value = (fac_id,)
+    mycursor.execute(sql, value)
+    myresult = mycursor.fetchall()
+    smtp = smtplib.SMTP('smtp.gmail.com', 587)
+    smtp.ehlo()
+    smtp.starttls()
+    smtp.login('yourmail@gmail.com', 'apppassword')
+    msg = MIMEMultipart()
+    subject = "Your file has been approved"
+    msg['Subject'] = subject
+    text1 ='Hi '+name+','+'\n'+'\n'+'The file that you are uploaded has been verified by '+myresult[0][0] +'.'+'\n'+'\n'
+    text2='File name : '+ filename + '\n' +'File link : '+ link + '\n' #+'Faculty comments: '+comments+'\n'
+    text3='\n'+'If you want to delete this uploaded file ,raise a request to delete the file in the pdfs website.'
+    text4='The concerned faculty will verify your request and the file may deleted by that faculty.'+'\n'+'\n'
+    text=text1+text2+text3+text4+'Thank you,'+'\n'+'pdfs Team.'
+    msg.attach(MIMEText(text))
+    smtp.sendmail(from_addr="pdfs team", to_addrs=mail, msg=msg.as_string())
+    smtp.quit()
+    print("apporval Mail sent")
+    return True
 
 
 def get_ip(request):
@@ -705,7 +852,7 @@ def fileip(request):
 
 def filter_data(request,word):
     arr = ['`', '!', '#', '$', '%', '^', '&', '*', '(', ')', '+', '=', '/', '<', '>', '|', '?', '~', 'script', '"',
-           "'", ';', ':',',']
+           "'", ';', ':']
     for i in word:
         if i in arr:
             word = word.replace(i, "_")
