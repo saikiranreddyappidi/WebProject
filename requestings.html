@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% include 'requests_header.html' %}
+<html>
+<title>Requests</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+tr:nth-child(even) {
+  background-color: #b3b3b3;
+}
+</style>
+</head>
+<body>
+
+<h2>Requests</h2>
+
+<table border="1">
+<tr>
+    <td>Sl.No</td>
+    <td>Reg.no</td>
+    <td>File name</td>
+    <td>Link</td>
+    <td>File Format</td>
+    <td>Subject</td>
+    <td>Comments</td>
+    <td>Status</td>
+    <td>My comment</td>
+</tr>
+{% for x in mymembers %}
+<tr>
+    <td>{{ x.id }}</td>
+    <td>{{ x.reg }}</td>
+    <td>{{ x.filename }}</td>
+    <td><a href={{ x.link }}>{{x.filename}}</a></td>
+    <td>{{ x.file_type }}</td>
+    <td>{{ x.subject }}</td>
+    <td>{{ x.comment }}</td>
+    <td><a href="apporve/{{ x.filename }}">Approve</a><br><br>
+    <a href="decline/{{ x.filename }}">Decline</a></td>
+    <td><a href="mycomment/{{ x.filename }}">Add comment</a></td>
+</tr>
+{% endfor %}
+</table>
+
+</body>
+</html>
