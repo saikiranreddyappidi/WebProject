@@ -46,8 +46,26 @@ tr:nth-child(even) {
     <td><a href={{ x.link }} title="Open File">{{x.filename}}</a></td>
 </tr>
 {% endfor %}
+</table><br><br>
+<table border="1">
+    <h2 style="text-align: center;color:blue">Files shared by students</h2>
+<tr>
+    <td><h3 style="color: #0000cc">Sl.No</h3></td>
+    <td><h3 style="color: #0000cc">Reg.no</h3></td>
+    <td><h3 style="color: #0000cc">File Name</h3></td>
+    <td><h3 style="color: #0000cc">File Type</h3></td>
+    <td><h3 style="color: #0000cc">File Link</h3></td>
+</tr>
+{% for x in students_files %}
+<tr>
+    <td>{{ x.id }}</td>
+    <td>{{ x.reg }}</td>
+    <td>{{ x.filename }}</td>
+    <td>{{x.file_type}}</td>
+    <td><a href={{ x.link }} title="Open File">{{x.filename}}</a></td>
+</tr>
+{% endfor %}
 </table>
-
 
 <a href="../../creator/">Admin</a>
 </body>
