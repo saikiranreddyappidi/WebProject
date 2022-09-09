@@ -15,22 +15,28 @@ from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 
+
 print("Hello !, admin")
 
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="data2",
-    database="db2"
+    password="database@9440672439",
+    database="regist"
 )
 
 
 mydb1 = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="data1",
-    database="db1"
+    password="database@9440672439",
+    database="library"
 )
+
+
+def home(request):
+    template = loader.get_template('home.html')
+    return HttpResponse(template.render())
 
 
 def firstreg(request):
@@ -131,9 +137,9 @@ def alreadylogin(request):
         if s == 2:  # all ok
             return HttpResponseRedirect(reverse('course'))
         elif s == 1:  # wrong password
-            return HttpResponseRedirect(reverse('wrongpassword'))
+            return HttpResponse('Wrong Password !!!')
         elif s == 0:  # no account
-            return HttpResponseRedirect(reverse('noaccountfound'))
+            return HttpResponse('An error occurred. Try login again.')
         else:
             return HttpResponseRedirect(reverse('newlogin'))
     return HttpResponseRedirect(reverse('newlogin'))
@@ -162,9 +168,9 @@ def first(request):
             mydb.commit()
             return HttpResponseRedirect(reverse('course'))
         elif s == 1:  # wrong password
-            return HttpResponseRedirect(reverse('wrongpassword'))
+            return HttpResponse('Wrong Password')
         elif s == 0:  # no account
-            return HttpResponseRedirect(reverse('noaccountfound'))
+            return HttpResponse('No account found !!!')
         else:
             return HttpResponseRedirect(reverse('firstreg'))
     return HttpResponseRedirect(reverse('firstreg'))
@@ -1120,7 +1126,7 @@ def sendingotp(mail, name, psawd):
         smtp = smtplib.SMTP('smtp.gmail.com', 587)
         smtp.ehlo()
         smtp.starttls()
-        smtp.login('yourmail@gmai.com', 'apppassword')
+        smtp.login('yourmail@gmail.com', 'apppassword')
         msg = MIMEMultipart()
         subject = "Reset Password Verification code"
         msg['Subject'] = subject
@@ -1164,7 +1170,7 @@ def statusmail(reg, filename, link, comments, fac_id, enable):
         smtp = smtplib.SMTP('smtp.gmail.com', 587)
         smtp.ehlo()
         smtp.starttls()
-        smtp.login('yourmail@gmai.com', 'apppassword')
+        smtp.login('yourmail@gmail.com', 'apppassword')
         msg = MIMEMultipart()
         if enable == 1:
             subject = "Your file has been approved"
