@@ -21,16 +21,16 @@ print("Hello !, admin")
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="database@9440672439",
-    database="regist"
+    password="databasepassword",
+    database="db1"
 )
 
 
 mydb1 = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="database@9440672439",
-    database="library"
+    password="databasepassword",
+    database="db2"
 )
 
 
