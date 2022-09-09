@@ -1,4 +1,4 @@
-# pdfs
+# Project
 My first  website .
 I made this small website using Python Django framework . 
 For this you need to have some knowledge on Python and its modules Django and MySQL.
