@@ -11,7 +11,4 @@ The files which are uploaded by the students are avilable in the website to othe
 To access this files or documents the user must have an account in the website or user can have an option to create a new account.
 By this website students can easily access the documents anywhere and anytime .
 Currently the website is under development.
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=saikiranreddyappidi)](https://github.com/anuraghazra/github-readme-stats)
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=saikiranreddyappidi&count_private=true)
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=saikiranreddyappidi&show_icons=true)
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=saikiranreddyappidi&show_icons=true&theme=radical)
+
