@@ -1,20 +1,14 @@
 import base64
 import datetime
-import math
-import random
-import secrets
-import smtplib
-import string
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 from urllib import request
 
-import mysql.connector
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 
+from .Data.Primary import *
+from .MailServices.mail import Mail
 
 print("Hello !, admin")
 
@@ -22,7 +16,7 @@ mydb = mysql.connector.connect(
     host="localhost",
     user="root",
     password="databasepassword",
-    database="db1"
+    database="databasename1"
 )
 
 
@@ -30,52 +24,36 @@ mydb1 = mysql.connector.connect(
     host="localhost",
     user="root",
     password="databasepassword",
-    database="db2"
+    database="databasename2"
 )
 
 
-def home(request):
-    template = loader.get_template('home.html')
-    return HttpResponse(template.render())
+
+
+def get_reg(c_value):
+    print("get_reg")
+    mycursor = mydb1.cursor()
+    sql = "select reg from assigned_cookies where cookies=%s"
+    value = (c_value,)
+    mycursor.execute(sql, value)
+    myresult = mycursor.fetchall()
+    print(myresult)
+    return myresult
 
 
 def firstreg(request):
     ip = get_ip(request)
     template = loader.get_template('first.html')
     cookie = HttpResponse(template.render())
-    cookie_value = makecookie()
+    cook = Cookies()
+    cookie_value = cook.makecookie()
     cookie.set_cookie("fwist", cookie_value, max_age=None)
     try:
         c_value = filter_data(request, request.COOKIES['userid'])
-        mycursor = mydb1.cursor()
-        sql = "select reg from assigned_cookies where cookies=%s"
-        value = (c_value,)
-        mycursor.execute(sql, value)
-        myresult = mycursor.fetchall()
-        if len(myresult) > 0:
-            template = loader.get_template('alreadylogin.html')
-            reg_no = myresult[0][0]
-            mycursor = mydb1.cursor()
-            sql = "select * from student_info where Reg_no=%s"
-            value = (reg_no,)
-            mycursor.execute(sql, value)
-            myresult = mycursor.fetchall()
-            list_members = []
-            for i in myresult:
-                mymembers = {}
-                mymembers['reg_no'] = i[1]
-                mymembers['name'] = i[2]
-                mymembers['link'] = i[5]
-                list_members.append(mymembers)
-            context = {'mymembers': list_members}
-            cookie = HttpResponse(template.render(context,request))
-            cookie.set_cookie("Alin", cookie_value, max_age=None)
-            mycursor = mydb.cursor()
-            sql = "insert into alreadylogin(reg,cookie,ip,datetime) values(%s, %s, %s, %s)"
-            values = (reg_no, cookie_value, ip, datetime.datetime.now())
-            mycursor.execute(sql, values)
-            mydb.commit()
-            return cookie
+        print("cookies--", c_value)
+        myresult = get_reg(c_value)
+        if len(myresult) and myresult[0][0] != '0':
+            return HttpResponseRedirect('already_login_once')
         else:
             mycursor = mydb.cursor()
             sql = "insert into first_visit(cookie,ip,datetime) values(%s, %s, %s)"
@@ -84,6 +62,7 @@ def firstreg(request):
             mydb.commit()
             return cookie
     except:
+        print('exception occured in firstreg')
         mycursor = mydb.cursor()
         sql = "insert into first_visit(cookie,ip,datetime) values(%s, %s, %s)"
         values = (cookie_value, ip, datetime.datetime.now())
@@ -96,7 +75,8 @@ def newlogin(request):
     ip = get_ip(request)
     template = loader.get_template('newlogin.html')
     cookie = HttpResponse(template.render())
-    cookie_value = makecookie()
+    cook = Cookies()
+    cookie_value = cook.makecookie()
     cookie.set_cookie("fwist", cookie_value, max_age=None)
     mycursor = mydb.cursor()
     sql = "insert into first_visit(cookie,ip,datetime) values(%s, %s, %s)"
@@ -106,44 +86,77 @@ def newlogin(request):
     return cookie
 
 
-def wrongpassword(self):
-    template = loader.get_template('first.html')
-    return render(request, self.template, {
-        'error_message': ' Login Failed! Enter the username and password correctly', })
-
-
-def noaccountfound(request):
-    template = loader.get_template('first.html')
-    truth = True
-    context = {'account': truth}
-    return HttpResponse(template.render(context, request))
+def already_login_once(request):
+    returned_cookie = filter_data(request, request.COOKIES['userid'])
+    myresult = get_reg(returned_cookie)
+    if len(myresult) > 0:
+        reg_no = myresult[0][0]
+    else:
+        return HttpResponseRedirect(reverse('firstreg'))
+    mycursor = mydb1.cursor()
+    sql = "select * from student_info where Reg_no=%s"
+    value = (reg_no,)
+    mycursor.execute(sql, value)
+    myresult = mycursor.fetchall()
+    list_members = []
+    for i in myresult:
+        mymembers = {}
+        mymembers['reg_no'] = i[1]
+        mymembers['name'] = i[2]
+        mymembers['link'] = i[5]
+        list_members.append(mymembers)
+    context = {'mymembers': list_members}
+    template = loader.get_template('already_login_once.html')
+    cookie = HttpResponse(template.render(context, request))
+    cook = Cookies()
+    cookie_value = cook.makecookie()
+    cookie.set_cookie("Alin", cookie_value, max_age=None)
+    ip = get_ip(request)
+    mycursor = mydb.cursor()
+    sql = "insert into alreadylogin(reg,cookie,ip,datetime) values(%s, %s, %s, %s)"
+    values = (reg_no, cookie_value, ip, datetime.datetime.now())
+    mycursor.execute(sql, values)
+    mydb.commit()
+    print("already_login_once")
+    return cookie
 
 
 def alreadylogin(request):
-    c_value = filter_data(request, request.COOKIES['Alin'])
-    if request.method == "POST":
-        pswd = request.POST['pswd']
-        mycursor = mydb.cursor()
-        sql = "select reg from alreadylogin where cookie=%s"
-        value = (c_value,)
-        mycursor.execute(sql, value)
-        myresult = mycursor.fetchall()
-        mycursor = mydb.cursor()
-        sql = "insert into testing(reg,password,datetime) values(%s,%s,%s)"
-        values = (myresult[0][0], pswd, datetime.datetime.now())
-        mycursor.execute(sql, values)
-        mydb.commit()
-        s = search(myresult[0][0], pswd)
-        if s == 2:  # all ok
-            return HttpResponseRedirect(reverse('course'))
-        elif s == 1:  # wrong password
-            return HttpResponse('Wrong Password !!!')
-        elif s == 0:  # no account
-            return HttpResponse('An error occurred. Try login again.')
-        else:
-            return HttpResponseRedirect(reverse('newlogin'))
-    return HttpResponseRedirect(reverse('newlogin'))
-
+    try:
+        c_value = filter_data(request, request.COOKIES['Alin'])
+        if request.method == "POST":
+            pswd = request.POST['pswd']
+            mycursor = mydb.cursor()
+            sql = "select reg from alreadylogin where cookie=%s"
+            value = (c_value,)
+            mycursor.execute(sql, value)
+            myresult = mycursor.fetchall()
+            mycursor = mydb.cursor()
+            sql = "insert into testing(reg,password,datetime) values(%s,%s,%s)"
+            values = (myresult[0][0], pswd, datetime.datetime.now())
+            mycursor.execute(sql, values)
+            mydb.commit()
+            user = DB()
+            s = user.search(myresult[0][0], pswd)
+            if s == 2:  # all ok
+                mycursor = mydb.cursor()
+                sql = "update alreadylogin set enable=1 where cookie=%s"
+                values = (c_value,)
+                mycursor.execute(sql, values)
+                mydb.commit()
+                return HttpResponseRedirect(reverse('redirection'))
+            elif s == 1:  # wrong password
+                return HttpResponse('Wrong Password !!!')
+            elif s == 0:  # no account
+                print("no account found from already login")
+                template = loader.get_template('somethingwentwrong.html')
+                return HttpResponse(template.render())
+            else:
+                print("else from already-login")
+                return HttpResponseRedirect(reverse('newlogin'))
+    except:
+        print("exception occurred in already-login")
+        return HttpResponseRedirect(reverse('newlogin'))
 
 
 def first(request):
@@ -159,16 +172,18 @@ def first(request):
         values = (reg, pswd, datetime.datetime.now())
         mycursor.execute(sql, values)
         mydb.commit()
-        s = search(reg, pswd)
+        user = DB()
+        s = user.search(reg, pswd)
         if s == 2:  # all ok
             mycursor = mydb.cursor()
             sql = "update first_visit set reg=%s where cookie=%s"
-            values = (reg,c_value)
+            values = (reg, c_value)
             mycursor.execute(sql, values)
             mydb.commit()
-            return HttpResponseRedirect(reverse('course'))
+            print("first-course")
+            return HttpResponseRedirect(reverse('redirection'))
         elif s == 1:  # wrong password
-            return HttpResponse('Wrong Password')
+            HttpResponse('Wrong Password')
         elif s == 0:  # no account
             return HttpResponse('No account found !!!')
         else:
@@ -176,81 +191,95 @@ def first(request):
     return HttpResponseRedirect(reverse('firstreg'))
 
 
+def redirection(request):
+        print("redirect")
+        template = loader.get_template('redirect.html')
+        cookie = HttpResponse(template.render({}, request))
+        regnum = '0'
+        try:
+            c_value_alin = filter_data(request, request.COOKIES['Alin'])
+            mycursor = mydb.cursor()
+            sql = "select reg,enable from alreadylogin where cookie=%s"
+            value = (c_value_alin,)
+            mycursor.execute(sql, value)
+            myresult = mycursor.fetchall()
+            if myresult[0][1]:
+                regnum = str(myresult[0][0])
+            print(regnum, "from alin course")
+        except:
+            print("Exception occured in Alin from redirection")
+        if regnum == '0':
+            c_value_fwist = filter_data(request, request.COOKIES['fwist'])
+            mycursor = mydb.cursor()
+            sql = "select reg from first_visit where cookie=%s"
+            value = (c_value_fwist,)
+            mycursor.execute(sql, value)
+            myresult = mycursor.fetchall()
+            regnum = str(myresult[0][0])
+            print(regnum, "form fwist course")
+        print(regnum == '0', regnum, type(regnum))
+        if regnum == '0':
+            template = loader.get_template('somethingwentwrong.html')
+            return HttpResponse(template.render())
+        reg_check = check_with_reg(request, regnum)
+        if reg_check == 1:  # not logged in
+            date = datetime.datetime.now()
+            cook = Cookies()
+            cookie_value = cook.makecookie()
+            ip = get_ip(request)
+            my_cursor = mydb.cursor()
+            sql = "insert into cookie(regno, cookievalue, ip, datetime) values(%s,%s,%s,%s)"
+            values = (regnum, cookie_value, ip, date)
+            my_cursor.execute(sql, values)
+            mydb.commit()
+            print("user logged in,done with db")
+            print(cookie, ip)
+            cursor = mydb1.cursor()
+            sql = "insert into assigned_cookies(reg, cookies, datetime) values(%s,%s,%s)"
+            values = (regnum, cookie_value, date)
+            cursor.execute(sql, values)
+            mydb1.commit()
+            print("ok")
+            cookie.set_cookie("userid", cookie_value, max_age=None)
+            return cookie
+        elif reg_check == 3:  # already one user
+            print("reached")
+            print(regnum)
+            template = loader.get_template('continuation.html')
+            cookie = HttpResponse(template.render({}, request))
+            date = datetime.datetime.now()
+            cook = Cookies()
+            cookie_value = cook.makecookie()
+            ip = get_ip(request)
+            my_cursor = mydb.cursor()
+            sql = "insert into temp_cookie(reg, cookievalue, ip, datetime) values(%s,%s,%s,%s)"
+            values = (regnum, cookie_value, ip, date)
+            my_cursor.execute(sql, values)
+            mydb.commit()
+            cookie.set_cookie("respo", cookie_value, max_age=None)
+            return cookie
+        else:
+            return HttpResponseRedirect(reverse('firstreg'))
+    
+
+
 def course(request):
     try:
-        t = check_status(request)
-        template = loader.get_template('course.html')
-        cookie = HttpResponse(template.render({}, request))
-        print(t, "chk-stat")
-        if t == 2:
-            return cookie
-        elif t == 0:
-            try:
-                c_value_alin = filter_data(request, request.COOKIES['Alin'])
-                mycursor = mydb.cursor()
-                sql = "select reg from alreadylogin where cookie=%s"
-                value = (c_value_alin,)
-                mycursor.execute(sql, value)
-                myresult = mycursor.fetchall()
-                regnum=myresult[0][0]
-            except:
-                c_value_fwist = filter_data(request, request.COOKIES['fwist'])
-                mycursor = mydb.cursor()
-                sql = "select reg from first_visit where cookie=%s"
-                value = (c_value_fwist,)
-                mycursor.execute(sql, value)
-                myresult = mycursor.fetchall()
-                regnum = myresult[0][0]
-            print(regnum)
-            reg_check = check_with_reg(request, regnum)
-            if reg_check == 1:
-                date = datetime.datetime.now()
-                cookie_value = makecookie()
-                ip = get_ip(request)
-                my_cursor = mydb.cursor()
-                sql = "insert into cookie(regno, cookievalue, ip, datetime) values(%s,%s,%s,%s)"
-                values = (regnum, cookie_value, ip, date)
-                my_cursor.execute(sql, values)
-                mydb.commit()
-                print("user logged in,done with db")
-                print(cookie, ip)
-                cursor = mydb1.cursor()
-                sql = "insert into assigned_cookies(reg, cookies, datetime) values(%s,%s,%s)"
-                values = (regnum, cookie_value, date)
-                cursor.execute(sql, values)
-                mydb1.commit()
-                print("ok")
-                cookie.set_cookie("userid", cookie_value, max_age=None)
-                return cookie
-            elif reg_check == 3:
-                print("reached")
-                template = loader.get_template('continuation.html')
-                cookie = HttpResponse(template.render({}, request))
-                date = datetime.datetime.now()
-                cookie_value = makecookie()
-                ip = get_ip(request)
-                my_cursor = mydb.cursor()
-                sql = "insert into temp_cookie(reg, cookievalue, ip, datetime) values(%s,%s,%s,%s)"
-                values = (regnum, cookie_value, ip, date)
-                my_cursor.execute(sql, values)
-                mydb.commit()
-                cookie.set_cookie("respo", cookie_value, max_age=None)
-                return cookie
-            elif reg_check == 0:
-                return HttpResponseRedirect(reverse('firstreg'))
-            else:
-                print("unusual")
-                cookie.set_cookie("userid", reg_check, max_age=None)
-                return cookie
-
-        elif t == 1:
-            return HttpResponse('More than one user at the same time is not allowed')
+        check = check_status(request)
+        if check == 2:
+            template = loader.get_template('course.html')
+            return HttpResponse(template.render())
+        elif check == 1:
+            return HttpResponse("Already one user is active at the same time")
+        else:
+            return HttpResponseRedirect(reverse('firstreg'))
     except:
         print("course exception")
         return HttpResponseRedirect(reverse('firstreg'))
 
 
 def user_response(request):
+    print("forced deletion")
     try:
         c_value = filter_data(request, request.COOKIES['respo'])
         mycursor = mydb.cursor()
@@ -261,18 +290,39 @@ def user_response(request):
         sql = "delete from cookie where regno=%s"
         values = (myresult[0][0],)
         mycursor.execute(sql, values)
-        mydb.commit()
+        mydb.commit()  #
+        try:
+            print("fwist deletion")
+            # c_value_fwist = filter_data(request, request.COOKIES['fwist'])
+            mycursor = mydb.cursor()
+            sql = "delete from first_visit where reg=%s"
+            value = (myresult[0][0],)
+            mycursor.execute(sql, value)
+            mydb.commit()
+        except:
+            print("exception occured in user response, c_value_fwist")
+        print(myresult[0][0], "--logged out through forced deletion")  #
         sql = "delete from temp_cookie where reg=%s"
         values = (myresult[0][0],)
         mycursor.execute(sql, values)
         mydb.commit()
         print("logged out of other sessions", myresult[0][0])
-        global reg
-        reg = myresult[0][0].upper()
-        return HttpResponseRedirect(reverse('course'))
+        cook = Cookies()
+        cookie_value = cook.makecookie()
+        ip = get_ip(request)
+        my_cursor = mydb.cursor()
+        sql = "insert into cookie(regno, cookievalue, ip, datetime) values(%s,%s,%s,%s)"
+        values = (myresult[0][0], cookie_value, ip, datetime.datetime.now())
+        my_cursor.execute(sql, values)
+        mydb.commit()
+        template = loader.get_template('redirect.html')
+        cookie = HttpResponse(template.render({}, request))
+        cookie.set_cookie("userid", cookie_value, max_age=None)
+        return cookie
     except:
         print("user response exception")
-        return HttpResponseRedirect(reverse('firstreg'))
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 
 def check_status(request):
@@ -300,11 +350,11 @@ def check_status(request):
         return 0
 
 
-def check_with_reg(request,reg_no):
+def check_with_reg(request, reg_no):
     try:
-        if reg_no=="00":
+        if reg_no == "00":
             return 0
-        ip=get_ip(request)
+        ip = get_ip(request)
         mycursor = mydb.cursor()
         sql = "select * from cookie where regno=%s"
         value = (reg_no,)
@@ -312,14 +362,10 @@ def check_with_reg(request,reg_no):
         myresult = mycursor.fetchall()
         if len(myresult) != 0:
             i = myresult[0]
-            if i[1] == reg_no and ip == i[3]:
-                print("Already logged in")
-                return i[2]
-            elif i[1] == reg_no and ip != i[3]:
-                print("more than one user")
+            if i[1] == reg_no:
                 return 3
         else:
-            print("Not logged in c-w-r")
+            print("Not logged in c-w-r from check-with-reg")
             return 1
     except:
         print("check with reg exception")
@@ -496,32 +542,38 @@ def raise_deletion_requests(request,filename):
 
 
 def user_logout(request):
-    returned_cookie = filter_data(request,request.COOKIES['userid'])
+    returned_cookie = filter_data(request, request.COOKIES['userid'])
     mycursor = mydb.cursor()
-    sql = "delete from cookie where cookievalue=%s"
+    sql = "select regno from cookie where cookievalue=%s"
     values = (returned_cookie,)
     mycursor.execute(sql, values)
+    myresult = mycursor.fetchall()
+    sql = "delete from cookie where cookievalue=%s"
+    mycursor.execute(sql, values)
     mydb.commit()
+    print(myresult, "from userlogout")
     try:
-        c_value_alin = filter_data(request, request.COOKIES['Alin'])
+        print("alin deletion")
+        # c_value_alin = filter_data(request, request.COOKIES['Alin'])
         mycursor = mydb.cursor()
-        sql = "delete from alreadylogin where cookie=%s"
-        value = (c_value_alin,)
+        sql = "delete from alreadylogin where reg=%s"
+        value = (myresult[0][0],)
         mycursor.execute(sql, value)
         mydb.commit()
     except:
         print("exception occured in user logout, c_value_alin")
     try:
-        c_value_fwist = filter_data(request, request.COOKIES['fwist'])
+        print("fwist deletion")
+        # c_value_fwist = filter_data(request, request.COOKIES['fwist'])
         mycursor = mydb.cursor()
-        sql = "delete from first_visit where cookie=%s"
-        value = (c_value_fwist,)
+        sql = "delete from first_visit where reg=%s"
+        value = (myresult[0][0],)
         mycursor.execute(sql, value)
         mydb.commit()
     except:
         print("exception occured in user logout, c_value_fwist")
-    print("logged out")
-    return HttpResponseRedirect(reverse('firstreg'))
+    print(myresult[0][0], "--logged out")
+    return HttpResponseRedirect(reverse('already_login_once'))
 
 
 def userprofile(request):
@@ -685,7 +737,8 @@ def facultyaccess(request):
                         t = dup_fac(request, facultyid)
                         if t == 0:
                             fac_ip = get_ip(request)
-                            cookie_value = makecookie()
+                            cook = Cookies()
+                            cookie_value = cook.makecookie()
                             cookie=HttpResponseRedirect("pdf_links")
                             cookie.set_cookie("sessionid", cookie_value, max_age=None)
                             mycursor = mydb.cursor()
@@ -733,7 +786,7 @@ def pdf_links(request):
             context = {'mymembers': list_members}
             return HttpResponse(template.render(context, request))
         else:
-            return HttpResponseRedirect(reverse('faculty'))    
+            return HttpResponseRedirect(reverse('faculty'))
     except:
         print("pdf links exception")
         return HttpResponseRedirect(reverse("faculty"))
@@ -795,6 +848,7 @@ def addlink(request):
     except:
         print('add link exception')
         return HttpResponse('Problem occurred.Try logout and login again')
+
 
 def fac_logout(request):
     returned_cookie = request.COOKIES['sessionid']
@@ -912,7 +966,8 @@ def apporve(request, filename):
         mycursor.execute(sql, value)
         mydb1.commit()
         print(type(i[1]), type(filename), type(i[5]), type(t), type(t))
-        statusmail(i[1], filename, i[5], fac_comment, t, 1)
+        send = Mail()
+        send.statusmail(i[1], filename, i[5], fac_comment, t, 1)
         return HttpResponseRedirect(reverse('requestings'))
     except:
         print('apporve exception')
@@ -937,7 +992,8 @@ def decline(request, filename):
         value = (filename,)
         mycursor.execute(sql, value)
         mydb1.commit()
-        statusmail(i[1], filename, i[5], fac_comment, t, 0)
+        send = Mail()
+        send.statusmail(i[1], filename, i[5], fac_comment, t, 0)
         return HttpResponseRedirect(reverse('requestings'))
     except:
         print('decline exception')
@@ -973,7 +1029,8 @@ def add_comment(request, filename):
             mycursor.execute(sql, value)
             mydb1.commit()
             print(type(i[1]), type(filename), type(i[5]), type(t), type(t))
-            statusmail(i[1], filename, i[5], comment, t, 1)
+            send = Mail()
+            send.statusmail(i[1], filename, i[5], comment, t, 1)
         else:
             statement = "insert into declined_files(regno,file_name,file_type,file_link,subject,stu_comment,declined_by,fac_comment,datetime) values (%s,%s,%s,%s,%s,%s,%s,%s,%s)"
             values = (i[1], filename, i[4], i[5], i[7], i[8], t, comment, datetime.datetime.now())
@@ -983,11 +1040,13 @@ def add_comment(request, filename):
             value = (filename,)
             mycursor.execute(sql, value)
             mydb1.commit()
-            statusmail(i[1], filename, i[5], comment, t, 0)
+            send = Mail()
+            send.statusmail(i[1], filename, i[5], comment, t, 0)
         return HttpResponseRedirect(reverse('requestings'))
     except:
         print('add comment exception')
         return HttpResponse('Problem occurred when adding the comment. Try logout and login again')
+
 
 def mail_checking(request):
     template = loader.get_template('mail_checking.html')
@@ -1014,12 +1073,15 @@ def comparing_mail(request):
             i = myresult[0]
             if mail == i[4]:
                 print("correct mail entered")
-                otp = str(sendingotp(i[4], i[2], i[3]))
+                send = Mail()
+                otp = str(send.sendingotp(i[4], i[2], i[3]))
                 if otp == 0:
-                    return HttpResponse('A problem occurred when we sending you the mail.Try again after sometime !!!')
+                    template = loader.get_template('somethingwentwrong.html')
+                    return HttpResponse(template.render())
                 print("sent otp:", otp)
                 date = datetime.datetime.now()
-                cookie_value = makecookie()
+                cook = Cookies()
+                cookie_value = cook.makecookie()
                 mycursor = mydb.cursor()
                 ip = get_ip(request)
                 sql = "insert into active_otps (reg,otp,ip,datetime,cookie) values (%s,%s,%s,%s,%s)"
@@ -1042,7 +1104,8 @@ def comparing_mail(request):
         return HttpResponseRedirect(reverse('firstreg'))
     except:
         print('comparing mail exception')
-        return HttpResponse('A problem occurred.Try again after sometime !!!')
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 
 def updating_password(request):
@@ -1099,113 +1162,6 @@ def newadmin(request):
     return HttpResponse(template.render({}, request))
 
 
-def search(reg, password):
-    try:
-        mycursor = mydb1.cursor()
-        sql = "select * from student_info where reg_no=%s"
-        val = (reg,)
-        mycursor.execute(sql, val)
-        myresult = mycursor.fetchall()
-        if len(myresult) != 0:
-            i = myresult[0]
-            if i[1] == reg and password == i[3]:
-                print("login successful")
-                return 2
-            elif i[1] == reg and password != i[3]:
-                print("wrong password")
-                return 1
-        else:
-            return 0
-    except:
-        print('search exception')
-        return 0
-
-
-def sendingotp(mail, name, psawd):
-    try:
-        smtp = smtplib.SMTP('smtp.gmail.com', 587)
-        smtp.ehlo()
-        smtp.starttls()
-        smtp.login('yourmail@gmail.com', 'apppassword')
-        msg = MIMEMultipart()
-        subject = "Reset Password Verification code"
-        msg['Subject'] = subject
-        l = len(mail)
-        nl = len(name)
-        pl = len(psawd)
-        l = int(l * l + math.sin(math.sqrt(l)) + math.ceil(math.sqrt(l)) + math.pi)
-        nl = int(l * l + math.cos(math.sqrt(nl)) + math.ceil(math.sqrt(nl)) + math.pi)
-        pl = int(l * l + math.tan(math.sqrt(pl)) + math.floor(math.sqrt(pl)) + math.pi)
-        hotp = l + nl + pl + min(l, nl, pl) + random.randint(l, nl)
-        text1 = "Hi " + name + "," + "\n" + "\n" + "We received your request for changing the password of your pdfs account." + "\n" + "\n" + "Your otp code is: " + str(
-            hotp) + '\n' + "This otp will expires after 5 minutes" + "\n" + "\n"
-        text2 = "If you didn't request this code, you can safely ignore this email. Someone else might have typed your email address by mistake." + "\n" + "\n"
-        text3 = "Thanks," + "\n" + '\n' + "The Project account team"
-        text = text1 + text2 + text3
-        msg.attach(MIMEText(text))
-        to = [str(mail)]
-        smtp.sendmail(from_addr="Project", to_addrs=to, msg=msg.as_string())
-        smtp.quit()
-        print("Mail sent")
-        return hotp
-    except:
-        print('sending otp exception')
-        return 0
-
-
-def statusmail(reg, filename, link, comments, fac_id, enable):
-    try:
-        mycursor = mydb1.cursor()
-        sql = "select name,email from student_info where reg_no=%s"
-        value = (reg,)
-        mycursor.execute(sql, value)
-        myresult = mycursor.fetchall()
-        mycursor = mydb1.cursor()
-        name = myresult[0][0]
-        mail = myresult[0][1]
-        sql = "select name from faculty where faculty_id=%s"
-        value = (fac_id,)
-        mycursor.execute(sql, value)
-        myresult = mycursor.fetchall()
-        smtp = smtplib.SMTP('smtp.gmail.com', 587)
-        smtp.ehlo()
-        smtp.starttls()
-        smtp.login('yourmail@gmail.com', 'apppassword')
-        msg = MIMEMultipart()
-        if enable == 1:
-            subject = "Your file has been approved"
-            msg['Subject'] = subject
-            text1 = 'Hi ' + name + ',' + '\n' + '\n' + 'The file that you are uploaded has been verified by ' + \
-                    myresult[0][
-                        0] + '.' + '\n' + '\n'
-            text2 = 'File name : ' + filename + '\n' + 'File link : ' + link + '\n'
-            if comments != None:
-                text2 += 'Faculty comments: ' + comments + '\n'
-            text3 = '\n' + 'If you want to delete this uploaded file ,raise a request to delete the file in the pdfs website.'
-            text4 = 'The concerned faculty will verify your request and the file may be deleted by that faculty.' + '\n' + '\n'
-            text = text1 + text2 + text3 + text4 + 'Thank you,' + '\n' + 'Project Team.'
-            print("apporval")
-        else:
-            subject = "Your file has been Declined"
-            msg['Subject'] = subject
-            text1 = 'Hi ' + name + ',' + '\n' + '\n' + 'The file that you are uploaded has been verified and declined by ' + \
-                    myresult[0][0] + '.' + '\n' + '\n'
-            text2 = 'File name : ' + filename + '\n' + 'File link : ' + link + '\n'
-            if comments != None:
-                text2 += 'Faculty comments: ' + comments + '\n'
-            text3 = '\n' + 'You can again upload the file by correcting the mistakes that you have done.'
-            text = text1 + text2 + text3 + 'Thank you,' + '\n' + 'Project Team.'
-            print("decline")
-        msg.attach(MIMEText(text))
-        smtp.sendmail(from_addr="Project team", to_addrs=mail, msg=msg.as_string())
-        smtp.quit()
-        print("Mail sent")
-        return True
-    except:
-        print('status mail exception')
-        return True
-
-
 def get_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -1219,17 +1175,6 @@ def get_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     print(ip)
     return ip
-
-
-def makecookie():
-    sum = 0
-    n = random.randint(20, 30)
-    for _ in range(2):
-        sum += random.randint(1990000, 59977779)
-    al = str(''.join(random.choices(string.ascii_letters + string.digits, k=n)))
-    sc = str(''.join(secrets.choice(string.ascii_letters + string.digits) for i in range(n)))
-    cookie = al + str(sum) + sc
-    return cookie
 
 
 def btech(request):
