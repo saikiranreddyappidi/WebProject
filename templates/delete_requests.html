@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% include 'delete_requests_header.html' %}
+<html>
+<style>
+  h1,p,textarea{
+    padding-left: 10px;
+  }
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 450px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+</style>
+<body>
+
+<form action="raise_deletion_requests/" method="post">
+    <h1>Comment section</h1>
+<p><label for="comment"><b>Comment:</b></label></p>
+  <textarea name="comment" rows="4" cols="50">Write your reasons here why you want to delete this file.(optional)</textarea>
+  <br><br>
+<button type="submit" class="registerbtn">Submit</button>
+</form>
+
+</body>
+</html>

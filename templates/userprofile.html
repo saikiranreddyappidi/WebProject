@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+{% include 'profilecontent.html' %}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your Profile</title>
+<link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  background-color: #00001a;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+
+button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+  font-size: 22px;
+  color: white;
+}
+h1 {
+  color: #0000cc;
+}
+
+button:hover, a:hover {
+  opacity: 0.4;
+}
+</style>
+</head>
+<body style="background-color: #404040">
+
+<h2 style="text-align:center">User Profile Card</h2>
+<div class="card">
+  {% for pro in mymembers %}
+  <img src={{ pro.link }} alt={{ pro.name }} style="width:100%">
+  <h1>{{ pro.name }}</h1>
+  <h3 style="color: red">{{ pro.reg_no }}</h3>
+  <p class="title">Student</p>
+  <p style="color: #0066cc">Vignan University</p>
+  <div style="margin: 24px 0;">
+    <a href="#"><i class="fa fa-github"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-linkedin"></i></a>
+    <a href="#"><i class="fa fa-facebook"></i></a>
+  </div>
+  <p><button><a href=mailto:{{ pro.mail }} style="color: red">Send mail <i class="fa fa-envelope" style="color: red"></i></a></button></p>
+{% endfor %}
+</div>
+
+</body>
+</html>

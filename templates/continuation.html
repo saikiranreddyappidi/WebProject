@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: black;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text]:focus{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #b3b3b3;
+}
+
+input[type=url]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 450px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+    background-color: #009900;
+}
+.cancelbtn {
+  background-color: red;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 450px;
+  border: none;
+  cursor: pointer;
+  width: 30%;
+  opacity: 0.9;
+}
+
+.cancelbtn:hover {
+    opacity: 1;
+  background-color: #800000;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+</style>
+</head>
+<body style="background-color: white">
+<form action="user_response/" method="post">
+    <p>Already one user is active in the session with this registration number</p>
+<p><b>Click continue to log out of other sessions and login to this session else click on cancel to drop this session</b></p>
+
+ <button type="submit" class="registerbtn"><b>Continue</b></button>
+  <a href="../">  <button type="button" class="cancelbtn"><b>Cancel</b></button>
+  </a>
+</form>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
+    <title>Project Django</title>
+
+<style>
+body{
+	font-family: "Helvetica Neue", sans-serif;
+    background-image:-webkit-linear-gradient(top, #138b8b, #3e7459, #138b8b);
+    background-image:-moz-linear-gradient(bottom,#138b8b, #13318b);
+    background-size: auto, 100%;
+  background-position:top center;
+}
+a{
+	color:#fff;
+	text-decoration: none;
+	text-shadow:#000 0px 1px 3px;
+}
+.wrap{
+  max-width:600px;
+  margin:auto;
+	text-align: center;
+  opacity:0.8;
+}
+.wrap:hover{
+  opacity:1;
+}
+
+.login-wrap{
+	width:290px;
+	height:320px;
+	margin:15% auto 0;
+	position: relative;
+}
+
+.login{
+display: block;
+	margin:auto;
+	padding:40px 40px 30px;
+	position: absolute;
+	background-color:#f8f8f8;
+	background-image:-webkit-linear-gradient(top, #138b8b, #13318b);
+    background-image:-moz-linear-gradient(top,#138b8b, #13318b);
+    background-image:linear-gradient(top, #138b8b, #13318b);
+	border-radius:5px;
+	border:#fff 1px solid;
+	box-shadow: rgba(0,0,0,0.5) 0px 3px 20px;
+	text-align: center;
+}
+
+.avatar{
+	display:block;
+	margin:0 auto 15px;
+	width:100px;
+	height:100px;
+	border-radius:100%;
+	border:#fff 3px solid;
+	box-shadow:rgba(0,0,0,0.4) 0px 2px 4px, inset rgba(0,0,0,0.4) 0px 3px 2px;
+	overflow:hidden;
+    {% for x in mymembers %}
+	background-image:-webkit-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url({{ x.link }});
+    background-image:-moz-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url({{ x.link }});
+    background-image:linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url({{ x.link }});
+    background-size: auto, 100%;
+    {% endfor %}
+}
+.user{
+	padding:10px 0;
+	font-size: 20px;
+    color:#00dd00;
+  text-shadow:black 0 1px 0;
+}
+
+.pass{
+	display: block;
+	width:170px;
+	margin:20px auto;
+	padding:10px 25px 10px 10px;
+	border-radius:3px;
+	border:#CCC 1px solid;
+}
+.login-form{
+	position: relative;
+}
+.arrow{
+	position: absolute;
+	right:10px;
+	top:8px;
+	display: block;
+	z-index:999;
+	color:#999;
+	opacity:0;
+	-webkit-transition:all 0.5s ease-in-out;
+  -moz-transition:all 0.5s ease-in-out;
+  transition:all 0.5s ease-in-out;
+}
+.init-shake{
+	-webkit-animation:shake 0.7s ease-in-out;
+  -moz-animation:shake 0.7s ease-in-out;
+  animation:shake 0.7s ease-in-out;
+}
+.hint{
+	position: absolute;
+	bottom:0;
+	left:0;
+	padding:20px;
+	color:#fff;
+	text-shadow:#000 0px 1px 5px;
+}
+.info{
+  display:block;
+  color:#CCC;
+  margin:10px 0;
+  font-size:0.95em;
+}
+@-webkit-keyframes shake{
+	0% { left:0; }
+	20% { left:10px; }
+	40% { left:-10px; }
+	60% { left:10px; }
+	80% { left:-10px; }
+	100% { left:0px; }
+
+}
+@-moz-keyframes shake{
+	0% { left:0; }
+	20% { left:10px; }
+	40% { left:-10px; }
+	60% { left:10px; }
+	80% { left:-10px; }
+	100% { left:0px; }
+
+}
+@keyframes shake{
+	0% { left:0; }
+	20% { left:10px; }
+	40% { left:-10px; }
+	60% { left:10px; }
+	80% { left:-10px; }
+	100% { left:0px; }
+
+}
+.button{
+    background-color:#138b8b;
+	border:none;
+	padding:15px 20px;
+	border-radius:25px;
+    box-shadow: rgba(0,0,0,0.5) 0px 3px 20px;
+    font-size: 15px;
+}
+.button:hover{
+      background-color:#004d66;
+  color: white;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body>
+  <div class="login-wrap">
+		<div class="login">
+			<div class="avatar">
+			</div>
+            {% for x in mymembers %}
+            <span class="user"><b>{{ x.name }}</b></span>
+                <br><br>
+            <span class="user">{{ x.reg_no }}</span>
+            {% endfor %}
+			<form id="login" class="login-form">
+                <label>
+                    <input type="password" placeholder="Enter Password" class="pass"/>
+                <span class="arrow" title="Press enter">&rarr;</span>
+                </label>
+                <span class="arrow" title="Press enter">&rarr;</span>
+			</form>
+		</div>
+	</div>
+  <br><br><br><br><br>
+<div class="wrap">It was <a href="newlogin/">Not me</a><span class="info"><a href="createacnt/">Sign up</a></span></div>
+
+
+<div class="hint">Press enter!</div>
+      <script id="rendered-js" >
+$(function () {
+  $("#login").submit(function (e) {
+    e.preventDefault();
+    $(".login").addClass("init-shake");
+    setTimeout(function () {
+      $(".login").removeClass("init-shake");
+    }, 1000);
+  });
+
+  $(".pass").on("keypress", function () {
+    $(".arrow").css("opacity", "1");
+  });
+});
+    </script>
+
+
+
+</body>
+
+</html>

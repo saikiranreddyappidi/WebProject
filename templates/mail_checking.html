@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
+<title>Confirmations</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+.form-inline {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.form-inline label {
+  margin: 5px 10px 5px 0;
+}
+
+.form-inline input {
+  vertical-align: middle;
+  margin: 5px 10px 5px 0;
+  padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.form-inline button {
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+}
+
+.form-inline button:hover {
+  background-color: royalblue;
+}
+
+.cancelbtn {
+  padding: 10px 20px;
+  background-color: #e60000;
+  border: 1px solid #ddd;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+   margin: 8px 450px;
+}
+
+.cancelbtn:hover {
+  background-color: #800000;
+}
+
+@media (max-width: 800px) {
+  .form-inline input {
+    margin: 10px 0;
+  }
+
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+</style>
+</head>
+<body style="padding-left: 15%">
+
+<h2>Enter your details</h2>
+<form class="form-inline" action="comparing_mail/" method="post">
+  {% csrf_token %}
+  <label>E-mail:</label>
+    <label>
+        <input type="email" placeholder="Enter e-mail" name="mail" required>
+    </label>
+    <label>Registration No:</label>
+    <label>
+        <input type="text" placeholder="Enter Reg.no" name="reg" required>
+    </label>
+    <br><br>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+<p>
+  You will receive an OTP on your registered mail if the entered mail is same as registered mail which is associated with your Reg.no
+</p>
+<a href="../"><button type="reset" class="cancelbtn">Cancel</button></a>
+</body>
+</html>

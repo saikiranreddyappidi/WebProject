@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Title</title>
+    <style>
+        body{
+	font-family: "Helvetica Neue", sans-serif;
+            background-size:2000px 1000px;
+            background-image:-webkit-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 50%);  background-image:-moz-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 50%);
+            background-image:linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 50%);
+            background-image:-webkit-linear-gradient(top right, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 50%);  background-image:-moz-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 50%);
+
+        }
+a{
+	color:#fff;
+	text-decoration: none;
+	text-shadow:#000 0px 1px 3px;
+}
+.wrap{
+  width:600px;
+  margin:auto;
+	text-align: center;
+  opacity:0.8;
+}
+.wrap:hover{
+  opacity:1;
+}
+
+.login-wrap{
+	width:290px;
+	height:320px;
+	margin:15% auto 0;
+	position: relative;
+}
+
+.login{
+	display: block;
+	margin:auto;
+	padding:40px 40px 30px;
+	position: absolute;
+	background-color:#f8f8f8;
+	background-image:-webkit-linear-gradient(top, #138b8b, #13318b);
+    background-image:-moz-linear-gradient(top,#138b8b, #13318b);
+    background-image:linear-gradient(top, #138b8b, #13318b);
+	border-radius:5px;
+	border:#fff 1px solid;
+	box-shadow: rgba(0,0,0,0.5) 0px 3px 20px;
+	text-align: center;
+}
+
+.avatar{
+	display:block;
+	margin:0 auto 15px;
+	width:100px;
+	height:100px;
+	border-radius:100%;
+	border:#fff 3px solid;
+	box-shadow:rgba(0,0,0,0.4) 0px 2px 4px, inset rgba(0,0,0,0.4) 0px 3px 2px;
+	overflow:hidden;
+	background-image:-webkit-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 50%), url("https://lh3.googleusercontent.com/pw/AM-JKLU1KCqsJgNYMaYucHQK-M8TGPDKfVBK4ZJRV0Muy6iVA1GcfvptVSE8eK6yd5ij6P2qJyrqWP4cb98RyB_14_C7kAKWw9Z_RgV2OHimVc3RlM6VHAaF3un7uqYxMTZ53eRGdwbq60NHzxfALQJvHBKR=s933-no?authuser=0");
+  background-image:-moz-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 50%), url("https://lh3.googleusercontent.com/pw/AM-JKLU1KCqsJgNYMaYucHQK-M8TGPDKfVBK4ZJRV0Muy6iVA1GcfvptVSE8eK6yd5ij6P2qJyrqWP4cb98RyB_14_C7kAKWw9Z_RgV2OHimVc3RlM6VHAaF3un7uqYxMTZ53eRGdwbq60NHzxfALQJvHBKR=s933-no?authuser=0");
+  background-image:linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 50%), url("https://lh3.googleusercontent.com/pw/AM-JKLU1KCqsJgNYMaYucHQK-M8TGPDKfVBK4ZJRV0Muy6iVA1GcfvptVSE8eK6yd5ij6P2qJyrqWP4cb98RyB_14_C7kAKWw9Z_RgV2OHimVc3RlM6VHAaF3un7uqYxMTZ53eRGdwbq60NHzxfALQJvHBKR=s933-no?authuser=0");
+	background-size: auto, 100%;
+}
+.user{
+	padding:10px 0;
+	font-size: 0.95em;
+  text-shadow:rgba(255,255,255,0.7) 0px 1px 0px;
+}
+
+.pass{
+	display: block;
+	width:170px;
+	margin:20px auto;
+	padding:10px 25px 10px 10px;
+	border-radius:3px;
+	border:#CCC 1px solid;
+}
+.login-form{
+	position: relative;
+}
+.arrow{
+	position: absolute;
+	right:10px;
+	top:8px;
+	display: block;
+	z-index:999;
+	color:#999;
+	opacity:0;
+	-webkit-transition:all 0.5s ease-in-out;
+  -moz-transition:all 0.5s ease-in-out;
+  transition:all 0.5s ease-in-out;
+}
+
+.init-shake{
+	-webkit-animation:shake 0.7s ease-in-out;
+  -moz-animation:shake 0.7s ease-in-out;
+  animation:shake 0.7s ease-in-out;
+}
+.hint{
+	position: absolute;
+	bottom:0;
+	left:0;
+	padding:20px;
+	color:#fff;
+	text-shadow:#000 0px 1px 5px;
+}
+.info{
+  display:block;
+  color:#CCC;
+  margin:10px 0;
+  font-size:0.95em;
+}
+@-webkit-keyframes shake{
+	0% { left:0; }
+	20% { left:10px; }
+	40% { left:-10px; }
+	60% { left:10px; }
+	80% { left:-10px; }
+	100% { left:0px; }
+
+}
+@-moz-keyframes shake{
+	0% { left:0; }
+	20% { left:10px; }
+	40% { left:-10px; }
+	60% { left:10px; }
+	80% { left:-10px; }
+	100% { left:0px; }
+
+}
+@keyframes shake{
+	0% { left:0; }
+	20% { left:10px; }
+	40% { left:-10px; }
+	60% { left:10px; }
+	80% { left:-10px; }
+	100% { left:0px; }
+
+}
+    </style>
+</head>
+<body style="background-color: #609f8f">
+<div class="login-wrap">
+		<div class="login">
+			<div class="avatar">
+                <img src="https://lh3.googleusercontent.com/pw/AM-JKLU1KCqsJgNYMaYucHQK-M8TGPDKfVBK4ZJRV0Muy6iVA1GcfvptVSE8eK6yd5ij6P2qJyrqWP4cb98RyB_14_C7kAKWw9Z_RgV2OHimVc3RlM6VHAaF3un7uqYxMTZ53eRGdwbq60NHzxfALQJvHBKR=s933-no?authuser=0" alt="Avatar" class="avatar">
+			</div>
+      <span class="user">Sai Kiran</span>
+			<form id="login" class="login-form">
+				<input type="password" placeholder="Password" class="pass"/><span class="arrow">&rarr;</span>
+            <script>	{
+		("login").submit(function(e){
+			e.preventDefault();
+			(".login").addClass("init-shake");
+			setTimeout(function(){
+				(".login").removeClass("init-shake");
+			}, 1000);
+		});
+
+		(".pass").on("keypress", function(){
+			(".arrow").css("opacity", "1");
+		});
+            }</script>
+            </form>
+
+		</div>
+	</div>
+<div class="wrap">by <a href="https://www.mattboldt.com">Matt Boldt</a><br /><span class="info">Check out the history of Apple.com's Nav bar <a href="https://www.mattboldt.com/demos/css-apple-nav/">here</a> or <a href="https://codepen.io/mattboldt/pen/fJgDj">here</a>.</span></div>
+
+
+<div class="hint">Press enter!</div>
+
+{% if wrong %}
+
+{% endif %}
+</body>
+</html>

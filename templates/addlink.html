@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+{% include 'add_header.html' %}
+
+<h1>Add Link</h1>
+
+<form action="addlink/" method="post">
+{% csrf_token %}
+File Name:
+<input type="text" name="filename" required>
+<br><br>
+<label for="file_type">Select the file format:</label>
+  <select name="file_type" required>
+    <optgroup label="Text Formats">
+      <option value="pdf">PDF</option>
+      <option value="doc">DOC</option>
+      <option value="txt">TXT</option>
+    </optgroup>
+    <optgroup label="Image Formats">
+      <option value="jpeg">JPEG</option>
+      <option value="png">PNG</option>
+    </optgroup>
+    <optgroup label="Video Formats">
+      <option value="mp4">MP4</option>
+      <option value="mp3">MP3</option>
+    </optgroup>
+  </select>
+<br><br>
+  <label for="branch">Select the branch:</label>
+  <select name="branch" required>
+      <option value="MECH">MECH</option>
+      <option value="CIVIL">CIVIL</option>
+      <option value="ECE">ECE</option>
+      <option value="CSE">CSE</option>
+      <option value="IT">IT</option>
+      <option value="EEE">EEE</option>
+      <option value="FT">FT</option>
+      <option value="BT">BT</option>
+      <option value="BM">BM</option>
+      <option value="CE">CE</option>
+      <option value="TE">TE</option>
+      <option value="PHARMA">PHARMA</option>
+      <option value="ANY">ANY</option>
+  </select>
+<br><br>
+    Drive link:
+<input type="url" name="dlink" required>
+<br><br>
+<input type="submit" value="Submit">
+</form>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
+    <title>Project Django</title>
+<link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+<meta name="apple-mobile-web-app-title" content="CodePen">
+
+<link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-8f3771b1072e3c38bd662872f6b673a722f4b3ca2421637d5596661b4e2132cc.svg" color="#111" />
+<style>
+body{
+	font-family: "Helvetica Neue", sans-serif;
+    background-image:-webkit-linear-gradient(top, #138b8b, #3e7459, #138b8b);
+    background-image:-moz-linear-gradient(bottom,#138b8b, #13318b);
+    background-size: auto, 100%;
+  background-position:top center;
+}
+a{
+	color:#fff;
+	text-decoration: none;
+	text-shadow:#000 0px 1px 3px;
+}
+.wrap{
+  width:600px;
+  margin:auto;
+	text-align: center;
+  opacity:0.8;
+}
+.wrap:hover{
+  opacity:1;
+}
+
+.login-wrap{
+	width:290px;
+	height:320px;
+	margin-bottom:2%;
+    margin-top: 5%;
+    margin-left: 40%;
+	position: relative;
+}
+
+.login{
+    display: block;
+	margin:auto;
+	padding:40px 40px 30px;
+	position: absolute;
+	background-color:#f8f8f8;
+	background-image:-webkit-linear-gradient(top, #138b8b, #13318b);
+    background-image:-moz-linear-gradient(top,#138b8b, #13318b);
+    background-image:linear-gradient(top, #138b8b, #13318b);
+	border-radius:5px;
+	border:#fff 1px solid;
+	box-shadow: rgba(0,0,0,0.5) 0px 3px 20px;
+	text-align: center;
+}
+
+.avatar{
+	display:block;
+	margin:0 auto 15px;
+	width:100px;
+	height:100px;
+	border-radius:100%;
+	border:#fff 3px solid;
+	box-shadow:rgba(0,0,0,0.4) 0px 2px 4px, inset rgba(0,0,0,0.4) 0px 3px 2px;
+	overflow:hidden;
+    {% for x in mymembers %}
+	background-image:-webkit-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url({{ x.link }});
+    background-image:-moz-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url({{ x.link }});
+    background-image:linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url({{ x.link }});
+    background-size: auto, 100%;
+    {% endfor %}
+}
+.user{
+	padding:10px 0;
+	font-size: 20px;
+    color:#00dd00;
+  text-shadow:black 0 1px 0;
+}
+
+.pass{
+	display: block;
+	width:170px;
+	margin:20px auto;
+	padding:10px 25px 10px 10px;
+	border-radius:3px;
+	border:#CCC 1px solid;
+}
+.login-form{
+	position: relative;
+}
+.arrow{
+	position: absolute;
+	right:10px;
+	top:8px;
+	display: block;
+	z-index:999;
+	color:#999;
+	opacity:0;
+	-webkit-transition:all 0.5s ease-in-out;
+  -moz-transition:all 0.5s ease-in-out;
+  transition:all 0.5s ease-in-out;
+}
+
+.init-shake{
+	-webkit-animation:shake 0.7s ease-in-out;
+  -moz-animation:shake 0.7s ease-in-out;
+  animation:shake 0.7s ease-in-out;
+}
+.hint{
+	position: absolute;
+	bottom:0;
+	left:0;
+	padding:20px;
+	color:#fff;
+	text-shadow:#000 0px 1px 5px;
+}
+.info{
+  display:block;
+  color:#CCC;
+  margin:10px 0;
+  font-size:0.95em;
+}
+@-webkit-keyframes shake{
+	0% { left:0; }
+	20% { left:10px; }
+	40% { left:-10px; }
+	60% { left:10px; }
+	80% { left:-10px; }
+	100% { left:0px; }
+
+}
+@-moz-keyframes shake{
+	0% { left:0; }
+	20% { left:10px; }
+	40% { left:-10px; }
+	60% { left:10px; }
+	80% { left:-10px; }
+	100% { left:0px; }
+
+}
+@keyframes shake{
+	0% { left:0; }
+	20% { left:10px; }
+	40% { left:-10px; }
+	60% { left:10px; }
+	80% { left:-10px; }
+	100% { left:0px; }
+
+}
+.button{
+    background-color:#138b8b;
+	border:none;
+	padding:15px 20px;
+	border-radius:25px;
+    box-shadow: rgba(0,0,0,0.5) 0px 3px 20px;
+    font-size: 15px;
+}
+.button:hover{
+      background-color:#004d66;
+  color: white;
+}
+</style>
+
+  <script>
+  window.console = window.console || function(t) {};
+</script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+</script>
+
+
+</head>
+
+<body translate="no" >
+  <div class="login-wrap">
+		<div class="login">
+			<div class="avatar">
+			</div>
+      {% for x in mymembers %}
+            <span class="user"><b>{{ x.name }}</b></span>
+                <br><br>
+            <span class="user">{{ x.reg_no }}</span>
+            {% endfor %}
+			<form id="login" class="login-form" action="alreadylogin" method="post">
+				<input type="password" placeholder="Password" class="pass"/><span class="arrow">&rarr;</span>
+			<br>
+                <button type="submit" class="button">Login</button>
+            </form>
+
+		</div>
+	</div>
+  <br><br><br><br><br><br><br>
+<div class="wrap">It was <a href="newlogin/">Not me</a><span class="info"><a href="createacnt/">Sign up</a></span></div>
+<div class="hint">Press enter!</div>
+
+    <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-1b93190375e9ccc259df3a57c1abc0e64599724ae30d7ea4c6877eb615f89387.js"></script>
+
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+      <script id="rendered-js" >
+$(function () {
+  $("#login").submit(function (e) {
+    e.preventDefault();
+    $(".login").addClass("init-shake");
+    setTimeout(function () {
+      $(".login").removeClass("init-shake");
+    }, 1000);
+  });
+
+  $(".pass").on("keypress", function () {
+    $(".arrow").css("opacity", "1");
+  });
+});
+//# sourceURL=pen.js
+    </script>
+</body>
+
+</html>

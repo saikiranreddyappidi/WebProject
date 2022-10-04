@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+{% include 'set.html' %}
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
+    {% for i in branch_name %}
+<title>{{ i.value }}</title>
+    {% endfor %}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+        width: 50%;
+}
+    h2{
+        text-align: center;
+        color:blue;
+    }
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px #041549;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #00000f;
+}
+
+
+.chip {
+  display: inline-block;
+  padding: 0px 25px;
+  height: 50px;
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #e6fff5;
+    text-align: center;
+}
+
+.chip img {
+  float: left;
+  margin: 0 10px 0 -25px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ul.list-group {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.list-group li {
+  border: 1px solid #ddd;
+  margin-top: -1px; /* Prevent double borders */
+  background-color: #f6f6f6;
+  padding: 12px;
+}
+
+.badge {
+  background-color: #00000f;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 5px 10px;
+  text-align: center;
+  margin-left: 5px;
+}
+</style>
+</head>
+<body style="background-color: #00000f; text-align: center">
+{% if mymembers|length == 0 and students_files|length == 0  %}
+<h2>Currently no files available for your branch</h2>
+    <img style="margin-left: 24%;" src="https://lh3.googleusercontent.com/HOEJOwVTyC8imVdCJfmbDtOA5oZxhfNXFP5JodMl7ZrCmFZClPVWVPCUZkd-pePUZ5n0HaYtBEohKlboCUfE2LnKlm4ebca38YLtQ1QPVBDmGaUpVbXTjcw4I7I46bbq7SWTfColkpxO2BoOAvo4ChBDF80RJu-4FHDRuAl8iGEicn0O-wUu8S94RlL4TQ-zU7PJ5DSDENpm4glt6Q1XKpd5B-Pn2Fe4JB4tqdh9X3OwYKsD9CYDVfRNnZu_H635-rOEw9uQKP69AFgZZzb7iEw8nh8dsl7tEEk23zROTFfrKwIAlsrq3rPpzKfSPcEJPYkm-leBdHzL74_aBqrnKnyqMlf0ecmcvS8M6AOCW4YGdkuV_iF_QpxJ9vzuHWet0SKWHycR_NniyFpG_Mb346p8sUcts5rWxmmLNyPk701X2S2F6EFZvzh9jGH5tLinoG45jV3S4AnFd-nF_hAataaDW1kz12n6bGphK-aWHRHnj_Ea7KGy-g6rlwdXNXIeYNtKextfLy2RZg6ASbRgKQYo-Nn7GlxC3OMmg6taI9M-K7ed6Lt6Zc25AhUweCjW8JyXTOujPONhGdta39eflkR0oGiDAoGf4sfy4Jt-JJVxyGMj7zQ2hcVR9iP5v83kmwr6Jg1MjSmGSXTfrvIurHJlR8ywQg0PkyEMIOk4XrhAr_qju8KGII3nO44dDZ-eS5apPB1gmOSIxGKIwqninUXieoxVcr_49z5IHc__imbQ3OlaFiyGeW5gFWhtw1KFihgkTPNbFXjtocg7igL3nyTufvkkCYqZF12Igyp9TSaA7uAZzdWatRUVb9C04nn5fb24elR9i1cCb15sNxeMJ0quOTHpMpARpBnWdcFpWy79ZLbeCUafw3AbvEKnThmSw84mQu3AnfqgJigDTq6z64q0ojRukbCiPUzVQg=s933-no?authuser=0" alt="No data found"/>
+{% else %}
+
+{% if mymembers|length %}
+    <table border="1">
+    <h2>Following links are available for your branch</h2>
+<tr>
+    <td><h3 style="color: #0000cc">Sl.No</h3></td>
+    <td><h3 style="color: #0000cc">Faculty Name</h3></td>
+    <td><h3 style="color: #0000cc">Faculty Recognition</h3></td>
+    <td><h3 style="color: #0000cc">File Type</h3></td>
+    <td><h3 style="color: #0000cc">File Name</h3></td>
+</tr>
+{% for x in mymembers %}
+<tr>
+    <td>{{ x.id }}</td>
+    <td>{{ x.facultyname }}</td>
+    <td>Professor</td>
+    <td>{{x.file_type}}</td>
+    <td><a href={{ x.link }} title="OpenFile">{{x.filename}}</a></td>
+</tr>
+{% endfor %}
+</table>
+    {% else %}
+    <h2>No files are shared by faculty</h2>
+{% endif %}
+
+<br><br>
+{% if students_files|length %}
+<h2>Files shared by students</h2>
+    {% for x in students_files %}
+
+<div class="chip">
+  <a href="../../requestedprofile/{{ x.reg }}"><img src={{ x.photo_link }} alt={{ x.reg }} width="96" height="96"></a>
+<span class="badge">{{ x.id }}</span>&emsp;&emsp;Reg.No : {{ x.reg }} &emsp;&emsp;File Name :{{ x.filename }}&emsp;&emsp;File Type :{{x.file_type}}&emsp;&emsp;File link :<a href={{ x.link }} title='OpenFile'>{{x.filename}}</a>
+</div>
+<br><br>
+    {% endfor %}
+{% elif mymembers|length %}
+<h2>No files are shared by students</h2>
+{% endif %}
+{% endif %}
+<br>
+<a href="../../creator/">Admin</a>
+</body>
+</html>
