@@ -12,6 +12,12 @@
     {% endfor %}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
+    img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+        width: 50%;
+}
     h2{
         text-align: center;
         color:blue;
@@ -84,6 +90,7 @@ ul.list-group li {
 <body style="background-color: #00000f; text-align: center">
 {% if mymembers|length == 0 and students_files|length == 0  %}
 <h2>Currently no files available for your branch</h2>
+    <img style="margin-left: 24%;" src="https://lh3.googleusercontent.com/HOEJOwVTyC8imVdCJfmbDtOA5oZxhfNXFP5JodMl7ZrCmFZClPVWVPCUZkd-pePUZ5n0HaYtBEohKlboCUfE2LnKlm4ebca38YLtQ1QPVBDmGaUpVbXTjcw4I7I46bbq7SWTfColkpxO2BoOAvo4ChBDF80RJu-4FHDRuAl8iGEicn0O-wUu8S94RlL4TQ-zU7PJ5DSDENpm4glt6Q1XKpd5B-Pn2Fe4JB4tqdh9X3OwYKsD9CYDVfRNnZu_H635-rOEw9uQKP69AFgZZzb7iEw8nh8dsl7tEEk23zROTFfrKwIAlsrq3rPpzKfSPcEJPYkm-leBdHzL74_aBqrnKnyqMlf0ecmcvS8M6AOCW4YGdkuV_iF_QpxJ9vzuHWet0SKWHycR_NniyFpG_Mb346p8sUcts5rWxmmLNyPk701X2S2F6EFZvzh9jGH5tLinoG45jV3S4AnFd-nF_hAataaDW1kz12n6bGphK-aWHRHnj_Ea7KGy-g6rlwdXNXIeYNtKextfLy2RZg6ASbRgKQYo-Nn7GlxC3OMmg6taI9M-K7ed6Lt6Zc25AhUweCjW8JyXTOujPONhGdta39eflkR0oGiDAoGf4sfy4Jt-JJVxyGMj7zQ2hcVR9iP5v83kmwr6Jg1MjSmGSXTfrvIurHJlR8ywQg0PkyEMIOk4XrhAr_qju8KGII3nO44dDZ-eS5apPB1gmOSIxGKIwqninUXieoxVcr_49z5IHc__imbQ3OlaFiyGeW5gFWhtw1KFihgkTPNbFXjtocg7igL3nyTufvkkCYqZF12Igyp9TSaA7uAZzdWatRUVb9C04nn5fb24elR9i1cCb15sNxeMJ0quOTHpMpARpBnWdcFpWy79ZLbeCUafw3AbvEKnThmSw84mQu3AnfqgJigDTq6z64q0ojRukbCiPUzVQg=s933-no?authuser=0" alt="No data found"/>
 {% else %}
 
 {% if mymembers|length %}
@@ -125,7 +132,7 @@ ul.list-group li {
 <h2>No files are shared by students</h2>
 {% endif %}
 {% endif %}
-
+<br>
 <a href="../../creator/">Admin</a>
 </body>
 </html>

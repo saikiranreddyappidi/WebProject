@@ -141,9 +141,6 @@ box-shadow: 0px 0px 0px 0px;
 
 </head>
 <body>
-{% if account %}
-    <a href="../"><script>alert("Wrong Password")</script></a>
-{% endif %}
 <!-- partial:index.partial.html -->
 <section class='login' id='login'>
   <div class='head'>
@@ -154,6 +151,9 @@ box-shadow: 0px 0px 0px 0px;
     <form action="first/" method="post">
   <input type="text" placeholder='Username' class='text' onclick="document.getElementById('username')" name="reg" required><br>
   <input type="password" placeholder='••••••••••••••' class='password' name="pswd" required><br>
+        {% if validation %}
+            <p style="color: red;font-size: 13px">Wrong Password</p>
+        {% endif %}
   <button type="submit" class='btn-login' id='do-login'>Login</button>
   <a href="mail_checking/" class='forgot'>Forgot ?</a>
         <br><br>

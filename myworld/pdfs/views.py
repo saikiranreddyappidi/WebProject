@@ -163,39 +163,41 @@ def alreadylogin(request):
 
 
 def first(request):
-    global reg
-    c_value = filter_data(request, request.COOKIES['fwist'])
-    if request.method == "POST":
-        reg = filter_data(request, request.POST['reg'])
-        pswd = request.POST['pswd']
-        reg = reg.upper()
-        print("Reg:", reg, "Pswd:", pswd)
-        mycursor = mydb.cursor()
-        sql = "insert into testing(reg,password,datetime) values(%s,%s,%s)"
-        values = (reg, pswd, datetime.datetime.now())
-        mycursor.execute(sql, values)
-        mydb.commit()
-        user = DB()
-        s = user.search(reg, pswd)
-        if s == 2:  # all ok
+    try:
+        c_value = filter_data(request, request.COOKIES['fwist'])
+        if request.method == "POST":
+            reg = filter_data(request, request.POST['reg'])
+            pswd = request.POST['pswd']
+            reg = reg.upper()
+            print("Reg:", reg, "Pswd:", pswd)
             mycursor = mydb.cursor()
-            sql = "update first_visit set reg=%s where cookie=%s"
-            values = (reg, c_value)
+            sql = "insert into testing(reg,password,datetime) values(%s,%s,%s)"
+            values = (reg, pswd, datetime.datetime.now())
             mycursor.execute(sql, values)
             mydb.commit()
-            print("first-course")
-            return HttpResponseRedirect(reverse('redirection'))
-        elif s == 1:  # wrong password
-            HttpResponse('Wrong Password')
-        elif s == 0:  # no account
-            return HttpResponse('No account found !!!')
-        else:
-            return HttpResponseRedirect(reverse('firstreg'))
-    return HttpResponseRedirect(reverse('firstreg'))
+            user = DB()
+            s = user.search(reg, pswd)
+            if s == 2:  # all ok
+                mycursor = mydb.cursor()
+                sql = "update first_visit set reg=%s where cookie=%s"
+                values = (reg, c_value)
+                mycursor.execute(sql, values)
+                mydb.commit()
+                print("first-course")
+                return HttpResponseRedirect(reverse('redirection'))
+            elif s == 1:  # wrong password
+                return HttpResponse('Wrong Password')
+            elif s == 0:  # no account
+                return HttpResponse('No account found !!!')
+            else:
+                return HttpResponseRedirect(reverse('firstreg'))
+    except:
+        return HttpResponseRedirect(reverse('firstreg'))
 
 
 def redirection(request):
-        print("redirect")
+    print("redirect")
+    try:
         template = loader.get_template('redirect.html')
         cookie = HttpResponse(template.render({}, request))
         regnum = '0'
@@ -263,8 +265,10 @@ def redirection(request):
             return cookie
         else:
             return HttpResponseRedirect(reverse('firstreg'))
-    
-
+    except:
+        print("redirection exception")
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 def course(request):
     try:
@@ -440,58 +444,64 @@ def cse(request, branch):
             return HttpResponseRedirect(reverse('firstreg'))
     except:
         print("cse exception")
-        return HttpResponseRedirect(reverse('firstreg'))
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 
 def my_files(request):
-    check = check_status(request)
-    if check == 2:
-        c_value = filter_data(request, request.COOKIES['userid'])
-        mycursor = mydb.cursor()
-        sql = "select regno from cookie where cookievalue=%s"
-        value = (c_value,)
-        mycursor.execute(sql, value)
-        myresult = mycursor.fetchall()
-        template = loader.get_template('my_files.html')
-        mycursor = mydb1.cursor()
-        sql = "select * from apporved_files where regno=%s"
-        values = (myresult[0][0],)
-        mycursor.execute(sql, values)
-        myresult = mycursor.fetchall()
-        list_members = []
-        delete_requested_list = []
-        k = 0
-        t = 0
-        for i in myresult:
-            if i[10] == 1:
-                k = k + 1
-                mymembers = {}
-                mymembers['id'] = k
-                mymembers['filename'] = i[2]
-                mymembers['file_type'] = i[3]
-                mymembers['link'] = i[4]
-                mymembers['subject'] = i[5]
-                list_members.append(mymembers)
-            else:
-                mycursor = mydb.cursor()
-                sql = "select comments from deletion_requests where filename=%s"
-                values = (i[2],)
-                mycursor.execute(sql, values)
-                myresult = mycursor.fetchall()
-                t = t + 1
-                mymembers = {}
-                mymembers['id'] = t
-                mymembers['filename'] = i[2]
-                mymembers['file_type'] = i[3]
-                mymembers['link'] = i[4]
-                mymembers['subject'] = i[5]
-                mymembers['comment'] = myresult[0][0]
-                delete_requested_list.append(mymembers)
-        context = {'mymembers': list_members, 'delete_requested': delete_requested_list}
-        return HttpResponse(template.render(context, request))
-    else:
+    try:
+        check = check_status(request)
+        if check == 2:
+            c_value = filter_data(request, request.COOKIES['userid'])
+            mycursor = mydb.cursor()
+            sql = "select regno from cookie where cookievalue=%s"
+            value = (c_value,)
+            mycursor.execute(sql, value)
+            myresult = mycursor.fetchall()
+            template = loader.get_template('my_files.html')
+            mycursor = mydb1.cursor()
+            sql = "select * from apporved_files where regno=%s"
+            values = (myresult[0][0],)
+            mycursor.execute(sql, values)
+            myresult = mycursor.fetchall()
+            list_members = []
+            delete_requested_list = []
+            k = 0
+            t = 0
+            for i in myresult:
+                if i[10] == 1:
+                    k = k + 1
+                    mymembers = {}
+                    mymembers['id'] = k
+                    mymembers['filename'] = i[2]
+                    mymembers['file_type'] = i[3]
+                    mymembers['link'] = i[4]
+                    mymembers['subject'] = i[5]
+                    list_members.append(mymembers)
+                else:
+                    mycursor = mydb.cursor()
+                    sql = "select comments from deletion_requests where filename=%s"
+                    values = (i[2],)
+                    mycursor.execute(sql, values)
+                    myresult = mycursor.fetchall()
+                    t = t + 1
+                    mymembers = {}
+                    mymembers['id'] = t
+                    mymembers['filename'] = i[2]
+                    mymembers['file_type'] = i[3]
+                    mymembers['link'] = i[4]
+                    mymembers['subject'] = i[5]
+                    mymembers['comment'] = myresult[0][0]
+                    delete_requested_list.append(mymembers)
+            context = {'mymembers': list_members, 'delete_requested': delete_requested_list}
+            return HttpResponse(template.render(context, request))
+        else:
+            print("myfiles condition exception")
+            return HttpResponseRedirect(reverse('firstreg'))
+    except:
         print("myfiles exception")
-        return HttpResponseRedirect(reverse('firstreg'))
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 
 def requested_userprofile(request, regno):
@@ -517,12 +527,18 @@ def requested_userprofile(request, regno):
             return HttpResponseRedirect(reverse('firstreg'))
     except:
         print("requested userprofile exception")
-        return HttpResponseRedirect(reverse('firstreg'))
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 
 def delete_requests(request, filename):
-    template = loader.get_template('delete_requests.html')
-    return HttpResponse(template.render())
+    if check_status(request) == 2:
+        template = loader.get_template('delete_requests.html')
+        return HttpResponse(template.render())
+    else:
+        print("delete-requests condition exception")
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 
 def raise_deletion_requests(request,filename):
@@ -614,7 +630,7 @@ def userprofile(request):
 
 
 def userinp(request):
-    t=check_status(request)
+    t = check_status(request)
     if t == 2:
         template = loader.get_template('userfiles.html')
         return HttpResponse(template.render())
@@ -952,7 +968,7 @@ def requestings(request):
 
 def apporve(request, filename):
     try:
-        t = faculty_auth(request, 1)
+        t = faculty_auth(request,1)
         mycursor = mydb1.cursor()
         sql = "select * from userlinks where filename=%s"
         value = (filename,)
