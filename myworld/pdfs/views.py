@@ -1,5 +1,6 @@
 import base64
 import datetime
+import socket
 from urllib import request
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -11,7 +12,8 @@ from .Data.Primary import *
 from .MailServices.mail import Mail
 
 print("Hello !, admin")
-
+hostname = socket.gethostname()
+print("Running server at: ",socket.gethostbyname(hostname))
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -90,38 +92,41 @@ def newlogin(request):
 
 
 def already_login_once(request):
-    returned_cookie = filter_data(request, request.COOKIES['userid'])
-    myresult = get_reg(returned_cookie)
-    if len(myresult) > 0:
-        reg_no = myresult[0][0]
-    else:
+    try:
+        returned_cookie = filter_data(request, request.COOKIES['userid'])
+        myresult = get_reg(returned_cookie)
+        if len(myresult) > 0:
+            reg_no = myresult[0][0]
+        else:
+            return HttpResponseRedirect(reverse('firstreg'))
+        mycursor = mydb1.cursor()
+        sql = "select * from student_info where Reg_no=%s"
+        value = (reg_no,)
+        mycursor.execute(sql, value)
+        myresult = mycursor.fetchall()
+        list_members = []
+        for i in myresult:
+            mymembers = {}
+            mymembers['reg_no'] = i[1]
+            mymembers['name'] = i[2]
+            mymembers['link'] = i[5]
+            list_members.append(mymembers)
+        context = {'mymembers': list_members}
+        template = loader.get_template('already_login_once.html')
+        cookie = HttpResponse(template.render(context, request))
+        cook = Cookies()
+        cookie_value = cook.makecookie()
+        cookie.set_cookie("Alin", cookie_value, max_age=None)
+        ip = get_ip(request)
+        mycursor = mydb.cursor()
+        sql = "insert into alreadylogin(reg,cookie,ip,datetime) values(%s, %s, %s, %s)"
+        values = (reg_no, cookie_value, ip, datetime.datetime.now())
+        mycursor.execute(sql, values)
+        mydb.commit()
+        print("already_login_once")
+        return cookie
+    except:
         return HttpResponseRedirect(reverse('firstreg'))
-    mycursor = mydb1.cursor()
-    sql = "select * from student_info where Reg_no=%s"
-    value = (reg_no,)
-    mycursor.execute(sql, value)
-    myresult = mycursor.fetchall()
-    list_members = []
-    for i in myresult:
-        mymembers = {}
-        mymembers['reg_no'] = i[1]
-        mymembers['name'] = i[2]
-        mymembers['link'] = i[5]
-        list_members.append(mymembers)
-    context = {'mymembers': list_members}
-    template = loader.get_template('already_login_once.html')
-    cookie = HttpResponse(template.render(context, request))
-    cook = Cookies()
-    cookie_value = cook.makecookie()
-    cookie.set_cookie("Alin", cookie_value, max_age=None)
-    ip = get_ip(request)
-    mycursor = mydb.cursor()
-    sql = "insert into alreadylogin(reg,cookie,ip,datetime) values(%s, %s, %s, %s)"
-    values = (reg_no, cookie_value, ip, datetime.datetime.now())
-    mycursor.execute(sql, values)
-    mydb.commit()
-    print("already_login_once")
-    return cookie
 
 
 def alreadylogin(request):
@@ -361,7 +366,6 @@ def check_with_reg(request, reg_no):
     try:
         if reg_no == "00":
             return 0
-        ip = get_ip(request)
         mycursor = mydb.cursor()
         sql = "select * from cookie where regno=%s"
         value = (reg_no,)
@@ -1076,10 +1080,15 @@ def comparing_mail(request):
     try:
         mail = filter_data(request, request.POST['mail'])
         reg = filter_data(request, request.POST['reg'])
+        choice = request.POST['choice']
         reg = reg.upper()
         print("Entered mail :", mail, "Reg.no", reg)
         my_cursor = mydb.cursor()
         sql = "delete from active_otps where reg=%s"
+        value = (reg,)
+        my_cursor.execute(sql, value)
+        mydb.commit()
+        sql = "delete from passwordlink where regno=%s"
         value = (reg,)
         my_cursor.execute(sql, value)
         mydb.commit()
@@ -1088,10 +1097,19 @@ def comparing_mail(request):
         val = (reg,)
         mycursor.execute(sql, val)
         myresult = mycursor.fetchall()
+        print("choice",choice)
+        ip = get_ip(request)
         if len(myresult) != 0:
             i = myresult[0]
-            if mail == i[4]:
+            if i[4] == mail:
                 print("correct mail entered")
+                if choice == 'link':
+                    value = linkcreation(i[4], reg, i[2], ip)
+                    if value:
+                        return HttpResponseRedirect(reverse('firstreg'))
+                    else:
+                        template = loader.get_template('somethingwentwrong.html')
+                        return HttpResponse(template.render())
                 send = Mail()
                 otp = str(send.sendingotp(i[4], i[2], i[3]))
                 if otp == 0:
@@ -1102,7 +1120,6 @@ def comparing_mail(request):
                 cook = Cookies()
                 cookie_value = cook.makecookie()
                 mycursor = mydb.cursor()
-                ip = get_ip(request)
                 sql = "insert into active_otps (reg,otp,ip,datetime,cookie) values (%s,%s,%s,%s,%s)"
                 values = (reg, otp, ip, date, cookie_value)
                 mycursor.execute(sql, values)
@@ -1145,10 +1162,82 @@ def importing_password(request):
         myresult = mycursor.fetchall()
         if len(myresult) != 0:
             i = myresult[0]
-            reg_form_db = i[1]
+            reg_from_db = i[1]
             otp_from_db = i[2]
             if enotp == otp_from_db:
                 print("OTP confirmation success")
+                print(pswd, repswd)
+                if pswd != repswd:
+                    print("password confirmation failed")
+                    return HttpResponse("Password confirmation failed !!!")
+                else:
+                    mycursor = mydb1.cursor()
+                    sql = "update student_info set PassWord=%s where reg_no=%s"
+                    values = (pswd, reg_from_db)
+                    mycursor.execute(sql, values)
+                    mydb1.commit()
+                    print("password updated")
+                    my_cursor = mydb.cursor()
+                    sql = "delete from active_otps where reg=%s"
+                    value = (reg_from_db, )
+                    my_cursor.execute(sql, value)
+                    mydb.commit()
+                    return HttpResponseRedirect(reverse('firstreg'))
+            else:
+                mycursor = mydb.cursor()
+                sql = "update active_otps set limit=%s where reg=%s"
+                values = (i[6]+1, reg_from_db)
+                mycursor.execute(sql, values)
+                mydb.commit()
+                print("OTP confirmation failed")
+                return HttpResponse("wrong OTP entered !!!")
+        else:
+            return HttpResponse('<h2>OTP expired !!!</h2>')
+    except:
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
+
+
+def linkcreation(mail, number, name, ip):
+    try:
+        cook = Cookies()
+        cookie_value = cook.makecookie()
+        hosting = socket.gethostname()
+        ipaddress = socket.gethostbyname(hosting)
+        link = 'http://' + ipaddress + ':8000/project/reset-password/' + cookie_value
+        send = Mail()
+        send.sendinglink(mail, name, link)
+        mycursor = mydb.cursor()
+        sql = "insert into passwordlink (regno,link,ip,datetime) values (%s,%s,%s,%s)"
+        values = (number, cookie_value, ip, datetime.datetime.now())
+        mycursor.execute(sql, values)
+        mydb.commit()
+        return True
+    except:
+        print("exception occured in link-creation")
+        return False
+    
+
+def linkpasswordpage(request, link):
+    template = loader.get_template('passwordlink.html')
+    return HttpResponse(template.render())
+
+
+def linktype(request, link):
+    try:
+        pswd = request.POST['password1']
+        repswd = request.POST['password2']
+        mycursor = mydb.cursor()
+        sql = "select * from passwordlink where link=%s"
+        value = (link,)
+        mycursor.execute(sql, value)
+        myresult = mycursor.fetchall()
+        if len(myresult) != 0:
+            i = myresult[0]
+            reg_form_db = i[1]
+            link_from_db = i[2]
+            if link == link_from_db:
+                print("Link confirmation success")
                 print(pswd, repswd)
                 if pswd != repswd:
                     print("password confirmation failed")
@@ -1161,19 +1250,23 @@ def importing_password(request):
                     mydb1.commit()
                     print("password updated")
                     my_cursor = mydb.cursor()
-                    sql = "delete from active_otps where reg=%s"
+                    sql = "delete from passwordlink where regno=%s"
                     value = (reg_form_db, )
                     my_cursor.execute(sql, value)
                     mydb.commit()
                     return HttpResponseRedirect(reverse('firstreg'))
             else:
-                print("OTP confirmation failed")
-                return HttpResponse("wrong OTP entered !!!")
+                print("link confirmation failed")
+                template = loader.get_template('somethingwentwrong.html')
+                return HttpResponse(template.render())
         else:
-            return HttpResponse('<h2 stlye="text-align:center;">OTP expired !!!</h2>')
+            template = loader.get_template('somethingwentwrong.html')
+            return HttpResponse(template.render())
     except:
-        print('')
-        return HttpResponse('Try again after sometime !!!')
+        print('exception occured in link-type')
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
+
 
 
 def newadmin(request):
