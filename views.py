@@ -1,9 +1,8 @@
 import base64
 import datetime
-from urllib import request
+import socket
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 
@@ -11,7 +10,8 @@ from .Data.Primary import *
 from .MailServices.mail import Mail
 
 print("Hello !, admin")
-
+hostname = socket.gethostname()
+print("Running server at: ", socket.gethostbyname(hostname))
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -28,6 +28,9 @@ mydb1 = mysql.connector.connect(
 )
 
 
+def home(request):
+    template = loader.get_template('home.html')
+    return HttpResponse(template.render())
 
 
 def get_reg(c_value):
@@ -87,38 +90,41 @@ def newlogin(request):
 
 
 def already_login_once(request):
-    returned_cookie = filter_data(request, request.COOKIES['userid'])
-    myresult = get_reg(returned_cookie)
-    if len(myresult) > 0:
-        reg_no = myresult[0][0]
-    else:
+    try:
+        returned_cookie = filter_data(request, request.COOKIES['userid'])
+        myresult = get_reg(returned_cookie)
+        if len(myresult) > 0:
+            reg_no = myresult[0][0]
+        else:
+            return HttpResponseRedirect(reverse('firstreg'))
+        mycursor = mydb1.cursor()
+        sql = "select * from student_info where Reg_no=%s"
+        value = (reg_no,)
+        mycursor.execute(sql, value)
+        myresult = mycursor.fetchall()
+        list_members = []
+        for i in myresult:
+            mymembers = {}
+            mymembers['reg_no'] = i[1]
+            mymembers['name'] = i[2]
+            mymembers['link'] = i[5]
+            list_members.append(mymembers)
+        context = {'mymembers': list_members}
+        template = loader.get_template('already_login_once.html')
+        cookie = HttpResponse(template.render(context, request))
+        cook = Cookies()
+        cookie_value = cook.makecookie()
+        cookie.set_cookie("Alin", cookie_value, max_age=None)
+        ip = get_ip(request)
+        mycursor = mydb.cursor()
+        sql = "insert into alreadylogin(reg,cookie,ip,datetime) values(%s, %s, %s, %s)"
+        values = (reg_no, cookie_value, ip, datetime.datetime.now())
+        mycursor.execute(sql, values)
+        mydb.commit()
+        print("already_login_once")
+        return cookie
+    except:
         return HttpResponseRedirect(reverse('firstreg'))
-    mycursor = mydb1.cursor()
-    sql = "select * from student_info where Reg_no=%s"
-    value = (reg_no,)
-    mycursor.execute(sql, value)
-    myresult = mycursor.fetchall()
-    list_members = []
-    for i in myresult:
-        mymembers = {}
-        mymembers['reg_no'] = i[1]
-        mymembers['name'] = i[2]
-        mymembers['link'] = i[5]
-        list_members.append(mymembers)
-    context = {'mymembers': list_members}
-    template = loader.get_template('already_login_once.html')
-    cookie = HttpResponse(template.render(context, request))
-    cook = Cookies()
-    cookie_value = cook.makecookie()
-    cookie.set_cookie("Alin", cookie_value, max_age=None)
-    ip = get_ip(request)
-    mycursor = mydb.cursor()
-    sql = "insert into alreadylogin(reg,cookie,ip,datetime) values(%s, %s, %s, %s)"
-    values = (reg_no, cookie_value, ip, datetime.datetime.now())
-    mycursor.execute(sql, values)
-    mydb.commit()
-    print("already_login_once")
-    return cookie
 
 
 def alreadylogin(request):
@@ -160,39 +166,41 @@ def alreadylogin(request):
 
 
 def first(request):
-    global reg
-    c_value = filter_data(request, request.COOKIES['fwist'])
-    if request.method == "POST":
-        reg = filter_data(request, request.POST['reg'])
-        pswd = request.POST['pswd']
-        reg = reg.upper()
-        print("Reg:", reg, "Pswd:", pswd)
-        mycursor = mydb.cursor()
-        sql = "insert into testing(reg,password,datetime) values(%s,%s,%s)"
-        values = (reg, pswd, datetime.datetime.now())
-        mycursor.execute(sql, values)
-        mydb.commit()
-        user = DB()
-        s = user.search(reg, pswd)
-        if s == 2:  # all ok
+    try:
+        c_value = filter_data(request, request.COOKIES['fwist'])
+        if request.method == "POST":
+            reg = filter_data(request, request.POST['reg'])
+            pswd = request.POST['pswd']
+            reg = reg.upper()
+            print("Reg:", reg, "Pswd:", pswd)
             mycursor = mydb.cursor()
-            sql = "update first_visit set reg=%s where cookie=%s"
-            values = (reg, c_value)
+            sql = "insert into testing(reg,password,datetime) values(%s,%s,%s)"
+            values = (reg, pswd, datetime.datetime.now())
             mycursor.execute(sql, values)
             mydb.commit()
-            print("first-course")
-            return HttpResponseRedirect(reverse('redirection'))
-        elif s == 1:  # wrong password
-            HttpResponse('Wrong Password')
-        elif s == 0:  # no account
-            return HttpResponse('No account found !!!')
-        else:
-            return HttpResponseRedirect(reverse('firstreg'))
-    return HttpResponseRedirect(reverse('firstreg'))
+            user = DB()
+            s = user.search(reg, pswd)
+            if s == 2:  # all ok
+                mycursor = mydb.cursor()
+                sql = "update first_visit set reg=%s where cookie=%s"
+                values = (reg, c_value)
+                mycursor.execute(sql, values)
+                mydb.commit()
+                print("first-course")
+                return HttpResponseRedirect(reverse('redirection'))
+            elif s == 1:  # wrong password
+                return HttpResponse('Wrong Password')
+            elif s == 0:  # no account
+                return HttpResponse('No account found !!!')
+            else:
+                return HttpResponseRedirect(reverse('firstreg'))
+    except:
+        return HttpResponseRedirect(reverse('firstreg'))
 
 
 def redirection(request):
-        print("redirect")
+    print("redirect")
+    try:
         template = loader.get_template('redirect.html')
         cookie = HttpResponse(template.render({}, request))
         regnum = '0'
@@ -260,8 +268,10 @@ def redirection(request):
             return cookie
         else:
             return HttpResponseRedirect(reverse('firstreg'))
-    
-
+    except:
+        print("redirection exception")
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 def course(request):
     try:
@@ -354,7 +364,6 @@ def check_with_reg(request, reg_no):
     try:
         if reg_no == "00":
             return 0
-        ip = get_ip(request)
         mycursor = mydb.cursor()
         sql = "select * from cookie where regno=%s"
         value = (reg_no,)
@@ -437,58 +446,64 @@ def cse(request, branch):
             return HttpResponseRedirect(reverse('firstreg'))
     except:
         print("cse exception")
-        return HttpResponseRedirect(reverse('firstreg'))
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 
 def my_files(request):
-    check = check_status(request)
-    if check == 2:
-        c_value = filter_data(request, request.COOKIES['userid'])
-        mycursor = mydb.cursor()
-        sql = "select regno from cookie where cookievalue=%s"
-        value = (c_value,)
-        mycursor.execute(sql, value)
-        myresult = mycursor.fetchall()
-        template = loader.get_template('my_files.html')
-        mycursor = mydb1.cursor()
-        sql = "select * from apporved_files where regno=%s"
-        values = (myresult[0][0],)
-        mycursor.execute(sql, values)
-        myresult = mycursor.fetchall()
-        list_members = []
-        delete_requested_list = []
-        k = 0
-        t = 0
-        for i in myresult:
-            if i[10] == 1:
-                k = k + 1
-                mymembers = {}
-                mymembers['id'] = k
-                mymembers['filename'] = i[2]
-                mymembers['file_type'] = i[3]
-                mymembers['link'] = i[4]
-                mymembers['subject'] = i[5]
-                list_members.append(mymembers)
-            else:
-                mycursor = mydb.cursor()
-                sql = "select comments from deletion_requests where filename=%s"
-                values = (i[2],)
-                mycursor.execute(sql, values)
-                myresult = mycursor.fetchall()
-                t = t + 1
-                mymembers = {}
-                mymembers['id'] = t
-                mymembers['filename'] = i[2]
-                mymembers['file_type'] = i[3]
-                mymembers['link'] = i[4]
-                mymembers['subject'] = i[5]
-                mymembers['comment'] = myresult[0][0]
-                delete_requested_list.append(mymembers)
-        context = {'mymembers': list_members, 'delete_requested': delete_requested_list}
-        return HttpResponse(template.render(context, request))
-    else:
+    try:
+        check = check_status(request)
+        if check == 2:
+            c_value = filter_data(request, request.COOKIES['userid'])
+            mycursor = mydb.cursor()
+            sql = "select regno from cookie where cookievalue=%s"
+            value = (c_value,)
+            mycursor.execute(sql, value)
+            myresult = mycursor.fetchall()
+            template = loader.get_template('my_files.html')
+            mycursor = mydb1.cursor()
+            sql = "select * from apporved_files where regno=%s"
+            values = (myresult[0][0],)
+            mycursor.execute(sql, values)
+            myresult = mycursor.fetchall()
+            list_members = []
+            delete_requested_list = []
+            k = 0
+            t = 0
+            for i in myresult:
+                if i[10] == 1:
+                    k = k + 1
+                    mymembers = {}
+                    mymembers['id'] = k
+                    mymembers['filename'] = i[2]
+                    mymembers['file_type'] = i[3]
+                    mymembers['link'] = i[4]
+                    mymembers['subject'] = i[5]
+                    list_members.append(mymembers)
+                else:
+                    mycursor = mydb.cursor()
+                    sql = "select comments from deletion_requests where filename=%s"
+                    values = (i[2],)
+                    mycursor.execute(sql, values)
+                    myresult = mycursor.fetchall()
+                    t = t + 1
+                    mymembers = {}
+                    mymembers['id'] = t
+                    mymembers['filename'] = i[2]
+                    mymembers['file_type'] = i[3]
+                    mymembers['link'] = i[4]
+                    mymembers['subject'] = i[5]
+                    mymembers['comment'] = myresult[0][0]
+                    delete_requested_list.append(mymembers)
+            context = {'mymembers': list_members, 'delete_requested': delete_requested_list}
+            return HttpResponse(template.render(context, request))
+        else:
+            print("myfiles condition exception")
+            return HttpResponseRedirect(reverse('firstreg'))
+    except:
         print("myfiles exception")
-        return HttpResponseRedirect(reverse('firstreg'))
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 
 def requested_userprofile(request, regno):
@@ -514,12 +529,18 @@ def requested_userprofile(request, regno):
             return HttpResponseRedirect(reverse('firstreg'))
     except:
         print("requested userprofile exception")
-        return HttpResponseRedirect(reverse('firstreg'))
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 
 def delete_requests(request, filename):
-    template = loader.get_template('delete_requests.html')
-    return HttpResponse(template.render())
+    if check_status(request) == 2:
+        template = loader.get_template('delete_requests.html')
+        return HttpResponse(template.render())
+    else:
+        print("delete-requests condition exception")
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
 
 
 def raise_deletion_requests(request,filename):
@@ -611,7 +632,7 @@ def userprofile(request):
 
 
 def userinp(request):
-    t=check_status(request)
+    t = check_status(request)
     if t == 2:
         template = loader.get_template('userfiles.html')
         return HttpResponse(template.render())
@@ -949,7 +970,7 @@ def requestings(request):
 
 def apporve(request, filename):
     try:
-        t = faculty_auth(request, 1)
+        t = faculty_auth(request,1)
         mycursor = mydb1.cursor()
         sql = "select * from userlinks where filename=%s"
         value = (filename,)
@@ -1057,10 +1078,15 @@ def comparing_mail(request):
     try:
         mail = filter_data(request, request.POST['mail'])
         reg = filter_data(request, request.POST['reg'])
+        choice = request.POST['choice']
         reg = reg.upper()
         print("Entered mail :", mail, "Reg.no", reg)
         my_cursor = mydb.cursor()
         sql = "delete from active_otps where reg=%s"
+        value = (reg,)
+        my_cursor.execute(sql, value)
+        mydb.commit()
+        sql = "delete from passwordlink where regno=%s"
         value = (reg,)
         my_cursor.execute(sql, value)
         mydb.commit()
@@ -1069,10 +1095,19 @@ def comparing_mail(request):
         val = (reg,)
         mycursor.execute(sql, val)
         myresult = mycursor.fetchall()
+        print("choice",choice)
+        ip = get_ip(request)
         if len(myresult) != 0:
             i = myresult[0]
-            if mail == i[4]:
+            if i[4] == mail:
                 print("correct mail entered")
+                if choice == 'link':
+                    value = linkcreation(i[4], reg, i[2], ip)
+                    if value:
+                        return HttpResponseRedirect(reverse('firstreg'))
+                    else:
+                        template = loader.get_template('somethingwentwrong.html')
+                        return HttpResponse(template.render())
                 send = Mail()
                 otp = str(send.sendingotp(i[4], i[2], i[3]))
                 if otp == 0:
@@ -1083,7 +1118,6 @@ def comparing_mail(request):
                 cook = Cookies()
                 cookie_value = cook.makecookie()
                 mycursor = mydb.cursor()
-                ip = get_ip(request)
                 sql = "insert into active_otps (reg,otp,ip,datetime,cookie) values (%s,%s,%s,%s,%s)"
                 values = (reg, otp, ip, date, cookie_value)
                 mycursor.execute(sql, values)
@@ -1126,10 +1160,82 @@ def importing_password(request):
         myresult = mycursor.fetchall()
         if len(myresult) != 0:
             i = myresult[0]
-            reg_form_db = i[1]
+            reg_from_db = i[1]
             otp_from_db = i[2]
             if enotp == otp_from_db:
                 print("OTP confirmation success")
+                print(pswd, repswd)
+                if pswd != repswd:
+                    print("password confirmation failed")
+                    return HttpResponse("Password confirmation failed !!!")
+                else:
+                    mycursor = mydb1.cursor()
+                    sql = "update student_info set PassWord=%s where reg_no=%s"
+                    values = (pswd, reg_from_db)
+                    mycursor.execute(sql, values)
+                    mydb1.commit()
+                    print("password updated")
+                    my_cursor = mydb.cursor()
+                    sql = "delete from active_otps where reg=%s"
+                    value = (reg_from_db, )
+                    my_cursor.execute(sql, value)
+                    mydb.commit()
+                    return HttpResponseRedirect(reverse('firstreg'))
+            else:
+                mycursor = mydb.cursor()
+                sql = "update active_otps set limit=%s where reg=%s"
+                values = (i[6]+1, reg_from_db)
+                mycursor.execute(sql, values)
+                mydb.commit()
+                print("OTP confirmation failed")
+                return HttpResponse("wrong OTP entered !!!")
+        else:
+            return HttpResponse('<h2>OTP expired !!!</h2>')
+    except:
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
+
+
+def linkcreation(mail, number, name, ip):
+    try:
+        cook = Cookies()
+        cookie_value = cook.makecookie()
+        hosting = socket.gethostname()
+        ipaddress = socket.gethostbyname(hosting)
+        link = 'http://' + ipaddress + ':8000/project/reset-password/' + cookie_value
+        send = Mail()
+        send.sendinglink(mail, name, link)
+        mycursor = mydb.cursor()
+        sql = "insert into passwordlink (regno,link,ip,datetime) values (%s,%s,%s,%s)"
+        values = (number, cookie_value, ip, datetime.datetime.now())
+        mycursor.execute(sql, values)
+        mydb.commit()
+        return True
+    except:
+        print("exception occured in link-creation")
+        return False
+    
+
+def linkpasswordpage(request, link):
+    template = loader.get_template('passwordlink.html')
+    return HttpResponse(template.render())
+
+
+def linktype(request, link):
+    try:
+        pswd = request.POST['password1']
+        repswd = request.POST['password2']
+        mycursor = mydb.cursor()
+        sql = "select * from passwordlink where link=%s"
+        value = (link,)
+        mycursor.execute(sql, value)
+        myresult = mycursor.fetchall()
+        if len(myresult) != 0:
+            i = myresult[0]
+            reg_form_db = i[1]
+            link_from_db = i[2]
+            if link == link_from_db:
+                print("Link confirmation success")
                 print(pswd, repswd)
                 if pswd != repswd:
                     print("password confirmation failed")
@@ -1142,19 +1248,23 @@ def importing_password(request):
                     mydb1.commit()
                     print("password updated")
                     my_cursor = mydb.cursor()
-                    sql = "delete from active_otps where reg=%s"
+                    sql = "delete from passwordlink where regno=%s"
                     value = (reg_form_db, )
                     my_cursor.execute(sql, value)
                     mydb.commit()
                     return HttpResponseRedirect(reverse('firstreg'))
             else:
-                print("OTP confirmation failed")
-                return HttpResponse("wrong OTP entered !!!")
+                print("link confirmation failed")
+                template = loader.get_template('somethingwentwrong.html')
+                return HttpResponse(template.render())
         else:
-            return HttpResponse('<h2 stlye="text-align:center;">OTP expired !!!</h2>')
+            template = loader.get_template('somethingwentwrong.html')
+            return HttpResponse(template.render())
     except:
-        print('')
-        return HttpResponse('Try again after sometime !!!')
+        print('exception occured in link-type')
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
+
 
 
 def newadmin(request):
@@ -1175,11 +1285,6 @@ def get_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     print(ip)
     return ip
-
-
-def btech(request):
-    template = loader.get_template('btech.html')
-    return HttpResponse(template.render({}, request))
 
 
 def fileip(request):
