@@ -1,10 +1,8 @@
 import base64
 import datetime
 import socket
-from urllib import request
 
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
 from django.template import loader
 from django.urls import reverse
 
@@ -13,7 +11,7 @@ from .MailServices.mail import Mail
 
 print("Hello !, admin")
 hostname = socket.gethostname()
-print("Running server at: ",socket.gethostbyname(hostname))
+print("Running server at: ", socket.gethostbyname(hostname))
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
@@ -1287,11 +1285,6 @@ def get_ip(request):
         ip = request.META.get('REMOTE_ADDR')
     print(ip)
     return ip
-
-
-def btech(request):
-    template = loader.get_template('btech.html')
-    return HttpResponse(template.render({}, request))
 
 
 def fileip(request):
