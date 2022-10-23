@@ -31,7 +31,7 @@ class Mail:
 			smtp = smtplib.SMTP('smtp.gmail.com', 587)
 			smtp.ehlo()
 			smtp.starttls()
-			smtp.login('developingproject7@gmail.com', 'lxezucynqaoeyijh')
+			smtp.login('yourmail@gmail.com', 'apppassword')
 			msg = MIMEMultipart()
 			if enable == 1:
 				subject = "Your file has been approved"
@@ -57,7 +57,7 @@ class Mail:
 				text = text1 + text2 + text3 + 'Thank you,' + '\n' + 'Project Team.'
 				print("decline")
 			msg.attach(MIMEText(text))
-			smtp.sendmail(from_addr="developingproject7@gmail.com", to_addrs=mail, msg=msg.as_string())
+			smtp.sendmail(from_addr="yourmail@gmail.com", to_addrs=mail, msg=msg.as_string())
 			smtp.quit()
 			print("Mail sent")
 			return True
@@ -70,7 +70,7 @@ class Mail:
 			smtp = smtplib.SMTP('smtp.gmail.com', 587)
 			smtp.ehlo()
 			smtp.starttls()
-			smtp.login('developingproject7@gmail.com', 'lxezucynqaoeyijh')
+			smtp.login('yourmail@gmail.com', 'apppassword')
 			msg = MIMEMultipart()
 			subject = "Reset Password Verification code"
 			msg['Subject'] = subject
@@ -89,7 +89,7 @@ class Mail:
 			text = text1 + text2 + text3
 			msg.attach(MIMEText(text))
 			to = [str(mail)]
-			smtp.sendmail(from_addr="developingproject7@gmail.com", to_addrs=to, msg=msg.as_string())
+			smtp.sendmail(from_addr="yourmail@gmail.com", to_addrs=to, msg=msg.as_string())
 			smtp.quit()
 			print("Mail sent")
 			return hotp
@@ -102,7 +102,7 @@ class Mail:
 			smtp = smtplib.SMTP('smtp.gmail.com', 587)
 			smtp.ehlo()
 			smtp.starttls()
-			smtp.login('developingproject7@gmail.com', 'lxezucynqaoeyijh')
+			smtp.login('yourmail@gmail.com', 'apppassword')
 			msg = MIMEMultipart()
 			subject = "Reset Password link"
 			msg['Subject'] = subject
@@ -116,7 +116,7 @@ class Mail:
 			text = text1 + text2 + text3
 			msg.attach(MIMEText(text))
 			to = [str(mail)]
-			smtp.sendmail(from_addr="developingproject7@gmail.com", to_addrs=to, msg=msg.as_string())
+			smtp.sendmail(from_addr="yourmail@gmail.com", to_addrs=to, msg=msg.as_string())
 			smtp.quit()
 			print("Mail sent")
 			return True
