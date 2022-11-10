@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="refresh" content="1.5;">
+<title>Content</title>
+<style>
+
+div.content {
+  margin-left: 35%;
+  padding: 1px 16px;
+  height: 1000px;
+}
+.chipright {
+    margin-left: 50%;
+    margin-top: 2%;
+  display: inline-block;
+  padding: 0px 25px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #ffff99;
+    text-align: center;
+  {#  min-width: 36px;#}
+  {#min-height: 75px;#}
+  width: fit-content;
+  height: fit-content;
+}
+.chipleft {
+    margin-right: 10%;
+    margin-top: 2%;
+  display: inline-block;
+  padding: 0px 25px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #ff99ff;
+    text-align: center;
+  {#  min-width: 36px;#}
+  {#min-height: 75px;#}
+  width: fit-content;
+  height: fit-content;
+}
+.chipfirst {
+    margin-top: 35%;
+  display: inline-block;
+  padding: 0px 25px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #ff8080;
+    text-align: center;
+  {#  min-width: 36px;#}
+  {#min-height: 75px;#}
+  width: fit-content;
+  height: fit-content;
+}
+
+</style>
+    <title>Messages</title>
+</head>
+<body>
+<div class="content">
+<div class="chipfirst">
+<span> &emsp;&emsp;Time: {{ x.time }}</span>
+<p>{{ x.content }}</p>
+</div>
+    <br>
+    <div class="chipright">
+        <span>&emsp;&emsp;Time: {{ x.time }}</span>
+<p>{{ x.content }}</p>
+</div>
+    <br>
+    <div class="chipleft">
+        <span>&emsp;&emsp;Time: {{ x.time }}</span>
+<p>{{ x.content }}</p>
+</div>
+</div>
+</body>
+</html>
