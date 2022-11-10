@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send</title>
+    <link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
+    <style>
+        /* Importing fonts from Google */
+@import url('https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0');
+
+/* Reseting */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background:lightseagreen;
+}
+
+.wrapper {
+    max-width: 350px;
+    min-height: 400px;
+    margin: 80px auto;
+    padding: 40px 30px 30px 30px;
+    background-color: lightblue;
+    border-radius: 15px;
+    box-shadow: 13px 13px 20px lightslategray, -13px -13px 20px lightslategray;
+}
+
+.logo {
+    width: 80px;
+    margin: auto;
+}
+
+.logo img {
+    width: 100%;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0px 0px 3px #5f5f5f,
+        0px 0px 0px 5px blue,
+        8px 8px 15px blue,
+        -8px -8px 15px blue;
+}
+
+.wrapper .name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    letter-spacing: 1.3px;
+    padding-left: 10px;
+    color: #555;
+}
+
+.wrapper .form-field input {
+    width: 100%;
+    display: block;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #666;
+    padding: 10px 15px 10px 10px;
+    /* border: 1px solid red; */
+}
+
+.wrapper .form-field {
+    padding-left: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+}
+
+.wrapper .form-field .fas {
+    color: #555;
+}
+
+.wrapper .btn {
+    box-shadow: none;
+    width: 100%;
+    height: 40px;
+    background-color: #03A9F4;
+    color: #fff;
+    border-radius: 25px;
+    letter-spacing: 1.3px;
+}
+
+.wrapper .btn:hover {
+    background-color: #039BE5;
+}
+
+.wrapper a {
+    text-decoration: none;
+    font-size: 0.8rem;
+    color: #03A9F4;
+}
+
+.wrapper a:hover {
+    color: #039BE5;
+}
+
+@media(max-width: 380px) {
+    .wrapper {
+        margin: 30px 20px;
+        padding: 40px 15px 15px 15px;
+    }
+}
+    </style>
+</head>
+<body>
+<div class="wrapper">
+        <div class="logo">
+            <img src="https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0" alt="">
+        </div>
+        <div class="text-center mt-4 name">
+            WMS
+        </div>
+        <form class="p-3 mt-3" action="login/" method="post">
+            {% csrf_token %}
+            <div class="form-field d-flex align-items-center">
+                <span class="far fa-user"></span>
+                <input type="text" name="reg" id="userName" placeholder="Reg.No">
+            </div>
+            <div class="form-field d-flex align-items-center">
+                <span class="fas fa-key"></span>
+                <input type="password" name="pswd" id="pwd" placeholder="Password">
+            </div>
+            <button class="btn mt-3">Login</button>
+        </form>
+        <div class="text-center fs-6">
+            <br>
+            <p style="color: red">Your first login password is your permanent password</p>
+        </div>
+    </div>
+</body>
+</html>
