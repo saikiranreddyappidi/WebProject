@@ -1,3 +1,4 @@
 details(slno,regno,password,name,datetime,photo)
 messages(slno,sender,reciver,data,datetime)
 active_users(sino,regno,cookie,ip,datetime)
+land_page(slno,user,currentpage)
