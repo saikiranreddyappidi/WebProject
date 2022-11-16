@@ -1,22 +1,15 @@
-"""chat URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('send/', include('wmsapp.urls')),
-    path('admin/', admin.site.urls),
+    path('', views.loginform, name='loginform'),
+    path('login/', views.newlogin, name='newlogin'),
+    path('home/', views.index, name='index'),
+    path('home/message/', views.tweet, name='tweet'),
+    path('home/<str:identity>', views.change_present_page, name='change_present_page'),
+    path('test/', views.test, name='test'),
+    path('home/child-iframe.html/', views.iframe, name='iframe'),
+    path('child-iframe.html/', views.iframe, name='iframe'),
+    path('home/logout/', views.logout, name='logout'),
+path('test/child-iframe.html/', views.iframe, name='iframe'),
 ]
