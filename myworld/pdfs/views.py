@@ -1,7 +1,9 @@
 import base64
 import datetime
+import json
 import socket
 
+import requests
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
@@ -272,6 +274,7 @@ def redirection(request):
         print("redirection exception")
         template = loader.get_template('somethingwentwrong.html')
         return HttpResponse(template.render())
+
 
 def course(request):
     try:
@@ -1287,16 +1290,23 @@ def get_ip(request):
     return ip
 
 
-def fileip(request):
-    name = request.POST['filename']
-    fileinp = request.FILES['file']
-    cursor = mydb.cursor()
-    file = open(fileinp, 'rb').read()
-    file = base64.b64encode(file)
-    args = (name, file)
-    query = 'INSERT INTO files(file_name,document) VALUES(%s, %s)'
-    cursor.execute(query, args)
-    mydb.commit()
+def file(request):
+    template = loader.get_template('fileinputs.html')
+    return HttpResponse(template.render({}, request))
+
+
+def fileinp(request):
+    # name = request.POST['filename']
+    fileinput = request.FILES['file']
+    print(type(fileinput), fileinput)
+    # cursor = mydb.cursor()
+    # files = open(fileinp, 'rb').read()
+    # files = base64.b64encode(files)
+    # print(type(files), files)
+    # args = (name, file)
+    # query = 'INSERT INTO files(file_name,document) VALUES(%s, %s)'
+    # cursor.execute(query, args)
+    # mydb.commit()
     return HttpResponse('ok')
 
 

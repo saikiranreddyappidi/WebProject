@@ -194,7 +194,7 @@ a:hover{
             {% endfor %}
 			<form id="login" class="login-form" action="alreadylogin/" method="post">
                 <label>
-                    <input type="password" name="pswd" placeholder="Password" class="pass"/>
+                    <input type="password" name="pswd" placeholder="Password" class="pass" required/>
                 </label><span class="arrow">&rarr;</span>
 			<br>
                 {{ error_message }}
