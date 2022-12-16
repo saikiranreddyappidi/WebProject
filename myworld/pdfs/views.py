@@ -1,9 +1,6 @@
-import base64
 import datetime
-import json
 import socket
 
-import requests
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
