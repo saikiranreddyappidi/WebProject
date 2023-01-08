@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7f22269a-668b-456d-acad-8446e2e82bf9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/myworld/pdfs/templates/Example.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/law.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/law.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/pharma.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/profilecontent.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/profilecontent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/redirect.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/redirect.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/testing.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/testing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/userprofile.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/userprofile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/views.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Sass File" />
+        <option value="SCSS File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="Python Script" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Sai Kiran Reddy" />
+      </list>
+    </option>
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <hideBySeverity>
+      <option value="300" />
+    </hideBySeverity>
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2Af5G6sUtCFtJ0V4jzSEvSBAqD5" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/saiki/PycharmProjects/WebProject",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "run.code.analysis.last.selected.profile": "aDefault",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory"
+    ],
+    "DatabaseDriversLRU": [
+      "mysql"
+    ],
+    "com.intellij.ide.scratch.LRUPopupBuilder$1/": [
+      "MySQL"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\saiki\PycharmProjects\WebProject\myworld\pdfs\Google" />
+      <recent name="C:\Users\saiki\PycharmProjects\WebProject\myworld\pdfs" />
+      <recent name="C:\Users\saiki\PycharmProjects\WebProject\myworld\pdfs\templates\static" />
+      <recent name="C:\Users\saiki\PycharmProjects\WebProject\myworld\pdfs\statics" />
+      <recent name="C:\Users\saiki\PycharmProjects\pythonProject1\myworld\pdfs\templates" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.fortesting">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="pythonProject1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="api" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/myworld/pdfs/Google" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myworld/pdfs/Google/api.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="expired" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="WebProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/myworld/myworld" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myworld/myworld/expired.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="fortesting" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/myworld/pdfs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myworld/pdfs/fortesting.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main (2)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/myworld/pdfs/Google" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myworld/pdfs/Google/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="pythonProject1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="models" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/chat/wmsapp" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/chat/wmsapp/models.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\saiki\AppData\Local\JetBrains\PyCharm2022.2\demo\PyCharmLearningProject\venv\bin\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads/mod_wsgi-4.9.4/mod_wsgi-4.9.4" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Downloads/mod_wsgi-4.9.4/mod_wsgi-4.9.4/setup.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.fortesting" />
+        <item itemvalue="Python.api" />
+        <item itemvalue="Python.setup" />
+        <item itemvalue="Python.models" />
+        <item itemvalue="Python.main (2)" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7f22269a-668b-456d-acad-8446e2e82bf9" name="Changes" comment="" />
+      <created>1655387703503</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1655387703503</updated>
+      <workItem from="1655387728778" duration="10677000" />
+      <workItem from="1655400790897" duration="6237000" />
+      <workItem from="1655467496163" duration="2438000" />
+      <workItem from="1655470087828" duration="25771000" />
+      <workItem from="1655562971734" duration="21378000" />
+      <workItem from="1655618186384" duration="42944000" />
+      <workItem from="1655818093030" duration="2518000" />
+      <workItem from="1655894218337" duration="6662000" />
+      <workItem from="1655992116312" duration="18310000" />
+      <workItem from="1656091999977" duration="679000" />
+      <workItem from="1656134066455" duration="9885000" />
+      <workItem from="1656330329030" duration="9703000" />
+      <workItem from="1656423180832" duration="1348000" />
+      <workItem from="1656425451486" duration="3492000" />
+      <workItem from="1656434404180" duration="6782000" />
+      <workItem from="1656687417635" duration="10089000" />
+      <workItem from="1656762473223" duration="3467000" />
+      <workItem from="1656771240137" duration="530000" />
+      <workItem from="1656773946436" duration="1828000" />
+      <workItem from="1656780813215" duration="9506000" />
+      <workItem from="1656946603231" duration="1192000" />
+      <workItem from="1656947824055" duration="403000" />
+      <workItem from="1656953464626" duration="302000" />
+      <workItem from="1656953889819" duration="6883000" />
+      <workItem from="1657025165161" duration="6906000" />
+      <workItem from="1657033169049" duration="2444000" />
+      <workItem from="1657039844790" duration="1965000" />
+      <workItem from="1657053822981" duration="1469000" />
+      <workItem from="1657111552279" duration="602000" />
+      <workItem from="1657114214447" duration="4455000" />
+      <workItem from="1657895486769" duration="2869000" />
+      <workItem from="1657914804950" duration="1132000" />
+      <workItem from="1658236768510" duration="968000" />
+      <workItem from="1658251723494" duration="12418000" />
+      <workItem from="1658320033735" duration="1065000" />
+      <workItem from="1658330961494" duration="27917000" />
+      <workItem from="1658483711661" duration="5772000" />
+      <workItem from="1658491767004" duration="21325000" />
+      <workItem from="1658594511357" duration="3646000" />
+      <workItem from="1659028086693" duration="942000" />
+      <workItem from="1659122916411" duration="906000" />
+      <workItem from="1659203081111" duration="9834000" />
+      <workItem from="1659444551458" duration="10141000" />
+      <workItem from="1659620233328" duration="46362000" />
+      <workItem from="1659856535753" duration="165000" />
+      <workItem from="1660386541663" duration="11280000" />
+      <workItem from="1660406778137" duration="3584000" />
+      <workItem from="1661272770133" duration="6946000" />
+      <workItem from="1661282881574" duration="114000" />
+      <workItem from="1661353597589" duration="14303000" />
+      <workItem from="1661447071505" duration="15109000" />
+      <workItem from="1661520775558" duration="22610000" />
+      <workItem from="1661604973125" duration="22126000" />
+      <workItem from="1661678615342" duration="4803000" />
+      <workItem from="1661788557254" duration="4452000" />
+      <workItem from="1661795993862" duration="1765000" />
+      <workItem from="1661798365681" duration="11177000" />
+      <workItem from="1661880622606" duration="7044000" />
+      <workItem from="1661925806359" duration="33334000" />
+      <workItem from="1662043473584" duration="16236000" />
+      <workItem from="1662132868160" duration="7044000" />
+      <workItem from="1662143878840" duration="4117000" />
+      <workItem from="1662148346496" duration="1845000" />
+      <workItem from="1662150844098" duration="1725000" />
+      <workItem from="1662154251065" duration="2604000" />
+      <workItem from="1662312269373" duration="867000" />
+      <workItem from="1662474881625" duration="517000" />
+      <workItem from="1662668703709" duration="4336000" />
+      <workItem from="1662736610193" duration="736000" />
+      <workItem from="1662737707568" duration="4997000" />
+      <workItem from="1662745799919" duration="34000" />
+      <workItem from="1662745836192" duration="453000" />
+      <workItem from="1662746294554" duration="1733000" />
+      <workItem from="1662999338250" duration="18000" />
+      <workItem from="1663092268515" duration="7802000" />
+      <workItem from="1663357940240" duration="2273000" />
+      <workItem from="1663606715861" duration="113000" />
+      <workItem from="1663606924264" duration="1239000" />
+      <workItem from="1663700669919" duration="89000" />
+      <workItem from="1663948410597" duration="4029000" />
+      <workItem from="1663998970730" duration="3657000" />
+      <workItem from="1664042065370" duration="609000" />
+      <workItem from="1664685691504" duration="15229000" />
+      <workItem from="1664721121863" duration="8272000" />
+      <workItem from="1664781237072" duration="11422000" />
+      <workItem from="1664854004557" duration="12746000" />
+      <workItem from="1664891552237" duration="7396000" />
+      <workItem from="1664901805800" duration="7035000" />
+      <workItem from="1665116921434" duration="2754000" />
+      <workItem from="1665154319924" duration="3899000" />
+      <workItem from="1665197516183" duration="2957000" />
+      <workItem from="1665200559056" duration="6240000" />
+      <workItem from="1665419582554" duration="6299000" />
+      <workItem from="1665496252629" duration="661000" />
+      <workItem from="1665499732145" duration="8970000" />
+      <workItem from="1665585847804" duration="28000" />
+      <workItem from="1667834875542" duration="16651000" />
+      <workItem from="1667930591294" duration="13191000" />
+      <workItem from="1668002772778" duration="15385000" />
+      <workItem from="1668067110281" duration="342000" />
+      <workItem from="1668089172585" duration="24028000" />
+      <workItem from="1668141752832" duration="7376000" />
+      <workItem from="1668174805688" duration="15720000" />
+      <workItem from="1668612645252" duration="16000" />
+      <workItem from="1668624730807" duration="999000" />
+      <workItem from="1668715872961" duration="85000" />
+      <workItem from="1668715972569" duration="3484000" />
+      <workItem from="1669214561365" duration="18000" />
+      <workItem from="1670480525168" duration="431000" />
+      <workItem from="1670519131098" duration="13000" />
+      <workItem from="1670854173532" duration="3087000" />
+      <workItem from="1670868143293" duration="541000" />
+      <workItem from="1670900104912" duration="22000" />
+      <workItem from="1671210778958" duration="2058000" />
+      <workItem from="1671214275822" duration="265000" />
+      <workItem from="1671476263266" duration="15000" />
+      <workItem from="1671560967541" duration="876000" />
+      <workItem from="1672492165008" duration="4751000" />
+      <workItem from="1672515636131" duration="36000" />
+      <workItem from="1673119323908" duration="831000" />
+      <workItem from="1673121261720" duration="28246000" />
+    </task>
+    <task id="LOCAL-00001" summary="ProjectDjango-03-09-2022">
+      <created>1662146937909</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1662146937909</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ProjectDjango">
+      <created>1662153321168</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1662153321168</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Merge remote-tracking branch 'origin/master'">
+      <created>1662745158412</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1662745158412</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Merge remote-tracking branch 'origin/master'">
+      <created>1664864100488</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1664864100488</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Some bugs fixed">
+      <created>1664892928359</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1664892928359</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Added new features to reset the password i.e., user can reset the password through link also.">
+      <created>1665157177042</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1665157177042</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added new feature to reset passwords.">
+      <created>1665199520194</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1665199520194</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added new feature to reset passwords.">
+      <created>1671212755340</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671212755340</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Minor changes">
+      <created>1671214488032</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1671214488032</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="origin/main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_CLEANUP_BEFORE_PROJECT_COMMIT_PROFILE" value="Default" />
+    <MESSAGE value="ProjectDjango-03-09-2022" />
+    <MESSAGE value="ProjectDjango" />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'" />
+    <MESSAGE value="Some bugs fixed" />
+    <MESSAGE value="Added new features to reset the password i.e., user can reset the password through link also." />
+    <MESSAGE value="Added new feature to reset passwords." />
+    <MESSAGE value="Minor changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Minor changes" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/WebProject$setup.coverage" NAME="setup Coverage Results" MODIFIED="1672497302929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads/mod_wsgi-4.9.4/mod_wsgi-4.9.4" />
+    <SUITE FILE_PATH="coverage/pythonProject1$email_testing.coverage" NAME="email_testing Coverage Results" MODIFIED="1656338545179" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject1$expired.coverage" NAME="expired Coverage Results" MODIFIED="1662141247170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/myworld/myworld" />
+    <SUITE FILE_PATH="coverage/WebProject$main__2_.coverage" NAME="main (2) Coverage Results" MODIFIED="1665423614655" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/myworld/pdfs/Google" />
+    <SUITE FILE_PATH="coverage/pythonProject1$main.coverage" NAME="main Coverage Results" MODIFIED="1662140897776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject1$requests.coverage" NAME="requests Coverage Results" MODIFIED="1662137061647" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/venv" />
+    <SUITE FILE_PATH="coverage/WebProject$tests.coverage" NAME="tests Coverage Results" MODIFIED="1663097060668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/myworld/pdfs" />
+    <SUITE FILE_PATH="coverage/pythonProject1$challenges.coverage" NAME="challenges Coverage Results" MODIFIED="1662137324431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject1$index.coverage" NAME="index Coverage Results" MODIFIED="1656953967050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/opencvfiles" />
+    <SUITE FILE_PATH="coverage/pythonProject1$fortesting.coverage" NAME="fortesting Coverage Results" MODIFIED="1656780168408" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/myworld/pdfs" />
+    <SUITE FILE_PATH="coverage/pythonProject1$normal_testing.coverage" NAME="normal_testing Coverage Results" MODIFIED="1661450193003" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/pythonProject1$views.coverage" NAME="views Coverage Results" MODIFIED="1659458263608" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/myworld/pdfs" />
+  </component>
+</project>

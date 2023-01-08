@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="refresh" content="6;">
+<title>Content</title>
+<style>
+
+div.content {
+  margin-left: 35%;
+  padding: 1px 16px;
+  height: 1000px;
+}
+.chipright {
+    margin-left: 30%;
+    margin-top: 2%;
+  display: inline-block;
+  padding: 0 10px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 20px;
+  border-radius: 25px;
+  background-color: #ffff99;
+    text-align: center;
+    max-width: 80%;
+  {#min-height: ;#}
+  width: fit-content;
+  height: fit-content;
+}
+.chipleft {
+    margin-left: -35%;
+    margin-top: 2%;
+  display: inline-block;
+  padding: 0 8px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 20px;
+  border-radius: 25px;
+  background-color: #ff99ff;
+    text-align: center;
+    max-width: 80%;
+  {#min-height: 75px;#}
+  width: fit-content;
+  height: fit-content;
+}
+.chipfirst {
+    margin-top: 18%;
+    margin-left: -35%;
+    margin-right: 25%;
+  display: inline-block;
+  {#padding: 0px 5px;#}
+  {#height: 50px;#}
+  font-size: 16px;
+  {#line-height: 50px;#}
+  border-radius: 25px;
+  background-color: #ff8080;
+    text-align: center;
+  {#  min-width: 36px;#}
+  {#min-height: 75px;#}
+  width: fit-content;
+  height: 8%;
+}
+.little{
+    float:right;
+    font-size: 12px;
+}
+.registration{
+    float:left;
+    font-size: 14px;
+    color: blue;
+}
+::-webkit-scrollbar {
+  width: 20px;
+}
+.space{
+    margin-bottom: 80%;
+}
+</style>
+    <title>Messages</title>
+</head>
+<body>
+<div class="content" id="logTextArea">
+<div class="chipfirst">
+<p>This messages are not encrypted.
+    But your messages cannot be seen by others except the messages in the public group.
+    These messages are temporarily stored in the database and are deleted after this session.
+</p>
+</div>
+    <br>
+{% for j in public %}
+{% for x in content %}
+    {% if x.me %}
+        <div class="chipright">
+{#        {% if j.decision %}#}
+{#            <span class="registration">&emsp;{{ x.reg }}</span>#}
+{#         {% endif %}   #}
+            <span class="little">&emsp;&emsp;{{ x.time }}</span>
+            <p>{{ x.data }}</p>
+        </div>
+    {% else %}
+        <div class="chipleft">
+        {% if j.decision %}
+            <span class="registration">&emsp;{{ x.reg }}</span>
+         {% endif %}
+            <span class="little">&emsp;&emsp;{{ x.time }}</span>
+            <p>{{ x.data }}</p>
+        </div>
+    {% endif %}
+    <br>
+{% endfor %}
+{% endfor %}
+<div class="space"><p>End of the page</p></div>
+</div>
+<script language="javascript">
+
+    function loadLog(logValue) {
+        logTa = document.getElementById("logTextArea")
+        logTa.value = logValue;
+        scrollLogToBottom()
+    }
+
+    function scrollLogToBottom() {
+        logTa = document.getElementById("logTextArea")
+        logTa.scrollTop = logTa.scrollHeight;
+    }
+
+    loadLog("This is my really long text block from a file ... ")
+</script>
+</body>
+</html>

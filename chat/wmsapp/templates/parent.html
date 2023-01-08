@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="10;">
+<style>
+body {
+    text-underline: none;
+    margin: 0;
+  font-family: "Lato", sans-serif;
+  transition: background-color .5s;
+    background: #4d4d4d;
+    overflow-scrolling: auto;
+}
+
+.sidebar {
+    margin: 5px;
+    padding-top: 18px;
+  width: 20%;
+  background-color: #111;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+    line-height: 60px;
+  border-radius: 25px;
+}
+
+.sidebar a {
+    font-size: 20px;
+  display: block;
+  color: #818181;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: #f1f1f1;
+}
+
+div.content {
+  margin-left: 35%;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+.chipsend {
+    margin-left: 20px;
+    margin-top: -2px;
+    margin-bottom: 8px;
+  display: inline-block;
+  padding: 2px 20px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 40px;
+  border-radius: 25px;
+  background-color:#00cc99;
+    text-align: center;
+  {#  min-width: 36px;#}
+  {#min-height: 75px;#}
+  width: fit-content;
+  height: fit-content;
+}
+.chipsend a:hover{
+    background: #4dff4d;
+}
+
+.badge {
+  background-color: #00000f;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 5px 10px;
+  text-align: center;
+  margin-left: 5px;
+}
+#navbar {
+    margin-left: -15%;
+  overflow: hidden;
+  background-color: #7de8a1;
+    padding: 0 10px 0;
+    transition: 0.6s;
+  position: fixed;
+  width: 77%;
+  top: 0;
+  z-index: 99;
+     line-height: 10px;
+  border-radius: 25px;
+    height: 10%;
+}
+
+#navbar a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+#navbar #logo {
+  font-size: 35px;
+  font-weight: bold;
+  transition: 0.4s;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#navbar a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+#navbar-right {
+    margin-top: 10px;
+  float: right;
+}
+.navbar-name {
+    float: left;
+    margin-left: 20px;
+    font-size: 23px;
+    color: #1919e6;
+}
+
+@media screen and (max-width: 580px) {
+  #navbar {
+    padding: 20px 10px !important;
+  }
+  #navbar a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  #navbar-right {
+    float: none;
+  }
+}
+.right-section-bottom{
+background: lightseagreen;
+    margin-left: -14%;
+    margin-bottom: 0.4%;
+width: 75%;
+padding: 10px;
+position: fixed;
+bottom: 0;
+text-align: center;
+      font-size: 16px;
+  line-height: 20px;
+  border-radius: 25px;
+    height: 5%;
+}
+.right-section-bottom input{
+    background: lightseagreen;
+border:0;
+padding:5px 5px;
+width:calc(100% - 150px);
+}
+.right-section-bottom .btn-send{
+background-color: dodgerblue;
+  color: white;
+}
+.avatar{
+float: left;
+	display:inline-block;
+	margin:0 0 0 15px;
+	width:60px;
+	height:60px;
+	border-radius:100%;
+	border:#fff 1px solid;
+	box-shadow:rgba(0,0,0,0.4) 0px 2px 4px, inset rgba(0,0,0,0.4) 0px 3px 2px;
+	overflow:hidden;
+    {% for x in mymembers %}
+	background-image:-webkit-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url("https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0");
+    background-image:-moz-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url("https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0");
+    background-image:linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url("https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0");
+    background-size: auto, 100%;
+    {% endfor %}
+}
+::-webkit-scrollbar {
+  width: 40px;
+    overflow:hidden;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #617dd1;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #3366ff;
+}
+.little{
+    margin: 4px;
+    float:right;
+    font-size: 12px;
+}
+::-webkit-scrollbar {
+  width: 0;
+}
+</style>
+    <title>Messages</title>
+</head>
+<body>
+<div class="sidebar">
+    {% for i in active_users %}
+  <a href="{{ i.id }}" style="padding: 0 0 0 40px">{{ i.reg }}<p class="little">{{ i.time }}</p></a>
+        <hr size="1">
+    {% endfor %}
+</div>
+<div class="content">
+    <iframe src="../child-iframe.html" class="iframe" id="logTextArea" style="border: none" width="100%" height="95%" title="frame" allowfullscreen></iframe>
+<script language="javascript">
+
+    function loadLog(logValue) {
+        logTa = document.getElementById("logTextArea")
+        logTa.value = logValue;
+        scrollLogToBottom()
+    }
+
+    function scrollLogToBottom() {
+        logTa = document.getElementById("logTextArea")
+        logTa.scrollTop = logTa.scrollHeight;
+    }
+
+    loadLog("This is my really long text block from a file ... ")
+
+</script>
+    {#  {% include 'child-iframe.html' %}#}
+{#   <script>#}
+{#        // Selecting the iframe element#}
+{#        var frame = document.getElementById("Iframe");#}
+{##}
+{#        // Adjusting the iframe height onload event#}
+{#        frame.onload = function()#}
+{#        // function execute while load the iframe#}
+{#        {#}
+{#          // set the height of the iframe as#}
+{#          // the height of the iframe content#}
+{#          frame.style.height =#}
+{#          frame.contentWindow.document.body.scrollHeight + 'px';#}
+{##}
+{##}
+{#         // set the width of the iframe as the#}
+{#         // width of the iframe content#}
+{#         frame.style.width  =#}
+{#          frame.contentWindow.document.body.scrollWidth+'px';#}
+{##}
+{#        }#}
+{#        </script>#}
+    <br>
+    <div id="navbar">
+<div class="avatar" id="logo"><img src="https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0" alt="logo"
+width="60" height="60"
+></div>
+         <div class="navbar-name">
+        {% for name in receiver %}
+            <p>{{ name.to_user }}</p>
+    {% endfor %}
+    </div>
+  <div id="navbar-right">
+    <a class="active" href="logout/">Logout</a>
+  </div>
+</div>
+    <div class="right-section-bottom">
+<form method="post" action="message/">
+    {% csrf_token %}
+    <label>
+        <input type="text" name="msg" placeholder="type here...">
+    </label>
+<button type="submit" class="chipsend">Send</button>
+</form>
+</div>
+</div>
+</body>
+</html>

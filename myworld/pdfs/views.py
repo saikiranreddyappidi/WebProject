@@ -300,7 +300,7 @@ def user_response(request):
         sql = "delete from cookie where regno=%s"
         values = (myresult[0][0],)
         mycursor.execute(sql, values)
-        mydb.commit()  #
+        mydb.commit()
         try:
             print("fwist deletion")
             # c_value_fwist = filter_data(request, request.COOKIES['fwist'])
@@ -1265,6 +1265,95 @@ def linktype(request, link):
         template = loader.get_template('somethingwentwrong.html')
         return HttpResponse(template.render())
 
+
+def creating_profile(request):
+    template = loader.get_template('creating_profile.html')
+    regno=return_reg(request)
+    if regno != 0:
+        mycursor = mydb1.cursor()
+        sql = "select * from html_content where regno=%s"
+        value = (regno,)
+        mycursor.execute(sql, value)
+        myresult = mycursor.fetchall()
+        if len(myresult) != 0:
+            content = myresult[0][2]
+            if len(content) != 0:
+                list_members = [{"cont": content}]
+                context = {'ownContent': list_members}
+                return HttpResponse(template.render(context, request))
+    return HttpResponse(template.render({}, request))
+
+
+def saveOnly(request):
+    try:
+        content= request.POST['content']
+        if saving(request, content):
+            return HttpResponseRedirect(reverse('creating_profile'))
+        else:
+            template = loader.get_template('somethingwentwrong.html')
+            return HttpResponse(template.render())
+    except:
+        print("exception occured in saveOnly")
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
+
+
+def saveNleave(request):
+    try:
+        content = request.POST['content']
+        if saving(request, content):
+            return HttpResponseRedirect(reverse('course'))
+        else:
+            template = loader.get_template('somethingwentwrong.html')
+            return HttpResponse(template.render())
+    except:
+        print("exception occured in saveNleave")
+        template = loader.get_template('somethingwentwrong.html')
+        return HttpResponse(template.render())
+
+def saving(request,text):
+    try:
+        regno = return_reg(request)
+        mycursor = mydb1.cursor()
+        sql = "select * from html_content where regno=%s"
+        value = (regno,)
+        mycursor.execute(sql, value)
+        myresult = mycursor.fetchall()
+        if len(myresult) != 0:
+            sql = "update html_content set content=%s,lastmodified=%s where regno=%s"
+            values = (text,datetime.datetime.now(), regno)
+            mycursor.execute(sql, values)
+            mydb1.commit()
+            return True
+        else:
+            sql = "insert into html_content (regno,content) values (%s,%s)"
+            values = (regno, text)
+            mycursor.execute(sql, values)
+            mydb1.commit()
+            return True
+    except:
+        print('exception occured in saving')
+        return False
+
+
+def ownProfile(request, regno):
+    if regno != 0:
+        mycursor = mydb1.cursor()
+        sql = "select content from html_content where regno=%s"
+        value = (regno,)
+        mycursor.execute(sql, value)
+        myresult = mycursor.fetchall()
+        if len(myresult) != 0:
+                f=open(r"C:\Users\saiki\PycharmProjects\WebProject\myworld\pdfs\templates\ownProfile.html",'w')
+                f.write(myresult[0][0])
+                f.close()
+    template = loader.get_template('ownProfile.html')
+    return HttpResponse(template.render({}, request))
+
+
+def example_template(request):
+    template = loader.get_template('Example.html')
+    return HttpResponse(template.render({}, request))
 
 
 def newadmin(request):

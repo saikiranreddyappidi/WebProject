@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+    margin: 0;
+  font-family: "Lato", sans-serif;
+  transition: background-color .5s;
+    background: #88ddc8;
+}
+
+.sidebar {
+    margin: 5px;
+    padding: 0;
+  width: 20%;
+  background-color: #111;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+    line-height: 50px;
+  border-radius: 25px;
+}
+
+.sidebar a {
+  display: block;
+  color: #818181;
+  padding: 16px;
+  text-decoration: none;
+}
+
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: #f1f1f1;
+}
+
+div.content {
+  margin-left: 35%;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+.chipsend {
+    margin-left: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
+  display: inline-block;
+  padding: 0px 15px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color:#e6fff5;
+    text-align: center;
+  {#  min-width: 36px;#}
+  {#min-height: 75px;#}
+  width: fit-content;
+  height: fit-content;
+}
+.chipsend a:hover{
+    background: lightslategray;
+}
+.chipright {
+    margin-left: 40%;
+    margin-top: 2%;
+  display: inline-block;
+  padding: 0px 25px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #e6fff5;
+    text-align: center;
+  {#  min-width: 36px;#}
+  {#min-height: 75px;#}
+  width: fit-content;
+  height: fit-content;
+}
+.chipleft {
+    margin-right: 10%;
+    margin-top: 2%;
+  display: inline-block;
+  padding: 0px 25px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #e6fff5;
+    text-align: center;
+  {#  min-width: 36px;#}
+  {#min-height: 75px;#}
+  width: fit-content;
+  height: fit-content;
+}
+.chip {
+    margin-top: 2%;
+  display: inline-block;
+  padding: 0px 25px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #e6fff5;
+    text-align: center;
+  {#  min-width: 36px;#}
+  {#min-height: 75px;#}
+  width: fit-content;
+  height: fit-content;
+}
+.chipfirst {
+    margin-top: 9%;
+    margin-left: 30%;
+  display: inline-block;
+  padding: 0 2px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 40px;
+  border-radius: 25px;
+  background-color: #e6fff5;
+    text-align: center;
+    max-width: 65%;
+  max-height: 95px;
+}
+
+.badge {
+  background-color: #00000f;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 5px 10px;
+  text-align: center;
+  margin-left: 5px;
+}
+#navbar {
+    margin-left: 20.4%;
+  overflow: hidden;
+  background-color: #7de8a1;
+    padding: 0 10px 0;
+    transition: 0.6s;
+  position: fixed;
+  width: 78%;
+  top: 0;
+  z-index: 99;
+     line-height: 50px;
+  border-radius: 25px;
+}
+
+#navbar a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+#navbar #logo {
+  font-size: 35px;
+  font-weight: bold;
+  transition: 0.4s;
+}
+
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+#navbar a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+#navbar-right {
+    margin-top: 30px;
+  float: right;
+}
+
+@media screen and (max-width: 580px) {
+  #navbar {
+    padding: 20px 10px !important;
+  }
+  #navbar a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  #navbar-right {
+    float: none;
+  }
+}
+.right-section-bottom{
+background: lightseagreen;
+    margin-left: -14.5%;
+width: 75%;
+padding: 15px;
+position: fixed;
+bottom: 0;
+text-align: center;
+      font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+}
+.right-section-bottom input{
+    background: lightseagreen;
+border:0px;
+padding:8px 8px;
+width:calc(100% - 150px);
+}
+.right-section-bottom .btn-send{
+background-color: dodgerblue;
+  color: white;
+}
+.avatar{
+	display:inline-block;
+	margin:0 0 0 15px;
+	width:100px;
+	height:100px;
+	border-radius:100%;
+	border:#fff 3px solid;
+	box-shadow:rgba(0,0,0,0.4) 0px 2px 4px, inset rgba(0,0,0,0.4) 0px 3px 2px;
+	overflow:hidden;
+    {% for x in mymembers %}
+	background-image:-webkit-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url({{ x.link }});
+    background-image:-moz-linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url({{ x.link }});
+    background-image:linear-gradient(top left, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 0%),url({{ x.link }});
+    background-size: auto, 100%;
+    {% endfor %}
+}
+</style>
+    <title>Messages</title>
+</head>
+<body>
+
+<div class="sidebar">
+ {% for i in active_users %}
+  <a href="{{ i.id }}" style="padding: 0 0 0 40px">{{ i.reg }}<p class="little">{{ i.time }}</p></a>
+        <hr size="1">
+    {% endfor %}
+</div>
+<div id="navbar">
+<div class="avatar" id="logo"></div>
+  <div id="navbar-right">
+    <a class="active" href="#home">Logout</a>
+  </div>
+</div>
+<div class="chipfirst">
+<p>This messages are not encrypted.
+    But your messages cannot be seen by others except the messages in the public group.
+    These messages are temporarily stored in the database and are deleted after this session.
+</p>
+</div>
+    <br>
+    {% for x in content %}
+    {% if x.me %}
+        <div class="chipright">
+            <span class="little1">&emsp;&emsp;{{ x.time }}</span>
+            <p>{{ x.content }}</p>
+        </div>
+    {% else %}
+        <div class="chipleft">
+            <span class="little1">&emsp;&emsp;{{ x.time }}</span>
+            <p>{{ x.content }}</p>
+        </div>
+    {% endif %}
+    <br>
+{% endfor %}
+    <div class="right-section-bottom">
+<form>
+    <label>
+        <input type="text" name="msg" placeholder="type here...">
+    </label>
+<button type="submit" class="chipsend">Send</button>
+</form>
+</div>
+</div>
+{#<script>#}
+{#window.onscroll = function() {scrollFunction()};#}
+{##}
+{#function scrollFunction() {#}
+{#  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {#}
+{#    document.getElementById("navbar").style.padding = "0px 8px";#}
+{#    document.getElementById("logo").style.fontSize = "15px";#}
+{#  } else {#}
+{#    document.getElementById("navbar").style.padding = "0px 8px";#}
+{#    document.getElementById("logo").style.backgroundImage = "55px";#}
+{#  }#}
+{#}#}
+{#</script>#}
+</body>
+</html>

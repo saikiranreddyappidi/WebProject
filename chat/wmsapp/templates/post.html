@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="refresh" content="5">
+    <link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
+<title>Messages</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+h2{
+    text-align: center;
+    color:blue;
+}
+
+.chip {
+  display: inline-block;
+  padding: 0px 25px;
+  {#height: 50px;#}
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: #e6fff5;
+    text-align: center;
+  {#  min-width: 36px;#}
+  {#min-height: 75px;#}
+  width: fit-content;
+  height: fit-content;
+}
+.chiphead {
+  display: inline-block;
+  padding: 0px 25px;
+  height: 80px;
+  font-size: 16px;
+  line-height: 50px;
+  border-radius: 25px;
+  background-color: lightgray;
+    text-align: center;
+  width: 50%;
+}
+
+.badge {
+  background-color: #00000f;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 5px 10px;
+  text-align: center;
+  margin-left: 5px;
+}
+.badgehead {
+  background-color: #00000f;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 5px 10px;
+  text-align: center;
+  margin-left: 5px;
+}
+</style>
+<div class="chiphead">
+    {% for x in branch_name %}
+<span class="badgehead">{{ x.value }}</span>
+    {% endfor %}
+</div>
+</head>
+<body style="background-color: #00000f; text-align: left">
+<br><br>
+<h2>Public messages</h2>
+    {% for x in students_files %}
+<div class="chip">
+<span class="badge">{{ x.id }}</span>&emsp;&emsp;Reg.No : {{ x.reg }} &emsp;&emsp;Time: {{ x.time }}
+<p>{{ x.content }}</p>
+</div>
+<br><br>
+    {% endfor %}
+<br>
+<a href="../../creator/">Admin</a>
+</body>
+</html>

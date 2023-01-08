@@ -1,0 +1,53 @@
+#!C:\Users\saiki\PycharmProjects\pythonProject1\myproject\Scripts\python.exe
+
+import sys, argparse
+import os
+from br import BR
+
+def main():
+  bb = "\033[1m"
+  be = "\033[0;0m"
+  
+  parser = argparse.ArgumentParser(prog=bb+'br'+be)
+  parser.add_argument('-v', '--version', action='version', version='%(prog)s version 0.1')
+  parser.add_argument('-o', '--output', action='store_true',
+                      default=False, help='cause %(prog)s to be verbose, showing files after they are renamed')
+  parser.add_argument('-t', '--test', action='store_true',
+                      default=False, help='test run, enables --output too')
+  parser.add_argument('-i', '--indexes', metavar='INDEXES', type=str, nargs=1,
+                      default='0:1', help='substring of indexes that need to be replaced with the new title')
+  parser.add_argument('-d', '--directory', metavar='DIRECTORY', type=str, nargs=1,
+                      default=os.getcwd(), help='directory containing batch of files')
+  parser.add_argument('-p', '--pattern', metavar='PATTERN', type=str, nargs=1,
+                      default='*', help='regular expression for renaming pattern')
+  parser.add_argument('title', metavar='TITLE', type=str, nargs=argparse.REMAINDER,
+                      help='new title to replace the old one')
+  args = parser.parse_args()
+  
+  if len(args.title) < 1:
+    print("title argument is missing")
+    exit(1)
+  
+  output = args.output
+  test = args.test
+  if (test):
+    output = test
+  indexes = args.indexes if type(args.indexes) == str else args.indexes[0]
+  directory = args.directory if type(args.directory) == str else args.directory[0]
+  pattern = args.pattern if type(args.pattern) == str else args.pattern[0]
+  title = args.title if type(args.title) == str else args.title[0]
+  
+  br = BR(output, test, indexes, directory, pattern, title)
+  try:
+    br.rename()
+  except IndexError as e:
+    print('IndexError exception: {}'.format(e))
+    sys.exit(1)
+  except OSError as e:
+    print('OSError exception: {}'.format(e))
+    sys.exit(1)
+  
+  sys.exit(0)
+
+if __name__ == "__main__":
+	main()

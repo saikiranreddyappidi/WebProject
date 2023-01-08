@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+{#{% load static %}#}
+{##}
+{#<img src="{% static "img/logo.png" %}" alt="My image"/>#}
+<head>
+    <link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="0.01; url=http://192.168.197.235:8000/send/home/">
+<style>
+/* Center the loader */
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Add animation to "page content" */
+.animate-bottom {
+  position: relative;
+  -webkit-animation-name: animatebottom;
+  -webkit-animation-duration: 1s;
+  animation-name: animatebottom;
+  animation-duration: 1s
+}
+
+@-webkit-keyframes animatebottom {
+  from { bottom:-100px; opacity:0 }
+  to { bottom:0px; opacity:1 }
+}
+
+@keyframes animatebottom {
+  from{ bottom:-100px; opacity:0 }
+  to{ bottom:0; opacity:1 }
+}
+
+#myDiv {
+  display: none;
+  text-align: center;
+}
+</style>
+    <title>Redirecting...</title>
+</head>
+<body onload="myFunction()" style="margin:0;">
+<div style="display:none;" id="myDiv" class="animate-bottom">
+{#  <h2>Something went wrong ...</h2>#}
+{#<img src="{% static "search.jpg" %}" alt="Search"/>#}
+<img src="https://lh3.googleusercontent.com/8nQ8mZb3G7cp4KW7aA5RS4bP3YeWZRR_fNa3sxAvwXvt6UXtXdRc6zJUawYclsKmoSdRGvMhocSflztq6uxBpCzeaH8eFkXRCi1u4JJi-4HTMsNDFjJR5LcTFu2tL1HIe5D_y9hflWS-X9NDZ5ZRq4RPw83kvueHdHloB30Pix9HuVM88xJ3nMiGSZlXx4ot4XhGcPhKv5zsPxMgYjT2KLunA4zhF8w7ymdEfPvuwLoMIG8HfIWk3-U7HOTLF0r6NzxEt6gO7qszPMQWOogQD0HyXUbo-bS_5IFs-QYIEEjoKLdTWNaukShVjSj56wXVrwr9Ut7EKi-HFJePjbUBtF4IPNY3qBW0YfsAso_MU8fRDyT7JeSpS0VHDSpT_HiTYtgx3wYHwuKvSjeBq9-tyfq5MaQkOFJZZ6rIs0f7I08eQ4SwCQSY0Oduv-wRrwmGiwj7cGSZ_1lHucsWDSIr-HnqOcMeww9IjolsLCXQz6idXkNYKLpZDC7S3TM-Db95mCjGq9jWzF_TLhKCJ7m56qFLE_Ut6knxPxKlyxdUIUF2ZBAHPeYGgA4hZO3KCrtijA0Os9BCBjEUXaw_aFX9zcA8RxBxK7I8lOaB0qhABkHIaWMw_Yw34ZQScqCo0zvSyvKmid6y9-i4IoAi2J26tB_fkgYl3qPXB5W0rmiDH4IiygUWiyHnpGq5fHTUoJefxqyShEcwWcfMCpv3N0KFj1FfuYGzXSc3zL-tQ7ixxMafqm9mVADK12bcNhU=s740-no?authuser=0" alt="Search"/>
+
+</div>
+<div id="loader"></div>
+{#<script>#}
+{#    const url = "http://192.168.197.235:8000/send/home/";#}
+{#    window.location = url;#}
+{#</script>#}
+
+</body>
+</html>
