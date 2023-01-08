@@ -14,7 +14,7 @@ print("Running server at: ", socket.gethostbyname(hostname))
 mydb = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="database@9440672439",
+    password="password",
     database="regist"
 )
 
@@ -22,7 +22,7 @@ mydb = mysql.connector.connect(
 mydb1 = mysql.connector.connect(
     host="localhost",
     user="root",
-    password="database@9440672439",
+    password="password",
     database="library"
 )
 
