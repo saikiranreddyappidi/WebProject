@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 mydb1 = mysql.connector.connect(
 	host="localhost",
 	user="root",
-	password="password",
+	password="database@9440672439",
 	database="library"
 )
 
@@ -31,7 +31,7 @@ class Mail:
 			smtp = smtplib.SMTP('smtp.gmail.com', 587)
 			smtp.ehlo()
 			smtp.starttls()
-			smtp.login('yourmail@gmail.com', 'app-password')
+			smtp.login('developingproject7@gmail.com', 'lxezucynqaoeyijh')
 			msg = MIMEMultipart()
 			if enable == 1:
 				subject = "Your file has been approved"
@@ -70,7 +70,7 @@ class Mail:
 			smtp = smtplib.SMTP('smtp.gmail.com', 587)
 			smtp.ehlo()
 			smtp.starttls()
-			smtp.login('yourmail@gmail.com', 'app-password')
+			smtp.login('developingproject7@gmail.com', 'lxezucynqaoeyijh')
 			msg = MIMEMultipart()
 			subject = "Reset Password Verification code"
 			msg['Subject'] = subject
@@ -102,7 +102,7 @@ class Mail:
 			smtp = smtplib.SMTP('smtp.gmail.com', 587)
 			smtp.ehlo()
 			smtp.starttls()
-			smtp.login('yourmail@gmail.com', 'app-password')
+			smtp.login('developingproject7@gmail.com', 'lbmmbbtemyupkcls')
 			msg = MIMEMultipart()
 			subject = "Reset Password link"
 			msg['Subject'] = subject

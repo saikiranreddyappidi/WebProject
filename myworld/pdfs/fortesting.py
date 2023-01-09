@@ -1,24 +1,16 @@
-import mysql.connector
-
-mydb1 = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="database@9440672439",
-    database="library"
-)
-
-
+# import requests
+#
+# for i in range(50):
+#     response1 = requests.get('http://192.168.0.115:8000/project/profile/01')
+#     response2 = requests.get('http://192.168.0.115:8000/project/profile/211fa04563')
+#     if response1.text==response2.text:
+#         print('same')
+#     else:
+#         print('different')
+# # print(response1.text, response2.text)
+html="<!DOCTYPE><html><body><h1>hello world</h1></body></html>"
 regno="211FA04563"
-mycursor = mydb1.cursor()
-sql = "select content from html_content where regno=%s"
-value = (regno,)
-mycursor.execute(sql, value)
-myresult = mycursor.fetchall()
-print(myresult)
-if len(myresult) != 0:
-        f=open('templates/ownProfile.html','w')
-        f.write(myresult[0][0])
-        f.close()
-f=open('templates/ownProfile.html','r')
-print(f.read())
-f.close()
+path = r"C:\Users\saiki\PycharmProjects\WebProject\myworld\pdfs\templates\profile\%s.html" % regno
+with open(path, 'w') as f:
+    f.write(html)
+    f.close()

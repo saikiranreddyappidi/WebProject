@@ -1,108 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="en-IN">
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editing</title>
     <link rel = "icon" href =
 "https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
         type = "image/x-icon">
-    <title>Editing</title>
     <style>
-      .editor {
-        display: inline-flex;
-        gap: 10px;
-        font-family: monospace;
-        line-height: 21px;
-        background: #282a3a;
-        border-radius: 2px;
-        padding: 20px 10px;
-          width: 99%;
-          text-script: 1.5;
-      }
-      .head{
-          position: relative;
-          float: top;
-          scroll-behavior: unset;
-      }
+body{
+            background-color: #000000;
+            color: #ffffff;
+        }
 
-      .line-numbers {
-        width: 20px;
-        text-align: right;
-      }
+        .parent{
+            /*overflow: scroll;*/
 
-      .line-numbers span {
-        counter-increment:  linenumber;
-      }
+            display: inline-flex;
+            width: 99%;
+            box-sizing: border-box;
+            /*color: red;*/
+            /*font-size: 15px;*/
+            border: 5px solid #1e2934;
+            height: 85%;
+        }
+        .main{
+            /*overflow-x: hidden;*/
+            font-family: fangsong;
+            padding-top: 0;
+            font-style: normal;
+            font-size: 16px;
+            /*overflow: scroll;*/
 
-      .line-numbers span::before {
-        content: counter(linenumber);
-        display: block;
-        color: #506882;
-      }
+            /*line-height: 21px;*/
+            border: 0;
+            padding-left: 5px;
+            color: white;
+            background: #000000;
+            box-sizing: inherit;
+            width: 99%;
+            /*justify-content: right;*/
+            height: 100%;
+            outline: none;
+            resize: none;
+        }
 
-      textarea {
-        line-height: 21px;
-        overflow-y: hidden;
-        padding: 0;
-        border: 0;
-        background: #282a3a;
-        color: #FFF;
-        width: 90%;
-        outline: none;
-          display: block;
-			justify-content: center;
-        {#resize: none;#}
-      }
-      .btn{
-          background-color: dodgerblue;
-          color: white;
-          float: bottom;
-          text-align: center;
-          padding: 12px;
-          text-decoration: none;
-          font-size: 18px;
-          line-height: 25px;
-          border-radius: 4px;
-      }
+        .line-numbers {
+            overflow: hidden;
+            /*overflow: scroll;*/
+            /*line-height: 21px;*/
+            /*position: relative;*/
+            background: #282a3a;
+            width: 25px;
+            text-align: center;
+        }
+
+        .line-numbers span {
+            font-style: normal;
+            counter-increment:  linenumber;
+        }
+
+        .line-numbers span::before {
+            font-style: normal;
+            content: counter(linenumber);
+            display: block;
+            color: #ecc31d;
+        }
     </style>
-  </head>
-  <body>
-  <form method="post">
-      <div class="head">{% include 'creating_profile_header.html' %}</div>
-    <div class="editor">
-      <div class="line-numbers">
+</head>
+<form method="post">
+<body>
+{% include 'creating_profile_header.html' %}
+<div class="parent" >
+    <div class="line-numbers" id="target">
         <span></span>
-      </div>
-      {% for content in ownContent %}
-        <textarea name="content" id="text" cols="30" rows="10" placeholder="Enter your text here...">{{ content.cont }}</textarea>
-        {% endfor %}
     </div>
+    {% for i in ownContent %}
+    <textarea id="source" class="main" autofocus autocomplete="off" wrap="soft" spellcheck="false" name="content">{{ i.cont }}</textarea>
+    {% endfor %}
 
-    <script>
-      const textarea = document.querySelector('textarea')
-      const lineNumbers = document.querySelector('.line-numbers')
 
-      textarea.addEventListener('keyup', event => {
+</div>
+<script>
+    const textarea = document.querySelector('textarea')
+    const lineNumbers = document.querySelector('.line-numbers')
+
+    textarea.addEventListener('keyup', event => {
         const numberOfLines = event.target.value.split('\n').length
 
         lineNumbers.innerHTML = Array(numberOfLines)
-          .fill('<span></span>')
-          .join('')
-      })
+            .fill('<span></span>')
+            .join('')
+    })
 
-      textarea.addEventListener('keydown', event => {
+    textarea.addEventListener('keydown', event => {
         if (event.key === 'Tab') {
-          const start = textarea.selectionStart
-          const end = textarea.selectionEnd
+            const start = textarea.selectionStart
+            const end = textarea.selectionEnd
 
-          textarea.value = textarea.value.substring(0, start) + '\t' + textarea.value.substring(end)
+            textarea.value = textarea.value.substring(0, start) + '\t'+ textarea.value.substring(end)
 
-          event.preventDefault()
+            event.preventDefault()
         }
-      })
-    </script>
-  </form>
-  </body>
+    })
+    const multiElementScroll = ( elem1, elem2 ) => {
+        elem1.onscroll = function() {
+            elem2.scrollTop = this.scrollTop;
+        };
+    }
+
+    multiElementScroll(source, target )
+</script>
+</body>
+</form>
 </html>
