@@ -1,110 +1,177 @@
-<html lang="en-IN">
-{% include 'creating_profile_header.html' %}
+<!DOCTYPE html>
+<html lang="en" >
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>!</title>
+  <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project Django</title>
+    <link rel = "icon" href =
+"https://lh3.googleusercontent.com/pw/AM-JKLUU0upFzol849RGrySnap60uYOEJySPPHe-AJuqG-GJQhmHMvJC_hfkTwPbMBWRsENIAYYKHuk6DgZhiWntgnUfDVQr0QETY5Esr7vIoKXQq48a39gYlmQTMLAVqSR712oJoZFa2CtQI8MWnSJxdbOV=w855-h933-no?authuser=0"
+        type = "image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Assistant:400,700" rel="stylesheet"><link rel="stylesheet" href="./style.css">
     <style>
-body{
-            background-color: #000000;
-            color: #ffffff;
-        }
+    body {
+  background: #ABCDEF;
+        font-family: "Helvetica Neue", sans-serif;
+    background-image:-webkit-linear-gradient(top right, #7de87d, #e4e481,#138b8b);
+    background-image:-moz-linear-gradient(bottom,#138b8b, #13318b);
+    background-size: auto, 100%;
+  background-position:top center;
+  display: flex;
+  min-height: 90vh;
+}
+.login {
+  color: white;
+  background: #136a8a;
+  background:
+    -webkit-linear-gradient(to right, #267871, #136a8a);
+  background:
+    linear-gradient(to right, #267871, #136a8a);
+  margin: auto;
+  box-shadow:
+    0px 2px 10px rgba(0,0,0,0.2),
+    0px 10px 20px rgba(0,0,0,0.3),
+    0px 30px 60px 1px rgba(0,0,0,0.5);
+  border-radius: 8px;
+  padding: 50px;
+}
+.login .head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login .head .company {
+  font-size: 2.2em;
+}
+.login .msg {
+  text-align: center;
+}
+.login .form input[type=text].text {
+  border: none;
+  background: none;
+  box-shadow: 0px 2px 0px 0px white;
+  width: 100%;
+  color: white;
+  font-size: 1em;
+  outline: none;
+}
+.login .form .text::placeholder {
+  color: #D3D3D3;
+}
+.login .form input[type=password].password {
+  border: none;
+  background: none;
+  box-shadow: 0px 2px 0px 0px white;
+  width: 100%;
+  color: white;
+  font-size: 1em;
+  outline: none;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.login .form .password::placeholder {
+  color: #D3D3D3;
+}
+.login .form .btn-login {
+  background: none;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0px 0px 0px 0px white;
+  border-radius: 3px;
+  padding: 5px 2em;
+  transition: 0.5s;
+    font-size: 15px;
+}
+.login .form .btn-login:hover {
+  background:
+    -webkit-linear-gradient(to right, #138b13,#8b138b);
+  background:
+    linear-gradient(to right, #138b13, #8b138b);
+  color: black;
+  transition: 0.5s;
+}
+.login .forgot {
+  text-decoration: none;
+  color: white;
+  float: right;
+}
+footer {
+    float: top;
+  position: absolute;
+  color: #136a8a;
+  top: 20px;
+    padding-left: 70%;
+    padding-top: 20px;
+}
+footer p {
+  display: inline;
+}
+footer a {
+  color: green;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+footer .heart {
+  color: #B22222;
+  font-size: 1.5em
+}
 
-        .parent{
-            /*overflow: scroll;*/
+.admin {
+  background:
+    -webkit-linear-gradient(to right, #267871, #136a8a);
+  background:
+    linear-gradient(to right, #267871, #136a8a);
+  text-decoration: none;
+  color: white;
+box-shadow: 0px 0px 0px 0px;
+  border-radius: 3px;
+  padding: 5px 2em;
+  transition: 0.5s;
+    margin-right: 15px;
+}
 
-            display: inline-flex;
-            width: 99%;
-            box-sizing: border-box;
-            /*color: red;*/
-            /*font-size: 15px;*/
-            border: 8px solid #1e2934;
-            height: 85%;
-        }
-        .main{
-            /*overflow-x: hidden;*/
-            font-family: fangsong;
-            padding-top: 0;
-            font-style: normal;
-            font-size: 16px;
-            /*overflow: scroll;*/
+.admin:hover {
+  background:
+    -webkit-linear-gradient(to right, #8b138b, #138b13);
+  background:
+    linear-gradient(to right, #8b138b, #138b13);
+  color: black;
+  transition: 0.5s;
+}
+</style>
 
-            /*line-height: 21px;*/
-            border: 0;
-            padding-left: 5px;
-            color: white;
-            background: #000000;
-            box-sizing: inherit;
-            width: 99%;
-            /*justify-content: right;*/
-            height: 100%;
-            outline: none;
-            resize: none;
-        }
-
-        .line-numbers {
-            overflow: hidden;
-            /*overflow: scroll;*/
-            /*line-height: 21px;*/
-            /*position: relative;*/
-            background: #282a3a;
-            width: 25px;
-            text-align: center;
-        }
-
-        .line-numbers span {
-            font-style: normal;
-            counter-increment:  linenumber;
-        }
-
-        .line-numbers span::before {
-            font-style: normal;
-            content: counter(linenumber);
-            display: block;
-            color: #ecc31d;
-        }
-    </style>
 </head>
-
 <body>
-<div class="parent" >
-    <div class="line-numbers" id="target">
-        <span></span>
-    </div>
-
-    <textarea name="content" id="source" class="main" autofocus autocomplete="off" wrap="soft" spellcheck="false" placeholder="Write your html code here.</>">
-    </textarea>
-
-
-</div>
-<script>
-    const textarea = document.querySelector('textarea')
-    const lineNumbers = document.querySelector('.line-numbers')
-
-    textarea.addEventListener('keyup', event => {
-        const numberOfLines = event.target.value.split('\n').length
-
-        lineNumbers.innerHTML = Array(numberOfLines)
-            .fill('<span></span>')
-            .join('')
-    })
-
-    textarea.addEventListener('keydown', event => {
-        if (event.key === 'Tab') {
-            const start = textarea.selectionStart
-            const end = textarea.selectionEnd
-
-            textarea.value = textarea.value.substring(0, start) + '\t'+ textarea.value.substring(end)
-
-            event.preventDefault()
-        }
-    })
-    const multiElementScroll = ( elem1, elem2 ) => {
-        elem1.onscroll = function() {
-            elem2.scrollTop = this.scrollTop;
-        };
-    }
-
-    multiElementScroll(source, target )
-</script>
+<!-- partial:index.partial.html -->
+<section class='login' id='login'>
+  <div class='head'>
+  <h1 class='company'>Project Django</h1>
+  </div>
+  <p class='msg'>Welcome back</p>
+  <div class='form'>
+    <form action="first/" method="post">
+  <input type="text" placeholder='Username' class='text' onclick="document.getElementById('username')" name="reg" required><br>
+  <input type="password" placeholder='••••••••••••••' class='password' name="pswd" required><br>
+        {% if validation %}
+            <p style="color: red;font-size: 13px">Wrong Password</p>
+        {% endif %}
+  <button type="submit" class='btn-login' id='do-login'>Login</button>
+  <a href="mail_checking/" class='forgot'>Forgot ?</a>
+        <br><br>
+        <a  style="text-align: center" href="createacnt/">
+      <button type="button" class="admin"><b>Sign up</b></button>
+      </a>
+    </form>
+  </div>
+</section>
+<footer>
+    <a  style="text-align: center" href="faculty/">
+      <button type="button" class="admin"><b>Explore</b></button>
+      </a>
+    <a  style="text-align: center" href="faculty/">
+      <button type="button" class="admin"><b>Faculty</b></button>
+      </a>
+</footer>
 </body>
 </html>

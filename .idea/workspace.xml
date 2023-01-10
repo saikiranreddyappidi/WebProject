@@ -5,19 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f22269a-668b-456d-acad-8446e2e82bf9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/WebProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WebProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/Data/Primary.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/Data/Primary.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/MailServices/mail.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/MailServices/mail.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/fortesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/fortesting.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/Example.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/Example.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/ExampleHeader.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/ExampleHeader.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/creating_profile.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/creating_profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/creating_profile_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/creating_profile_header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/ownProfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/ownProfile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/course.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/course_old.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/cse.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/cse.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/page_not_found.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/profile/211FA04563.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/profile/211FA04563.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/redirect.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/redirect.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/somethingwentwrong.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/somethingwentwrong.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/testing.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/testing.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myworld/pdfs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -300,6 +297,9 @@
       <module name="WebProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/myworld/pdfs" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -459,7 +459,9 @@
       <workItem from="1673294971758" duration="102000" />
       <workItem from="1673295098397" duration="2301000" />
       <workItem from="1673297444641" duration="77000" />
-      <workItem from="1673297542342" duration="3027000" />
+      <workItem from="1673297542342" duration="5329000" />
+      <workItem from="1673330578958" duration="7866000" />
+      <workItem from="1673358241917" duration="99000" />
     </task>
     <task id="LOCAL-00001" summary="ProjectDjango-03-09-2022">
       <created>1662146937909</created>
@@ -531,7 +533,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673200078707</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added creating own profile feature">
+      <created>1673301415859</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1673301415859</updated>
+    </task>
+    <task id="LOCAL-00012" summary="individual html files">
+      <created>1673304876735</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1673304876735</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -584,7 +600,9 @@
     <MESSAGE value="Added new features to reset the password i.e., user can reset the password through link also." />
     <MESSAGE value="Added new feature to reset passwords." />
     <MESSAGE value="Minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Minor changes" />
+    <MESSAGE value="Added creating own profile feature" />
+    <MESSAGE value="individual html files" />
+    <option name="LAST_COMMIT_MESSAGE" value="individual html files" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WebProject$setup.coverage" NAME="setup Coverage Results" MODIFIED="1672497302929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads/mod_wsgi-4.9.4/mod_wsgi-4.9.4" />

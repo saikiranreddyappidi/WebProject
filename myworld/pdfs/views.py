@@ -63,8 +63,8 @@ def firstreg(request):
             mycursor.execute(sql, values)
             mydb.commit()
             return cookie
-    except:
-        print('exception occured in firstreg')
+    except Exception as e:
+        print(e,'exception occured in firstreg')
         mycursor = mydb.cursor()
         sql = "insert into first_visit(cookie,ip,datetime) values(%s, %s, %s)"
         values = (cookie_value, ip, datetime.datetime.now())
@@ -122,7 +122,8 @@ def already_login_once(request):
         mydb.commit()
         print("already_login_once")
         return cookie
-    except:
+    except Exception as e:
+        print(e,"exception occured in already login once")
         return HttpResponseRedirect(reverse('firstreg'))
 
 
@@ -159,8 +160,8 @@ def alreadylogin(request):
             else:
                 print("else from already-login")
                 return HttpResponseRedirect(reverse('newlogin'))
-    except:
-        print("exception occurred in already-login")
+    except Exception as e:
+        print(e,"exception occurred in already-login")
         return HttpResponseRedirect(reverse('newlogin'))
 
 
@@ -193,7 +194,8 @@ def first(request):
                 return HttpResponse('No account found !!!')
             else:
                 return HttpResponseRedirect(reverse('firstreg'))
-    except:
+    except Exception as e:
+        print(e,"exception occured in first")
         return HttpResponseRedirect(reverse('firstreg'))
 
 
@@ -267,8 +269,8 @@ def redirection(request):
             return cookie
         else:
             return HttpResponseRedirect(reverse('firstreg'))
-    except:
-        print("redirection exception")
+    except Exception as e:
+        print(e,"redirection exception")
         template = loader.get_template('somethingwentwrong.html')
         return HttpResponse(template.render())
 
@@ -283,8 +285,8 @@ def course(request):
             return HttpResponse("Already one user is active at the same time")
         else:
             return HttpResponseRedirect(reverse('firstreg'))
-    except:
-        print("course exception")
+    except Exception as e:
+        print(e,"course exception")
         return HttpResponseRedirect(reverse('firstreg'))
 
 
@@ -309,8 +311,8 @@ def user_response(request):
             value = (myresult[0][0],)
             mycursor.execute(sql, value)
             mydb.commit()
-        except:
-            print("exception occured in user response, c_value_fwist")
+        except Exception as e:
+            print(e,"exception occured in user response, c_value_fwist")
         print(myresult[0][0], "--logged out through forced deletion")  #
         sql = "delete from temp_cookie where reg=%s"
         values = (myresult[0][0],)
@@ -329,8 +331,8 @@ def user_response(request):
         cookie = HttpResponse(template.render({}, request))
         cookie.set_cookie("userid", cookie_value, max_age=None)
         return cookie
-    except:
-        print("user response exception")
+    except Exception as e:
+        print(e,"user response exception")
         template = loader.get_template('somethingwentwrong.html')
         return HttpResponse(template.render())
 
@@ -355,8 +357,8 @@ def check_status(request):
                 return 1
         else:
             return 0
-    except:
-        print("chck-stat exception")
+    except Exception as e:
+        print(e,"chck-stat exception")
         return 0
 
 
@@ -444,8 +446,8 @@ def cse(request, branch):
             return HttpResponse("Already one user is active at the same time")
         else:
             return HttpResponseRedirect(reverse('firstreg'))
-    except:
-        print("cse exception")
+    except Exception as e:
+        print(e,"cse exception")
         template = loader.get_template('somethingwentwrong.html')
         return HttpResponse(template.render())
 
@@ -500,8 +502,8 @@ def my_files(request):
         else:
             print("myfiles condition exception")
             return HttpResponseRedirect(reverse('firstreg'))
-    except:
-        print("myfiles exception")
+    except Exception as e:
+        print(e,"myfiles exception")
         template = loader.get_template('somethingwentwrong.html')
         return HttpResponse(template.render())
 
@@ -527,7 +529,7 @@ def requested_userprofile(request, regno):
             return HttpResponse(template.render(context, request))
         else:
             return HttpResponseRedirect(reverse('firstreg'))
-    except:
+    except Exception as e:
         print("requested userprofile exception")
         template = loader.get_template('somethingwentwrong.html')
         return HttpResponse(template.render())
@@ -581,8 +583,8 @@ def user_logout(request):
         value = (myresult[0][0],)
         mycursor.execute(sql, value)
         mydb.commit()
-    except:
-        print("exception occured in user logout, c_value_alin")
+    except Exception as e:
+        print(e,"exeception occured in user logout, c_value_alin")
     try:
         print("fwist deletion")
         # c_value_fwist = filter_data(request, request.COOKIES['fwist'])
@@ -591,8 +593,8 @@ def user_logout(request):
         value = (myresult[0][0],)
         mycursor.execute(sql, value)
         mydb.commit()
-    except:
-        print("exception occured in user logout, c_value_fwist")
+    except Exception as e:
+        print(e,"exception occured in user logout, c_value_fwist")
     print(myresult[0][0], "--logged out")
     return HttpResponseRedirect(reverse('already_login_once'))
 
@@ -626,8 +628,8 @@ def userprofile(request):
             return HttpResponse(template.render(context, request))
         else:
             return HttpResponseRedirect(reverse('course'))
-    except:
-        print("user profile exception")
+    except Exception as e:
+        print(e,"user profile exception")
         return HttpResponseRedirect(reverse('firstreg'))
 
 
@@ -668,8 +670,8 @@ def userfileinp(request):
                 return HttpResponseRedirect(reverse('course'))
             else:
                 return HttpResponse('Something went wrong when writing to database')
-    except:
-        print("user file input exception")
+    except Exception as e:
+        print(e,"user file input exception")
         return HttpResponse("Can't take file now")
 
 
@@ -729,8 +731,8 @@ def creating(request):
                 mydb1.commit()
                 print("new account created")
                 return HttpResponseRedirect(reverse('firstreg'))
-    except:
-        print("creating exception")
+    except Exception as e:
+        print(e,"creating exception")
         return HttpResponseRedirect(reverse('firstreg'))
 
 
@@ -777,8 +779,8 @@ def facultyaccess(request):
                     return HttpResponse("No account found !!!")
         else:
             return HttpResponseRedirect(reverse("faculty"))
-    except:
-        print("faculty access exception")
+    except Exception as e:
+        print(e,"faculty access exception")
         return HttpResponseRedirect(reverse('faculty'))
 
 
@@ -808,8 +810,8 @@ def pdf_links(request):
             return HttpResponse(template.render(context, request))
         else:
             return HttpResponseRedirect(reverse('faculty'))
-    except:
-        print("pdf links exception")
+    except Exception as e:
+        print(e,"pdf links exception")
         return HttpResponseRedirect(reverse("faculty"))
 
 
@@ -826,8 +828,8 @@ def delete(request, filename):
             return HttpResponseRedirect(reverse('pdf_links'))
         else:
             return HttpResponseRedirect(reverse('faculty'))
-    except:
-        print("delete file exception")
+    except Exception as e:
+        print(e,"delete file exception")
         return HttpResponseRedirect(reverse('faculty'))
 
 
@@ -866,8 +868,8 @@ def addlink(request):
             return HttpResponseRedirect(reverse('pdf_links'))
         else:
             return HttpResponseRedirect(reverse('faculty'))
-    except:
-        print('add link exception')
+    except Exception as e:
+        print(e,'add link exception')
         return HttpResponse('Problem occurred.Try logout and login again')
 
 
@@ -901,8 +903,8 @@ def faculty_auth(request, enable):
         else:
             print("not logged in a-c-u")
             return 0
-    except:
-        print('faculty auth exception')
+    except Exception as e:
+        print(e,'faculty auth exception')
         return 0
 
 
@@ -924,8 +926,8 @@ def dup_fac(request, fac_id):
         else:
             print("not logged in a-c-u")
             return 0
-    except:
-        print('faculty dup fac exception')
+    except Exception as e:
+        print(e,'faculty dup fac exception')
         return 0
 
 
@@ -963,8 +965,8 @@ def requestings(request):
             return HttpResponse(template.render(context, request))
         else:
             return HttpResponseRedirect(reverse('faculty'))
-    except:
-        print('requestings exception')
+    except Exception as e:
+        print(e,'requesting exception')
         return HttpResponseRedirect(reverse("faculty"))
 
 
@@ -990,8 +992,8 @@ def apporve(request, filename):
         send = Mail()
         send.statusmail(i[1], filename, i[5], fac_comment, t, 1)
         return HttpResponseRedirect(reverse('requestings'))
-    except:
-        print('apporve exception')
+    except Exception as e:
+        print(e,'approve exception')
         return HttpResponse('Problem occurred when approving file Try logout and login again')
 
 
@@ -1016,8 +1018,8 @@ def decline(request, filename):
         send = Mail()
         send.statusmail(i[1], filename, i[5], fac_comment, t, 0)
         return HttpResponseRedirect(reverse('requestings'))
-    except:
-        print('decline exception')
+    except Exception as e:
+        print(e,'decline exception')
         return HttpResponse('Problem occurred when declining the file. Try logout and login again.')
 
 
@@ -1064,8 +1066,8 @@ def add_comment(request, filename):
             send = Mail()
             send.statusmail(i[1], filename, i[5], comment, t, 0)
         return HttpResponseRedirect(reverse('requestings'))
-    except:
-        print('add comment exception')
+    except Exception as e:
+        print(e,'add comment exception')
         return HttpResponse('Problem occurred when adding the comment. Try logout and login again')
 
 
@@ -1136,8 +1138,8 @@ def comparing_mail(request):
         else:
             return HttpResponse('No account found with this registration')
         return HttpResponseRedirect(reverse('firstreg'))
-    except:
-        print('comparing mail exception')
+    except Exception as e:
+        print(e,'comparing mail exception')
         template = loader.get_template('somethingwentwrong.html')
         return HttpResponse(template.render())
 
@@ -1191,7 +1193,8 @@ def importing_password(request):
                 return HttpResponse("wrong OTP entered !!!")
         else:
             return HttpResponse('<h2>OTP expired !!!</h2>')
-    except:
+    except Exception as e:
+        print(e,"exception occured in importing password")
         template = loader.get_template('somethingwentwrong.html')
         return HttpResponse(template.render())
 
@@ -1211,8 +1214,8 @@ def linkcreation(mail, number, name, ip):
         mycursor.execute(sql, values)
         mydb.commit()
         return True
-    except:
-        print("exception occured in link-creation")
+    except Exception as e:
+        print(e,"exception occured in link-creation")
         return False
     
 
@@ -1260,8 +1263,8 @@ def linktype(request, link):
         else:
             template = loader.get_template('somethingwentwrong.html')
             return HttpResponse(template.render())
-    except:
-        print('exception occured in link-type')
+    except Exception as e:
+        print(e,'exception occured in link-type')
         template = loader.get_template('somethingwentwrong.html')
         return HttpResponse(template.render())
 
@@ -1309,6 +1312,7 @@ def saveNleave(request):
         template = loader.get_template('somethingwentwrong.html')
         return HttpResponse(template.render())
 
+
 def saving(request,text):
     try:
         text=text.strip()
@@ -1346,7 +1350,7 @@ def ownProfile(request, regno):
         return HttpResponse(template.render({}, request))
     except Exception as e:
         print(e,"exception occured in ownProfile")
-        template = loader.get_template('page_not_found.html')
+        template = loader.get_template('404.html')
         return HttpResponse(template.render({}, request))
 
 
@@ -1376,7 +1380,7 @@ def get_ip(request):
 
 
 def pagenotfound(request):
-    template = loader.get_template('page_not_found.html')
+    template = loader.get_template('404.html')
     return HttpResponse(template.render({}, request))
 
 
