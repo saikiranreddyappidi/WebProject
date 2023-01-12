@@ -16,6 +16,7 @@
   text-align: center;
     font-family: arial, serif;
   background-color: #00001a;
+    {#margin-top: 5%;#}
 }
 
 .title {
@@ -50,12 +51,12 @@ button:hover, a:hover {
 }
 </style>
 </head>
-<body style="background-color: #404040">
+<body style="background-color: #404040;margin-top: 8%">
 
 <h2 style="text-align:center">User Profile Card</h2>
 <div class="card">
   {% for pro in mymembers %}
-  <img src={{ pro.link }} alt={{ pro.name }} style="width:100%">
+  <img src={{ pro.link }} alt={{ pro.name }} style="width:100%;" height="350">
   <h1>{{ pro.name }}</h1>
   <h3 style="color: red">{{ pro.reg_no }}</h3>
   <p class="title">Student</p>

@@ -55,3 +55,20 @@ class Cookies:
 		cookie = al + str(sum) + sc
 		return cookie
 	
+class user:
+	def profile(self):
+		mycursor = mydb.cursor()
+		sql = "select reg_no,name,photo_link from student_info"
+		mycursor.execute(sql)
+		myresult = mycursor.fetchall()
+		individual = []
+		for i in myresult:
+			if i[2]=='':
+				x = {'regno': i[0], 'name': i[1], 'photo': None}
+			else:
+				x = {'regno': i[0], 'name': i[1], 'photo': i[2]}
+			individual.append(x)
+		return individual
+
+# user= user()
+# print(user().profile(),sep='\n')

@@ -1,14 +1,14 @@
 from django.urls import path
 from . import views
+from . import profiles
 
 urlpatterns = [
     path('', views.firstreg, name='firstreg'),
-    # path('alreadylogin/home/', views.home, name='home'),
+    path('users/', profiles.profile, name='profile'),
     path('first/', views.first, name='first'),
     path('testing/', views.testing, name='testing'),
     path('file/fileinp/', views.fileinp, name='fileinp'),
     path('redirection/', views.redirection, name='redirection'),
-    # path('alreadylogin/', views.alreadylogin, name='alreadylogin'),
     path('newlogin/', views.newlogin, name='newlogin'),
     path('newlogin/first/', views.first, name='first'),
     path('course/', views.course, name='course'),
@@ -67,4 +67,5 @@ urlpatterns = [
     # path('first/cse/',views.cse,name='cse'),
     # path('course/',views.btech,name='btech'),
     # path('course/<str:name>',views.files,name='files'),
+    # path('alreadylogin/', views.alreadylogin, name='alreadylogin'),
 ]

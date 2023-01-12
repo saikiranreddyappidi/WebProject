@@ -5,17 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f22269a-668b-456d-acad-8446e2e82bf9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/WebProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/WebProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myworld/pdfs/templates/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myworld/pdfs/templates/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myworld/pdfs/templates/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myworld/pdfs/templates/.idea/templates.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myworld/pdfs/templates/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myworld/pdfs/templates/allProfiles.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/db5a5735-c894-448a-b280-472029ff37fe.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/db5a5735-c894-448a-b280-472029ff37fe.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/course.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/course_old.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/cse.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/cse.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/page_not_found.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/404.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/profile/211FA04563.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/profile/211FA04563.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/redirect.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/redirect.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/somethingwentwrong.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/somethingwentwrong.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/testing.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/testing.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myworld/pdfs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/myworld/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/myworld/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/Data/Primary.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/Data/Primary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/fortesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/fortesting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/ExampleHeader.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/ExampleHeader.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/ownProfile.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/profilecontent.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/profilecontent.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/set.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/set.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/unused/similarfile.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/unused/similarfile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/userprofile.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/userprofile.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,8 +144,36 @@
       <recent name="C:\Users\saiki\PycharmProjects\WebProject\myworld\pdfs\statics" />
       <recent name="C:\Users\saiki\PycharmProjects\pythonProject1\myworld\pdfs\templates" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\saiki\PycharmProjects\WebProject\myworld\pdfs\statics" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.views">
+  <component name="RunManager" selected="Python.Primary">
+    <configuration name="TemplateCode.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/myworld/pdfs/statics/TemplateCode.js" working-dir="$PROJECT_DIR$/myworld/pdfs/templates/js">
+      <method v="2" />
+    </configuration>
+    <configuration name="Primary" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/myworld/pdfs/Data" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myworld/pdfs/Data/Primary.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="pythonProject1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -249,50 +284,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="models" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="WebProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/chat/wmsapp" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/chat/wmsapp/models.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="setup" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="WebProject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="C:\Users\saiki\AppData\Local\JetBrains\PyCharm2022.2\demo\PyCharmLearningProject\venv\bin\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Downloads/mod_wsgi-4.9.4/mod_wsgi-4.9.4" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$USER_HOME$/Downloads/mod_wsgi-4.9.4/mod_wsgi-4.9.4/setup.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="true" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="views" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="WebProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -317,11 +308,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.views" />
+        <item itemvalue="Python.Primary" />
         <item itemvalue="Python.fortesting" />
+        <item itemvalue="Node.js.TemplateCode.js" />
+        <item itemvalue="Python.views" />
         <item itemvalue="Python.api" />
-        <item itemvalue="Python.setup" />
-        <item itemvalue="Python.models" />
       </list>
     </recent_temporary>
   </component>
@@ -462,6 +453,11 @@
       <workItem from="1673297542342" duration="5329000" />
       <workItem from="1673330578958" duration="7866000" />
       <workItem from="1673358241917" duration="99000" />
+      <workItem from="1673358362789" duration="318000" />
+      <workItem from="1673362135278" duration="977000" />
+      <workItem from="1673438856925" duration="875000" />
+      <workItem from="1673439773752" duration="19019000" />
+      <workItem from="1673506483470" duration="4000" />
     </task>
     <task id="LOCAL-00001" summary="ProjectDjango-03-09-2022">
       <created>1662146937909</created>
@@ -547,7 +543,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673304876735</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="individual html files">
+      <created>1673358514205</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1673358514205</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
