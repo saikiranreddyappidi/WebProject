@@ -1,0 +1,128 @@
+[33mcommit 9b5cb97078d4c4ddce470d114cc8819b067c4ac7[m[33m ([m[1;36mHEAD -> [m[1;32mProject[m[33m, [m[1;31morigin/Project[m[33m)[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Tue Jan 10 19:17:38 2023 +0530
+
+    individual html files
+
+[33mcommit 08b87207fd5234b4ead2df81ec1a959c621f227c[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Tue Jan 10 04:24:16 2023 +0530
+
+    individual html files
+
+[33mcommit a6ca5fa58847ef5f0c7602b1db107476129ec114[m[33m ([m[1;31morigin/daily[m[33m)[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Tue Jan 10 03:26:32 2023 +0530
+
+    Added creating own profile feature
+
+[33mcommit aff7cc4b118e99ea2c119efc33774f5297573421[m
+Author: Sai Kiran Reddy Appidi <98457635+saikiranreddyappidi@users.noreply.github.com>
+Date:   Sun Jan 8 23:37:42 2023 +0530
+
+    Update credentials.json
+
+[33mcommit 51b76f0a56f5aafbd27578c061c5af49f1c52660[m
+Author: Sai Kiran Reddy Appidi <98457635+saikiranreddyappidi@users.noreply.github.com>
+Date:   Sun Jan 8 23:37:15 2023 +0530
+
+    Update api.py
+
+[33mcommit 572e22cc6e614dc0a263c97a44b44651dc9dec45[m
+Author: Sai Kiran Reddy Appidi <98457635+saikiranreddyappidi@users.noreply.github.com>
+Date:   Sun Jan 8 23:36:20 2023 +0530
+
+    Update Primary.py
+
+[33mcommit d156a5e10ba3aa26837359ed83081b473e90df77[m
+Author: Sai Kiran Reddy Appidi <98457635+saikiranreddyappidi@users.noreply.github.com>
+Date:   Sun Jan 8 23:35:42 2023 +0530
+
+    Update mail.py
+
+[33mcommit 47b270bf16a08edb3034c5d2b85e086850a2594e[m
+Author: Sai Kiran Reddy Appidi <98457635+saikiranreddyappidi@users.noreply.github.com>
+Date:   Sun Jan 8 23:34:07 2023 +0530
+
+    Update views.py
+
+[33mcommit 7935d565360add78ef4dad60cf79126811239028[m[33m ([m[1;32mmain[m[33m, [m[1;32mdaily[m[33m)[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Sun Jan 8 23:16:58 2023 +0530
+
+    Minor changes
+
+[33mcommit e3eb31b78411260ac094ffef5274da3a345c74b2[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Fri Dec 16 23:44:47 2022 +0530
+
+    Minor changes
+
+[33mcommit a77272f0a91741944e5b0c88f0cfd6da79adbcf2[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Fri Dec 16 23:15:39 2022 +0530
+
+    Added new feature to reset passwords.
+
+[33mcommit 8f55b224a093dea85ac5a0ee65178b5b987cf30a[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Sat Oct 8 08:55:16 2022 +0530
+
+    Added new feature to reset passwords.
+
+[33mcommit fc761734d96ef394acaf75455550b3f6290ab6fb[m[33m ([m[1;32mmaster[m[33m)[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Fri Oct 7 21:09:36 2022 +0530
+
+    Added new features to reset the password i.e., user can reset the password through link also.
+
+[33mcommit f87b4361aeb546be5ecc4ed88363bd6c358d01ff[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Tue Oct 4 19:45:28 2022 +0530
+
+    Some bugs fixed
+
+[33mcommit 8af7ee651962d46d3124d73fafe1f71a4722900a[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Tue Oct 4 11:45:00 2022 +0530
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 36370f28101ebffb7f472b3753ab3d7d2a98159f[m
+Merge: 61c5ae1 a3edef4
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Fri Sep 9 23:11:47 2022 +0530
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 61c5ae104281120db082cd05bf350b86064ac2fb[m
+Merge: 200f7a7 d63176f
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Sat Sep 3 02:46:12 2022 +0530
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit a3edef49b12c913b38a156c52ceae3aa01ee1d96[m
+Merge: 200f7a7 d63176f
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Sat Sep 3 02:46:12 2022 +0530
+
+    Merge remote-tracking branch 'origin/master'
+
+[33mcommit 200f7a7e937f5b41fef32c38a6cd304145f2614f[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Sat Sep 3 02:28:50 2022 +0530
+
+    ProjectDjango
+
+[33mcommit d63176ff84d3bcb8ec9957ffb90411137ec755da[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Sat Sep 3 02:28:50 2022 +0530
+
+    ProjectDjango
+
+[33mcommit 74df979809f24bee4b15647feb94f56d70a12b18[m
+Author: saikiranreddyappidi <saikiranreddyvfstr@gmail.com>
+Date:   Sat Sep 3 00:58:57 2022 +0530
+
+    ProjectDjango-03-09-2022

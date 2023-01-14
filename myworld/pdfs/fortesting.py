@@ -16,3 +16,4 @@
 #     f.close()
 p='https://lh3.googleusercontent.com/pw/AM-JKLVz_lMi3wZAJry4odlCpSPD1OaOmglZbm3xp2p6pVmq0iomKScfkffanNIbTB7hpoapqSDkljqeJGXrdWxR0p6yutEUwkOceWILBGt-eY4GRcCiGmQQ0MczwZbMmCn9fQ6wxmiZePfoIZx8911ObCMO=w1863-h858-no?authuser=0'
 print(p[:4]=='http')
+print(p[:5]=='https')

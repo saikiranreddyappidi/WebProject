@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 mydb1 = mysql.connector.connect(
 	host="localhost",
 	user="root",
-	password="database@9440672439",
+	password="database",
 	database="library"
 )
 
@@ -102,7 +102,7 @@ class Mail:
 			smtp = smtplib.SMTP('smtp.gmail.com', 587)
 			smtp.ehlo()
 			smtp.starttls()
-			smtp.login('developingproject7@gmail.com', 'lbmmbbtemyupkcls')
+			smtp.login('developingproject7@gmail.com', 'lbmmbbtemys')
 			msg = MIMEMultipart()
 			subject = "Reset Password link"
 			msg['Subject'] = subject
