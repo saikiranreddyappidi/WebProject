@@ -7,11 +7,18 @@ import mysql.connector
 mydb = mysql.connector.connect(
 	host="localhost",
 	user="root",
-	password="database",
+	password="database@9440672439",
 	database="library"
 )
 
-
+"""
+1. We then create a class called DB. This class contains the methods to connect to the database and perform the CRUD
+operations.
+2. We then create a method called get_reg. This method takes in the cookie value as a parameter, and it returns the
+registration number corresponding to the cookie value.
+3. We then create a method called search. This method takes in the registration number and the password as parameters,
+and returns the student information if the password is correct. If the password is incorrect, it returns 1. If the
+registration number is not found in the database, it returns 0. If there is an exception, it also returns 0. """
 class DB:
 	def get_reg(self, c_value):
 		mycursor = mydb.cursor()
@@ -43,7 +50,7 @@ class DB:
 			print('search exception')
 			return 0
 
-
+"""The cookies class creates the cookie that will be sent and set on the client side for unique identification of the user."""
 class Cookies:
 	def makecookie(self):
 		sum = 0
@@ -55,6 +62,16 @@ class Cookies:
 		cookie = al + str(sum) + sc
 		return cookie
 	
+
+"""
+1. First we have a class user
+2. Inside the class we have a function called profile
+3. This function will return a list of dictionaries which consists of the following:
+	3.1. regno - registration number of the student
+	3.2. name - name of the student
+	3.3. photo - link to the student's photo
+4. The photo link is None if the student doesn't have a photo uploaded 
+"""
 class user:
 	def profile(self):
 		mycursor = mydb.cursor()

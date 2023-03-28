@@ -89,6 +89,7 @@ ul.list-group li {
 </head>
 <body style="background-color: #00000f; text-align: center">
 {% if mymembers|length == 0 and students_files|length == 0  %}
+    <br><br><br><br>
 <h2>Currently no files available for your branch</h2>
     <img style="padding-left:25%;position: fixed;
             height: 75%;
@@ -97,6 +98,7 @@ ul.list-group li {
 
 {% if mymembers|length %}
     <table border="1">
+    <br><br><br><br>
     <h2>Following links are available for your branch</h2>
 <tr>
     <td><h3 style="color: #0000cc">Sl.No</h3></td>
@@ -111,7 +113,7 @@ ul.list-group li {
     <td>{{ x.facultyname }}</td>
     <td>Professor</td>
     <td>{{x.file_type}}</td>
-    <td><a href={{ x.link }} title="OpenFile">{{x.filename}}</a></td>
+    <td><a href={{ x.link }} title="Open&emsp;File">{{x.filename}}</a></td>
 </tr>
 {% endfor %}
 </table>

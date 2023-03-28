@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-lv643-jpnse5br&h)=(!f@#-*)nk)7c5uaqivs-7p)d1lvu6^d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [socket.gethostbyname('Dell'), '127.0.0.1']  # '192.168.96.118'
+ALLOWED_HOSTS = [socket.gethostbyname('Dell'), '127.0.0.1','192.168.96.118']  # '192.168.96.118'
 
 
 # Application definition

@@ -4,10 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7f22269a-668b-456d-acad-8446e2e82bf9" name="Changes" comment="Few improvements">
-      <change afterPath="$PROJECT_DIR$/exit" afterDir="false" />
+    <list default="true" id="7f22269a-668b-456d-acad-8446e2e82bf9" name="Changes" comment="Few improvements and checks">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08-01-2023_23_43_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08-01-2023_23_43__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/chat/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/chat/asgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/chat/settings.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/chat/wsgi.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/db.sqlite3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/manage.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/admin.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/apps.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/templates/child-iframe.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/templates/creating.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/templates/database.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/templates/parent.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/templates/post.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/templates/public.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/templates/redirect.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/urls.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat/wmsapp/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/myworld/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/myworld/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/Data/Primary.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/Data/Primary.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/MailServices/mail.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/MailServices/mail.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myworld/pdfs/fortesting.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/fortesting.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/profiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/profiles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/404.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/404.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/cse.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/cse.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/newadmin.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/newadmin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/profile/01.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/profile/01.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/profile/211FA04563.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/profile/211FA04563.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/redirect.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/redirect.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/templates/somethingwentwrong.html" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/templates/somethingwentwrong.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myworld/pdfs/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myworld/pdfs/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +61,8 @@
         <option value="SCSS File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -106,7 +143,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;aDefault&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -130,13 +167,11 @@
       <recent name="C:\Users\saiki\PycharmProjects\pythonProject1\myworld\pdfs\templates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\saiki\PycharmProjects\WebProject\myworld\pdfs" />
       <recent name="C:\Users\saiki\PycharmProjects\WebProject\myworld\pdfs\statics" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Primary">
-    <configuration name="TemplateCode.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/myworld/pdfs/statics/TemplateCode.js" working-dir="$PROJECT_DIR$/myworld/pdfs/templates/js">
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.admin">
     <configuration name="Primary" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="WebProject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -173,6 +208,25 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="admin" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="WebProject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/myworld/pdfs" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myworld/pdfs/admin.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -293,11 +347,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Primary" />
-        <item itemvalue="Python.fortesting" />
-        <item itemvalue="Node.js.TemplateCode.js" />
+        <item itemvalue="Python.admin" />
         <item itemvalue="Python.views" />
+        <item itemvalue="Python.fortesting" />
         <item itemvalue="Python.api" />
+        <item itemvalue="Python.Primary" />
       </list>
     </recent_temporary>
   </component>
@@ -448,6 +502,27 @@
       <workItem from="1673628874136" duration="22000" />
       <workItem from="1673628913990" duration="704000" />
       <workItem from="1673631164198" duration="1273000" />
+      <workItem from="1673668526914" duration="199000" />
+      <workItem from="1673964511499" duration="86000" />
+      <workItem from="1674224144685" duration="706000" />
+      <workItem from="1674386211659" duration="12000" />
+      <workItem from="1674679765313" duration="2895000" />
+      <workItem from="1674746737910" duration="1278000" />
+      <workItem from="1674817948341" duration="554000" />
+      <workItem from="1674934248694" duration="607000" />
+      <workItem from="1674997889689" duration="99000" />
+      <workItem from="1675189955808" duration="597000" />
+      <workItem from="1675862993987" duration="14000" />
+      <workItem from="1676133641583" duration="2463000" />
+      <workItem from="1676312504417" duration="562000" />
+      <workItem from="1676313181353" duration="4493000" />
+      <workItem from="1676385285476" duration="24000" />
+      <workItem from="1676871196234" duration="1792000" />
+      <workItem from="1676978633379" duration="1648000" />
+      <workItem from="1677063519233" duration="1638000" />
+      <workItem from="1677680650677" duration="947000" />
+      <workItem from="1678606845753" duration="1242000" />
+      <workItem from="1680035191080" duration="2665000" />
     </task>
     <task id="LOCAL-00001" summary="ProjectDjango-03-09-2022">
       <created>1662146937909</created>
@@ -547,7 +622,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673553958631</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Few improvements and checks">
+      <created>1673668713909</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1673668713909</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -603,7 +685,8 @@
     <MESSAGE value="Added creating own profile feature" />
     <MESSAGE value="individual html files" />
     <MESSAGE value="Few improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Few improvements" />
+    <MESSAGE value="Few improvements and checks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Few improvements and checks" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/WebProject$setup.coverage" NAME="setup Coverage Results" MODIFIED="1672497302929" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/Downloads/mod_wsgi-4.9.4/mod_wsgi-4.9.4" />

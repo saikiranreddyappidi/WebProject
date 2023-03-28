@@ -8,7 +8,7 @@ from email.mime.text import MIMEText
 mydb1 = mysql.connector.connect(
 	host="localhost",
 	user="root",
-	password="database",
+	password="database@9440672439",
 	database="library"
 )
 
