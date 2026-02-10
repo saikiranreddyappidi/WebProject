@@ -6,7 +6,7 @@ certifi==2022.6.15
 cffi==1.15.1
 charset-normalizer==2.1.1
 coverage==6.4.4
-cryptography==38.0.3
+cryptography==46.0.5
 cycler==0.11.0
 Deprecated==1.2.13
 Django==4.0.5
